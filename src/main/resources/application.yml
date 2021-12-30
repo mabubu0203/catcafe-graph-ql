@@ -1,0 +1,9 @@
+spring:
+  graphql:
+    websocket:
+      path: "/graphql"
+    schema:
+      printer:
+        enabled: true
+
+
