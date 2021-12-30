@@ -1,6 +1,6 @@
 package mabubu0203.com.github.cafe.api.controller;
 
-import mabubu0203.com.github.cafe.api.model.Cast;
+import com.netflix.dgs.codegen.types.Cast;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
@@ -11,25 +11,13 @@ import reactor.core.publisher.Mono;
 public class CastQueryController {
 
   @QueryMapping
-  public Mono<Cast> castFind(@Argument Integer id) {
-    return Mono.just(
-        Cast.builder()
-            .id(id)
-            .firstAttendanceDate("")
-            .lastAttendanceDate("")
-            .memo("")
-            .build());
+  public Mono<Cast> castFind(@Argument String id) {
+    return Mono.just(new Cast(id, "a", "b", "c"));
   }
 
   @QueryMapping
   public Flux<Cast> castSearch() {
-    return Flux.just(
-        Cast.builder()
-            .id(1)
-            .firstAttendanceDate("")
-            .lastAttendanceDate("")
-            .memo("")
-            .build());
+    return Flux.just(new Cast("id", "a", "b", "c"));
   }
 
 }
