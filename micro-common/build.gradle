@@ -1,0 +1,17 @@
+dependencies {
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    archiveBaseName = "micro-common"
+    archiveVersion = "0.0.1"
+    enabled = true
+}
+
+bootJar {
+    enabled = false
+}

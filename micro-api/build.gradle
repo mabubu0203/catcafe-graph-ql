@@ -1,0 +1,19 @@
+test {
+    useJUnitPlatform()
+}
+
+springBoot {
+    buildInfo()
+}
+
+jar {
+    archiveBaseName = "micro-api"
+    enabled = true
+}
+
+bootJar {
+    archiveBaseName = "micro-api"
+    archiveVersion = "0.0.1"
+    enabled = true
+    launchScript()
+}
