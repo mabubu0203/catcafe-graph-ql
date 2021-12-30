@@ -5,4 +5,12 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
+
 rootProject.name = 'CafeRoot'
+
+include(
+        'micro-api',
+        'micro-common',
+        'micro-domain',
+        'micro-infrastructure'
+)

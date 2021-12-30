@@ -1,0 +1,8 @@
+apply plugin: "com.palantir.git-version"
+apply plugin: "idea"
+apply plugin: "jacoco"
+apply plugin: "java"
+apply plugin: "java-library"
+apply plugin: "project-report"
+
+version gitVersion()
