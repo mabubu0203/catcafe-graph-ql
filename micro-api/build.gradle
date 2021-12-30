@@ -7,13 +7,13 @@ springBoot {
 }
 
 jar {
-    archiveBaseName = "micro-api"
+    archiveBaseName = getProject().name
     enabled = true
 }
 
 bootJar {
-    archiveBaseName = "micro-api"
-    archiveVersion = "0.0.1"
+    archiveBaseName = getProject().name
+    archiveVersion = "${CafeVersion}"
     enabled = true
     launchScript()
 }

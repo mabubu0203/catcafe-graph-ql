@@ -5,4 +5,12 @@ apply plugin: "java"
 apply plugin: "java-library"
 apply plugin: "project-report"
 
+compileJava {
+    doFirst {
+        options.encoding = "${DefaultEncoding}"
+        sourceCompatibility = "${JdkVersion}"
+        targetCompatibility = "${JdkVersion}"
+    }
+}
+
 version gitVersion()

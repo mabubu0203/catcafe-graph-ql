@@ -7,8 +7,8 @@ test {
 }
 
 jar {
-    archiveBaseName = "micro-domain"
-    archiveVersion = "0.0.1"
+    archiveBaseName = getProject().name
+    archiveVersion = "${CafeVersion}"
     enabled = true
 }
 
