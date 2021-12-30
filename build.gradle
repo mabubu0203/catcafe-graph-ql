@@ -1,5 +1,14 @@
 buildscript {
     ext {
+        // ソースと実行ファイルのJavaバージョン
+        JdkVersion = jdkVersion
+        DefaultEncoding = defaultEncoding
+
+        // SpringBoot
+        SpringBootVersion = springbootVersion
+
+        // CatCafe
+        CafeVersion = cafeVersion
     }
 
     repositories {
@@ -11,7 +20,7 @@ buildscript {
 }
 
 plugins {
-	id 'org.springframework.boot' version '2.7.0-SNAPSHOT'
+	id 'org.springframework.boot' version "${SpringBootVersion}"
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'com.gorylenko.gradle-git-properties' version '2.3.2'
 	id 'com.palantir.git-version' version '0.12.3'
@@ -21,7 +30,6 @@ plugins {
 subprojects {
 
     group = 'mabubu0203.com.github'
-    version = '0.0.1-SNAPSHOT'
     apply from: "$rootDir/gradle/java.gradle"
     apply from: "$rootDir/gradle/spring.gradle"
 

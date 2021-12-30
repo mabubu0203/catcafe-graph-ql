@@ -1,4 +1,4 @@
-package mabubu0203.com.github.cafe;
+package mabubu0203.com.github.cafe.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -7,9 +7,10 @@ test {
 }
 
 jar {
-    archiveBaseName = "micro-infrastructure"
-    archiveVersion = "0.0.1"
+    archiveBaseName = getProject().name
+    archiveVersion = "${CafeVersion}"
     enabled = true
+
 }
 
 bootJar {
