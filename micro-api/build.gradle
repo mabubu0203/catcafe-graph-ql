@@ -1,3 +1,9 @@
+description = getProject().name
+
+dependencies {
+
+}
+
 test {
     useJUnitPlatform()
 }

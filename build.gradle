@@ -13,8 +13,12 @@ buildscript {
 
     repositories {
         mavenCentral()
-        maven { url 'https://repo.spring.io/milestone' }
-        maven { url 'https://repo.spring.io/snapshot' }
+        if (SpringBootVersion.contains('-')) {
+            maven { url "https://repo.spring.io/milestone" }
+        }
+        if (SpringBootVersion.endsWith('-SNAPSHOT')) {
+            maven { url "https://repo.spring.io/snapshot" }
+        }
     }
 
 }
@@ -27,22 +31,27 @@ plugins {
 	id 'se.bjurr.gitchangelog.git-changelog-gradle-plugin' version '1.71.4'
 }
 
+description = "root"
+
 subprojects {
 
     group = 'mabubu0203.com.github'
+    version = "${CafeVersion}"
     apply from: "$rootDir/gradle/java.gradle"
     apply from: "$rootDir/gradle/spring.gradle"
 
     configurations {
-        compileOnly {
-            extendsFrom annotationProcessor
-        }
+        compileOnly.extendsFrom annotationProcessor
     }
 
     repositories {
         mavenCentral()
-        maven { url 'https://repo.spring.io/milestone' }
-        maven { url 'https://repo.spring.io/snapshot' }
+        if (SpringBootVersion.contains('-')) {
+            maven { url "https://repo.spring.io/milestone" }
+        }
+        if (SpringBootVersion.endsWith('-SNAPSHOT')) {
+            maven { url "https://repo.spring.io/snapshot" }
+        }
     }
 
     dependencies {
