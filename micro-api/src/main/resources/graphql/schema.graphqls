@@ -1,0 +1,11 @@
+type Query {
+  castFind(id: ID!): Cast!
+  castSearch: [Cast!]!
+}
+
+type Cast {
+  id: ID!
+  firstAttendanceDate: String!
+  lastAttendanceDate: String!
+  memo: String!
+}
