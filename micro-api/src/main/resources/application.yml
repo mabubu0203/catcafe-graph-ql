@@ -1,9 +1,92 @@
 spring:
+  profiles:
+    group:
+      development:
+        - "local"
+        - "common"
+      production:
+        - "docker"
+        - "common"
+    default: "development"
+
+---
+spring:
+  application:
+    name: micro-api
+  config:
+    activate:
+      on-profile: common
   graphql:
-    websocket:
-      path: "/graphql"
+    graphiql:
+      enabled: true
     schema:
       printer:
         enabled: true
-
-
+    websocket:
+      path: "/graphql"
+  main:
+    allow-bean-definition-overriding: true
+    web-application-type: reactive
+  webflux:
+    hiddenmethod:
+      filter:
+        enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readinessstate:
+      enabled: true
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  devtools:
+    livereload:
+      port: 35219
+    restart:
+      poll-interval: 1000
+  redis:
+    database: 2
+    host: localhost
+    port: 6379
+server:
+  http2:
+    enabled: true
+  port: 9001
+  servlet:
+    application-display-name: micro-api
+logging:
+  level:
+    root: INFO
+    redis:
+      clients: TRACE
+    web: DEBUG
+  file:
+    name: micro-api.log
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  redis:
+    database: 3
+    host: redis
+    port: 6379
+server:
+  http2:
+    enabled: true
+  port: 9001
+  servlet:
+    application-display-name: micro-api
+logging:
+  level:
+    root: INFO
+    redis:
+      clients: TRACE
+    web: INFO
+  file:
+    name: micro-api.log

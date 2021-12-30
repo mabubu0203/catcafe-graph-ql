@@ -36,6 +36,7 @@ IntelliJ IDEAを使用します。
 ### Endpoints
 
 - [Api][]
+- [GraphiQL][]
 - [Redisinsight][]
 
 ## 停止方法
@@ -49,6 +50,8 @@ IntelliJ IDEAを使用します。
 1. docker-composeよりコンテナ破棄
    `$ docker-compose -f ./docker/mac/docker-compose.yml down -v`
 
-[Springdoc(Api)]: http://localhost:9001/CatCafeApi/swagger-ui.html            "Api"
+[Api]: http://localhost:9001/                               "Api"
 
-[Redisinsight]: http://localhost:8001/                                        "Redisinsight"
+[GraphiQL]: http://localhost:9001/graphiql?path=/graphql    "GraphiQL"
+
+[Redisinsight]: http://localhost:8001/                      "Redisinsight"
