@@ -1,11 +1,159 @@
+# Root
 type Query {
-  castFind(id: ID!): Cast!
-  castSearch: [Cast!]!
 }
 
-type Cast {
-  id: ID!
-  firstAttendanceDate: String!
-  lastAttendanceDate: String!
-  memo: String!
+# Root
+type Mutation {
+
+}
+
+scalar Date
+scalar DateTime
+
+interface HasCommon {
+  id: Int!
+  common: Common!
+}
+
+# 共通フィールド
+type Common {
+  # 登録日時
+  createdDateTime: DateTime
+  # 更新日時
+  updatedDateTime: DateTime
+  # バージョンフィールド
+  version: Int!
+}
+
+extend type Query {
+  castFind(id: ID!): Cast
+  castSearch: [Cast]!
+  castCatFind(id: ID!): CastCat
+  castCatSearch: [CastCat]!
+}
+
+extend type Mutation {
+  castCreate(
+    input: CastCommand!
+  ): Cast!
+  castUpdate(
+    # castID
+    id:Int!,
+    input: CastCommand!,
+    # バージョンフィールド
+    version: Int
+  ): Cast!
+  castDelete(
+    # castID
+    id:Int,
+    # バージョンフィールド
+    version: Int
+  ): ID
+  castCatCreate(
+    input: CastCatCommand!
+  ): CastCat!
+  castCatUpdate(
+    # castCatID
+    id:Int,
+    input: CastCatCommand!,
+    # バージョンフィールド
+    version: Int
+  ): CastCat!
+  castCatDelete(
+    # castCatID
+    id:Int,
+    # バージョンフィールド
+    version: Int
+  ): ID
+}
+
+# キャスト登録/更新
+input CastCommand {
+  employmentStatus: EmploymentStatus
+  # 初出勤日
+  firstAttendanceDate: Date
+  # 最終出勤日
+  lastAttendanceDate: Date
+  # 店舗メモ
+  memo: String
+}
+
+# キャスト(猫)登録/更新
+input CastCatCommand  {
+  # 名前
+  name: String
+  # 画像
+  image: String
+  # 種類
+  type: String
+  castCatSex: CastCatSex
+  # 誕生日
+  birthdayDate: Date
+  # 好きなこと
+  favorite: String
+  # 嫌いなこと
+  dislike: String
+  # 禁止事項
+  prohibition: String
+  # 兄弟
+  brothers: [ID]
+  # 姉妹
+  sisters: [ID]
+  # キャストメモ
+  memo: String
+}
+
+# キャスト詳細
+type Cast implements HasCommon {
+  # キャストID
+  id: Int!
+  employmentStatus: EmploymentStatus
+  # 初出勤日
+  firstAttendanceDate: Date
+  # 最終出勤日
+  lastAttendanceDate: Date
+  # 店舗メモ
+  memo: String
+  common: Common!
+}
+
+# キャスト(猫)詳細
+type CastCat implements HasCommon {
+  # キャスト(猫)ID
+  id: Int!
+  # 名前
+  name: String
+  # 画像
+  image: String
+  # 種類
+  type: String
+  castCatSex: CastCatSex
+  # 誕生日
+  birthdayDate: Date
+  # 好きなこと
+  favorite: String
+  # 嫌いなこと
+  dislike: String
+  # 禁止事項
+  prohibition: String
+  # 兄弟
+  brothers: [ID]
+  # 姉妹
+  sisters: [ID]
+  # キャストメモ
+  memo: String
+  common: Common!
+}
+
+# 雇用形態
+enum EmploymentStatus {
+  main
+  sub
+}
+
+# 性別
+enum CastCatSex {
+  unknown
+  male
+  female
 }

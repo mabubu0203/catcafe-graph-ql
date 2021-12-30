@@ -3,7 +3,7 @@ description = getProject().name
 apply plugin: "com.netflix.dgs.codegen"
 
 dependencies {
-
+    implementation 'com.graphql-java:graphql-java-extended-scalars:17.0'
 }
 
 test {
