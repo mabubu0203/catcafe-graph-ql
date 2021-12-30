@@ -9,8 +9,9 @@ IntelliJ IDEAを使用します。
 
 下記の最新版をインストールします。
 
-1. google-java-format Settings
-1. Lombok Plugin
+- EditorConfig
+- GraphQL
+- Lombok Plugin
 
 ## 起動方法
 

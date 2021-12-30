@@ -1,5 +1,5 @@
 {
-  "name": "Sample",
+  "name": "Cafe",
   "schemaPath": "src/main/resources/graphql/schema.graphqls",
   "extensions": {}
 }
