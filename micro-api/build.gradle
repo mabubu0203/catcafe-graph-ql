@@ -1,11 +1,21 @@
 description = getProject().name
 
+apply plugin: "com.netflix.dgs.codegen"
+
 dependencies {
 
 }
 
 test {
     useJUnitPlatform()
+}
+
+// https://netflix.github.io/dgs/generating-code-from-schema/
+generateJava {
+    schemaPaths = ["${projectDir}/src/main/resources/graphql"]
+    packageName = 'com.netflix.dgs.codegen'
+    generateInterfaces = true
+    shortProjectionNames = true
 }
 
 springBoot {
