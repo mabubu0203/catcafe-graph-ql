@@ -1,0 +1,37 @@
+package mabubu0203.com.github.cafe.api.controller.cast.helper.request;
+
+import com.netflix.dgs.codegen.types.CastCatCommand;
+import lombok.RequiredArgsConstructor;
+import mabubu0203.com.github.cafe.api.service.cast.model.input.CastCatModifyServiceInput;
+import mabubu0203.com.github.cafe.common.controller.helper.request.UpdateRequestMapper;
+
+
+@RequiredArgsConstructor
+public class CastCatUpdateRequestMapper implements
+    UpdateRequestMapper<CastCatCommand, CastCatModifyServiceInput> {
+
+  private final String cats;
+  private final Integer castCatId;
+  private final Integer version;
+
+  @Override
+  public CastCatModifyServiceInput apply(CastCatCommand request) {
+    return CastCatModifyServiceInput.builder()
+        .cats(this.cats)
+        .castCatId(this.castCatId)
+        .name(request.getName())
+        .image(request.getImage())
+        .type(request.getType())
+        .sex(request.getSex().name())
+        .birthdayDate(request.getBirthdayDate())
+        .favorite(request.getFavorite())
+        .dislike(request.getDislike())
+        .prohibition(request.getProhibition())
+        .brothers(request.getBrothers())
+        .sisters(request.getSisters())
+        .memo(request.getMemo())
+        .version(this.version)
+        .build();
+  }
+
+}

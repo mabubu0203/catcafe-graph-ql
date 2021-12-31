@@ -1,6 +1,6 @@
 package mabubu0203.com.github.cafe.api.controller.cast;
 
-import com.netflix.dgs.codegen.types.Cast;
+import com.netflix.dgs.codegen.types.CastCat;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -10,25 +10,24 @@ import reactor.core.publisher.Mono;
 
 @Controller
 @RequiredArgsConstructor
-public class CastQueryController {
+public class CastCatQueryController {
 
   @QueryMapping
-  public Mono<Cast> castFind(
+  public Mono<CastCat> castCatFind(
       @Argument("id") Integer id
   ) {
     return Mono.just(
-        Cast.newBuilder()
+        CastCat.newBuilder()
             .id(id)
             .build());
   }
 
   @QueryMapping
-  public Flux<Cast> castSearch() {
+  public Flux<CastCat> castCatSearch() {
     return Flux.just(
-        Cast.newBuilder()
+        CastCat.newBuilder()
             .id(0)
             .build());
   }
-
 
 }

@@ -1,36 +1,50 @@
 package mabubu0203.com.github.cafe.api.controller.cast;
 
 import com.netflix.dgs.codegen.types.Cast;
-import com.netflix.dgs.codegen.types.CastCat;
-import com.netflix.dgs.codegen.types.CastCatCommand;
 import com.netflix.dgs.codegen.types.CastCommand;
+import lombok.RequiredArgsConstructor;
+import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCreateRequestMapper;
+import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastUpdateRequestMapper;
+import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCreateResponseMapper;
+import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastUpdateResponseMapper;
+import mabubu0203.com.github.cafe.api.service.cast.CastDeleteService;
+import mabubu0203.com.github.cafe.api.service.cast.CastModifyService;
+import mabubu0203.com.github.cafe.api.service.cast.CastRegisterService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
+import reactor.core.publisher.Mono;
 
 @Controller
+@RequiredArgsConstructor
 public class CastCommandController {
 
+  private final CastRegisterService castResisterService;
+  private final CastModifyService castModifyService;
+  private final CastDeleteService castDeleteService;
+
   @MutationMapping
-  public Cast castCreate(
+  public Mono<Cast> castCreate(
       @Argument("input") CastCommand input
   ) {
-    return
-        Cast.newBuilder()
-            .id(0)
-            .build();
+    Mono.just(input)
+        .map(new CastCreateRequestMapper("cats", 0))
+        .flatMap(this.castResisterService::action)
+        .map(new CastCreateResponseMapper());
+
+    return Mono.just(new Cast.Builder().id(1).build());
   }
 
   @MutationMapping
-  public Cast castUpdate(
+  public Mono<Cast> castUpdate(
       @Argument("id") Integer id,
       @Argument("input") CastCommand input,
       @Argument("version") Integer version
   ) {
-    return
-        Cast.newBuilder()
-            .id(id)
-            .build();
+    return Mono.just(input)
+        .map(new CastUpdateRequestMapper())
+        .flatMap(this.castModifyService::action)
+        .map(new CastUpdateResponseMapper());
   }
 
   @MutationMapping
@@ -41,33 +55,5 @@ public class CastCommandController {
     return 1;
   }
 
-  @MutationMapping
-  public CastCat castCatCreate(
-      @Argument("input") CastCatCommand input
-  ) {
-    return
-        CastCat.newBuilder()
-            .id(0)
-            .build();
-  }
 
-  @MutationMapping
-  public CastCat castCatUpdate(
-      @Argument("id") Integer id,
-      @Argument("input") CastCatCommand input,
-      @Argument("version") Integer version
-  ) {
-    return
-        CastCat.newBuilder()
-            .id(id)
-            .build();
-  }
-
-  @MutationMapping
-  public Integer castCatDelete(
-      @Argument("id") Integer id,
-      @Argument("version") Integer version
-  ) {
-    return 2;
-  }
 }

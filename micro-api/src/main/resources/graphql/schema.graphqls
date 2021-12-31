@@ -86,7 +86,7 @@ input CastCatCommand  {
   image: String
   # 種類
   type: String
-  castCatSex: CastCatSex
+  sex: CatSex
   # 誕生日
   birthdayDate: Date
   # 好きなこと
@@ -96,9 +96,9 @@ input CastCatCommand  {
   # 禁止事項
   prohibition: String
   # 兄弟
-  brothers: [ID]
+  brothers: [Int]
   # 姉妹
-  sisters: [ID]
+  sisters: [Int]
   # キャストメモ
   memo: String
 }
@@ -127,7 +127,7 @@ type CastCat implements HasCommon {
   image: String
   # 種類
   type: String
-  castCatSex: CastCatSex
+  sex: CatSex
   # 誕生日
   birthdayDate: Date
   # 好きなこと
@@ -137,9 +137,9 @@ type CastCat implements HasCommon {
   # 禁止事項
   prohibition: String
   # 兄弟
-  brothers: [ID]
+  brothers: [Int]
   # 姉妹
-  sisters: [ID]
+  sisters: [Int]
   # キャストメモ
   memo: String
   common: Common!
@@ -151,8 +151,8 @@ enum EmploymentStatus {
   sub
 }
 
-# 性別
-enum CastCatSex {
+# キャスト(猫)性別
+enum CatSex {
   unknown
   male
   female

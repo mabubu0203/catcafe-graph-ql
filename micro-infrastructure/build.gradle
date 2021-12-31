@@ -2,6 +2,10 @@ description = getProject().name
 
 dependencies {
 
+    // lombok
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
 }
 
 test {
