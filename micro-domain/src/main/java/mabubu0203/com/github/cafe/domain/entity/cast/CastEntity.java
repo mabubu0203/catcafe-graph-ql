@@ -43,7 +43,7 @@ public class CastEntity {
 
   public String getCastCodeValue() {
     return Optional.ofNullable(this.castCode)
-        .map(CastCode::getValue)
+        .map(CastCode::value)
         .orElse(null);
   }
 
@@ -56,7 +56,7 @@ public class CastEntity {
 
   public String getLocationCodeValue() {
     return Optional.ofNullable(this.locationCode)
-        .map(LocationCode::getValue)
+        .map(LocationCode::value)
         .orElse(null);
   }
 

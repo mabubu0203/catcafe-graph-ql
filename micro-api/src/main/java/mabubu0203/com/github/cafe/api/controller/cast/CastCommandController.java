@@ -4,8 +4,10 @@ import com.netflix.dgs.codegen.types.Cast;
 import com.netflix.dgs.codegen.types.CastCommand;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCreateRequestMapper;
+import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastDeleteRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastUpdateRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCreateResponseMapper;
+import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastDeleteResponseMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastUpdateResponseMapper;
 import mabubu0203.com.github.cafe.api.service.cast.CastDeleteService;
 import mabubu0203.com.github.cafe.api.service.cast.CastModifyService;
@@ -28,7 +30,7 @@ public class CastCommandController {
       @Argument("input") CastCommand input
   ) {
     Mono.just(input)
-        .map(new CastCreateRequestMapper("cats", 0))
+        .map(new CastCreateRequestMapper())
         .flatMap(this.castResisterService::action)
         .map(new CastCreateResponseMapper());
 
@@ -42,18 +44,20 @@ public class CastCommandController {
       @Argument("version") Integer version
   ) {
     return Mono.just(input)
-        .map(new CastUpdateRequestMapper())
+        .map(new CastUpdateRequestMapper(code, version))
         .flatMap(this.castModifyService::action)
         .map(new CastUpdateResponseMapper());
   }
 
   @MutationMapping
-  public Integer castDelete(
+  public Mono<String> castDelete(
       @Argument("code") String code,
       @Argument("version") Integer version
   ) {
-    return 1;
+    return Mono.just(code)
+        .map(new CastDeleteRequestMapper(version))
+        .flatMap(this.castDeleteService::action)
+        .map(new CastDeleteResponseMapper());
   }
-
 
 }

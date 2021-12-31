@@ -8,7 +8,7 @@ public class CastCatUpdateResponseMapper implements
     UpdateResponseMapper<CastCatModifyServiceOutput, CastCat> {
 
   @Override
-  public CastCat apply(CastCatModifyServiceOutput castCatModifyServiceOutput) {
+  public CastCat apply(CastCatModifyServiceOutput output) {
     return new CastCat();
   }
 }

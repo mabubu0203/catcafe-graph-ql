@@ -39,7 +39,7 @@ public class NoticeEntity {
 
   public String getNoticeCodeValue() {
     return Optional.ofNullable(this.noticeCode)
-        .map(NoticeCode::getValue)
+        .map(NoticeCode::value)
         .orElse(null);
   }
 
@@ -52,7 +52,7 @@ public class NoticeEntity {
 
   public String getLocationCodeValue() {
     return Optional.ofNullable(this.locationCode)
-        .map(LocationCode::getValue)
+        .map(LocationCode::value)
         .orElse(null);
   }
 

@@ -6,19 +6,19 @@ import mabubu0203.com.github.cafe.domain.entity.cast.CastCatEntity;
 import mabubu0203.com.github.cafe.domain.value.HttpUrl;
 import mabubu0203.com.github.cafe.domain.value.Memo;
 import mabubu0203.com.github.cafe.domain.value.cast.CatSex;
-import mabubu0203.com.github.cafe.domain.value.code.CastCatId;
+import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 
 public class CastCatRegisterServiceInputConverter implements
     RegisterServiceInputConverter<CastCatRegisterServiceInput, CastCatEntity> {
 
   @Override
   public CastCatEntity apply(CastCatRegisterServiceInput input) {
-    var castCatId = CastCatId.emptyId();
+    var castCatCode = CastCatCode.newCode();
     var sex = CatSex.getByLabel(input.getSex());
     var image = new HttpUrl(input.getImage());
     var memo = new Memo(input.getMemo());
     return CastCatEntity.builder()
-        .castCatId(castCatId)
+        .castCatCode(castCatCode)
         .name(input.getName())
         .image(image)
         .type(input.getType())
