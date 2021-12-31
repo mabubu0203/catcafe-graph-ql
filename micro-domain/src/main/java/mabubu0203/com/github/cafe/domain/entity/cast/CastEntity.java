@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
+import lombok.With;
 import mabubu0203.com.github.cafe.domain.value.Memo;
 import mabubu0203.com.github.cafe.domain.value.cast.EmploymentStatus;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatId;
@@ -15,19 +16,20 @@ import mabubu0203.com.github.cafe.domain.value.code.StoreId;
  * キャスト
  */
 @Builder
-@Getter
+@Value
+@With
 public class CastEntity {
 
-  private final CastId castId;
-  private final StoreId storeId;
-  private final EmploymentStatus employmentStatus;
-  private final LocalDate firstAttendanceDate;
-  private final LocalDate lastAttendanceDate;
-  private final Memo memo;
-  private final LocalDateTime createdDateTime;
-  private final Integer version;
-  private final LocalDateTime updatedDateTime;
-  private final CastCatEntity castCatEntity;
+  CastId castId;
+  StoreId storeId;
+  EmploymentStatus employmentStatus;
+  LocalDate firstAttendanceDate;
+  LocalDate lastAttendanceDate;
+  Memo memo;
+  LocalDateTime createdDateTime;
+  Integer version;
+  LocalDateTime updatedDateTime;
+  CastCatEntity castCatEntity;
 
   public Integer getCastIdValue() {
     return Optional.ofNullable(this.castId)

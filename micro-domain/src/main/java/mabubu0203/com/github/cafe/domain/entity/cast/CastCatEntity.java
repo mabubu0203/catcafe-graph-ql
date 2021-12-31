@@ -5,7 +5,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
+import lombok.With;
 import mabubu0203.com.github.cafe.domain.value.HttpUrl;
 import mabubu0203.com.github.cafe.domain.value.Memo;
 import mabubu0203.com.github.cafe.domain.value.cast.CatSex;
@@ -16,24 +17,25 @@ import mabubu0203.com.github.cafe.domain.value.code.CastCatId;
  * キャスト(猫)
  */
 @Builder
-@Getter
+@Value
+@With
 public class CastCatEntity {
 
-  private final CastCatId castCatId;
-  private final String name;
-  private final HttpUrl image;
-  private final String type;
-  private final CatSex sex;
-  private final LocalDate birthdayDate;
-  private final String favorite;
-  private final String dislike;
-  private final String prohibition;
-  private final List<CastCatId> brothers;
-  private final List<CastCatId> sisters;
-  private final Memo memo;
-  private final LocalDateTime createdDateTime;
-  private final Integer version;
-  private final LocalDateTime updatedDateTime;
+  CastCatId castCatId;
+  String name;
+  HttpUrl image;
+  String type;
+  CatSex sex;
+  LocalDate birthdayDate;
+  String favorite;
+  String dislike;
+  String prohibition;
+  List<CastCatId> brothers;
+  List<CastCatId> sisters;
+  Memo memo;
+  LocalDateTime createdDateTime;
+  Integer version;
+  LocalDateTime updatedDateTime;
 
   public static CastCatEntity createByCastCatId(Integer castCatId) {
     return CastCatEntity.builder()
