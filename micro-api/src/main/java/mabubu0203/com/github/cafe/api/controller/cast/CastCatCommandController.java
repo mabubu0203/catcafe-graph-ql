@@ -9,7 +9,7 @@ import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCatCre
 import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCatUpdateResponseMapper;
 import mabubu0203.com.github.cafe.api.service.cast.CastCatDeleteService;
 import mabubu0203.com.github.cafe.api.service.cast.CastCatModifyService;
-import mabubu0203.com.github.cafe.api.service.cast.CastCatResisterService;
+import mabubu0203.com.github.cafe.api.service.cast.CastCatRegisterService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class CastCatCommandController {
 
-  private final CastCatResisterService castCatResisterService;
+  private final CastCatRegisterService castCatRegisterService;
   private final CastCatModifyService castCatModifyService;
   private final CastCatDeleteService castCatDeleteService;
 
@@ -29,25 +29,25 @@ public class CastCatCommandController {
   ) {
     return Mono.just(input)
         .map(new CastCatCreateRequestMapper("cats"))
-        .flatMap(this.castCatResisterService::action)
+        .flatMap(this.castCatRegisterService::action)
         .map(new CastCatCreateResponseMapper());
   }
 
   @MutationMapping
   public Mono<CastCat> castCatUpdate(
-      @Argument("id") Integer id,
+      @Argument("code") String code,
       @Argument("input") CastCatCommand input,
       @Argument("version") Integer version
   ) {
     return Mono.just(input)
-        .map(new CastCatUpdateRequestMapper("cats", id, version))
+        .map(new CastCatUpdateRequestMapper("cats", 0, version))
         .flatMap(this.castCatModifyService::action)
         .map(new CastCatUpdateResponseMapper());
   }
 
   @MutationMapping
   public Integer castCatDelete(
-      @Argument("id") Integer id,
+      @Argument("code") String code,
       @Argument("version") Integer version
   ) {
     return 2;

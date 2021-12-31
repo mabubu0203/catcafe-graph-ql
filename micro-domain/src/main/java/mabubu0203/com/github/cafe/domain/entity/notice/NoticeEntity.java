@@ -5,6 +5,8 @@ import java.util.Optional;
 import lombok.Builder;
 import lombok.Value;
 import lombok.With;
+import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
+import mabubu0203.com.github.cafe.domain.value.code.NoticeCode;
 import mabubu0203.com.github.cafe.domain.value.code.NoticeId;
 import mabubu0203.com.github.cafe.domain.value.code.StoreId;
 
@@ -16,25 +18,41 @@ import mabubu0203.com.github.cafe.domain.value.code.StoreId;
 @With
 public class NoticeEntity {
 
+  @Deprecated
   NoticeId noticeId;
+  NoticeCode noticeCode;
+  @Deprecated
   StoreId storeId;
+  LocationCode locationCode;
   String summary;
   String detail;
   LocalDateTime publicationStartDateTime;
   LocalDateTime publicationEndDateTime;
-  LocalDateTime createdDateTime;
   Integer version;
-  LocalDateTime updatedDateTime;
 
+  @Deprecated
   public Integer getNoticeIdValue() {
     return Optional.ofNullable(this.noticeId)
         .map(NoticeId::value)
         .orElse(null);
   }
 
+  public String getNoticeCodeValue() {
+    return Optional.ofNullable(this.noticeCode)
+        .map(NoticeCode::getValue)
+        .orElse(null);
+  }
+
+  @Deprecated
   public Integer getStoreIdValue() {
     return Optional.ofNullable(this.storeId)
         .map(StoreId::value)
+        .orElse(null);
+  }
+
+  public String getLocationCodeValue() {
+    return Optional.ofNullable(this.locationCode)
+        .map(LocationCode::getValue)
         .orElse(null);
   }
 

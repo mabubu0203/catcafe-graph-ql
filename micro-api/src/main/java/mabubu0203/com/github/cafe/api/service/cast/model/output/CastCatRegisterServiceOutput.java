@@ -6,7 +6,7 @@ import mabubu0203.com.github.cafe.common.service.model.ServiceOutput;
 
 @Builder
 @Getter
-public class CastCatResisterServiceOutput implements ServiceOutput {
+public class CastCatRegisterServiceOutput implements ServiceOutput {
 
   private final Integer id;
 

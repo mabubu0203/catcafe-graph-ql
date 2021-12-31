@@ -8,7 +8,7 @@ import mabubu0203.com.github.cafe.common.service.model.ServiceInput;
 
 @Builder
 @Getter
-public class CastCatResisterServiceInput implements ServiceInput {
+public class CastCatRegisterServiceInput implements ServiceInput {
 
   private final String cats;
   private final String name;
@@ -19,8 +19,8 @@ public class CastCatResisterServiceInput implements ServiceInput {
   private final String favorite;
   private final String dislike;
   private final String prohibition;
-  private final List<Integer> brothers;
-  private final List<Integer> sisters;
+  private final List<String> brothers;
+  private final List<String> sisters;
   private final String memo;
 
 }

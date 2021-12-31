@@ -3,8 +3,8 @@ package mabubu0203.com.github.cafe.domain.repository.cast;
 import java.time.LocalDateTime;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastCatEntity;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastEntity;
-import mabubu0203.com.github.cafe.domain.value.code.CastCatId;
-import mabubu0203.com.github.cafe.domain.value.code.CastId;
+import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
+import mabubu0203.com.github.cafe.domain.value.code.CastCode;
 import reactor.core.publisher.Mono;
 
 public interface CastRepository {
@@ -12,18 +12,18 @@ public interface CastRepository {
   /**
    * キャストを1件取得する
    *
-   * @param castId
+   * @param castCode
    * @return
    */
-  Mono<CastEntity> findBy(CastId castId);
+  Mono<CastEntity> findByCode(CastCode castCode);
 
   /**
    * キャスト(猫)を1件取得する
    *
-   * @param castCatId
+   * @param castCatCode
    * @return
    */
-  Mono<CastCatEntity> findBy(CastCatId castCatId);
+  Mono<CastCatEntity> findByCode(CastCatCode castCatCode);
 
   /**
    * キャストを1件登録する
@@ -32,7 +32,7 @@ public interface CastRepository {
    * @param receptionTime
    * @return
    */
-  Mono<CastId> resister(CastEntity cast, LocalDateTime receptionTime);
+  Mono<CastCode> register(CastEntity cast, LocalDateTime receptionTime);
 
   /**
    * キャスト(猫)を1件登録する
@@ -41,7 +41,7 @@ public interface CastRepository {
    * @param receptionTime
    * @return
    */
-  Mono<CastCatId> resister(CastCatEntity castCat, LocalDateTime receptionTime);
+  Mono<CastCatCode> register(CastCatEntity castCat, LocalDateTime receptionTime);
 
   /**
    * キャストを1件更新する
@@ -50,7 +50,7 @@ public interface CastRepository {
    * @param receptionTime
    * @return
    */
-  Mono<CastId> modify(CastEntity cast, LocalDateTime receptionTime);
+  Mono<CastCode> modify(CastEntity cast, LocalDateTime receptionTime);
 
   /**
    * キャスト(猫)を1件更新する
@@ -59,7 +59,7 @@ public interface CastRepository {
    * @param receptionTime
    * @return
    */
-  Mono<CastCatId> modify(CastCatEntity castCat, LocalDateTime receptionTime);
+  Mono<CastCatCode> modify(CastCatEntity castCat, LocalDateTime receptionTime);
 
   /**
    * キャストを1件削除する
@@ -68,7 +68,7 @@ public interface CastRepository {
    * @param receptionTime
    * @return
    */
-  Mono<CastId> logicalDelete(CastEntity cast, LocalDateTime receptionTime);
+  Mono<CastCode> logicalDelete(CastEntity cast, LocalDateTime receptionTime);
 
   /**
    * キャスト(猫)を1件削除する
@@ -77,6 +77,6 @@ public interface CastRepository {
    * @param receptionTime
    * @return
    */
-  Mono<CastCatId> logicalDelete(CastCatEntity castCat, LocalDateTime receptionTime);
+  Mono<CastCatCode> logicalDelete(CastCatEntity castCat, LocalDateTime receptionTime);
 
 }

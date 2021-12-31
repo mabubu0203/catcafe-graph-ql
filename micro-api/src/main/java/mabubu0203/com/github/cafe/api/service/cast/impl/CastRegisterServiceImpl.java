@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
-public class CastResisterServiceImpl implements CastRegisterService {
+public class CastRegisterServiceImpl implements CastRegisterService {
 
   @Override
   public Mono<CastRegisterServiceOutput> action(CastRegisterServiceInput input) {
