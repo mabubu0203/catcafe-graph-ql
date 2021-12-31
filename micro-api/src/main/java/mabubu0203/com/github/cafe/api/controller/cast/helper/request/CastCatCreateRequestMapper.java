@@ -2,19 +2,19 @@ package mabubu0203.com.github.cafe.api.controller.cast.helper.request;
 
 import com.netflix.dgs.codegen.types.CastCatCommand;
 import lombok.RequiredArgsConstructor;
-import mabubu0203.com.github.cafe.api.service.cast.model.input.CastCatResisterServiceInput;
+import mabubu0203.com.github.cafe.api.service.cast.model.input.CastCatRegisterServiceInput;
 import mabubu0203.com.github.cafe.common.controller.helper.request.CreateRequestMapper;
 
 
 @RequiredArgsConstructor
 public class CastCatCreateRequestMapper implements
-    CreateRequestMapper<CastCatCommand, CastCatResisterServiceInput> {
+    CreateRequestMapper<CastCatCommand, CastCatRegisterServiceInput> {
 
   private final String cats;
 
   @Override
-  public CastCatResisterServiceInput apply(CastCatCommand request) {
-    return CastCatResisterServiceInput.builder()
+  public CastCatRegisterServiceInput apply(CastCatCommand request) {
+    return CastCatRegisterServiceInput.builder()
         .cats(this.cats)
         .name(request.getName())
         .image(request.getImage())

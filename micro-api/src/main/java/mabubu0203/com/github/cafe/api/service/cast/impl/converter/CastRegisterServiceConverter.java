@@ -9,7 +9,7 @@ import mabubu0203.com.github.cafe.domain.value.cast.EmploymentStatus;
 import mabubu0203.com.github.cafe.domain.value.code.CastId;
 import mabubu0203.com.github.cafe.domain.value.code.StoreId;
 
-public class CastResisterServiceConverter {
+public class CastRegisterServiceConverter {
 
   public CastEntity fromInput(CastRegisterServiceInput input) {
     var castId = CastId.emptyId();
@@ -24,9 +24,7 @@ public class CastResisterServiceConverter {
         .firstAttendanceDate(input.getFirstAttendanceDate())
         .lastAttendanceDate(input.getLastAttendanceDate())
         .memo(memo)
-        .createdDateTime(null)
         .version(null)
-        .updatedDateTime(null)
         .castCatEntity(castCatEntity)
         .build();
   }

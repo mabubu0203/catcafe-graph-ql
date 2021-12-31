@@ -1,17 +1,19 @@
-package mabubu0203.com.github.cafe.api.service.cast.impl.converter;
+package mabubu0203.com.github.cafe.api.service.cast.impl.converter.input;
 
-import mabubu0203.com.github.cafe.api.service.cast.model.input.CastCatResisterServiceInput;
-import mabubu0203.com.github.cafe.api.service.cast.model.output.CastCatResisterServiceOutput;
+import mabubu0203.com.github.cafe.api.service.cast.model.input.CastCatModifyServiceInput;
+import mabubu0203.com.github.cafe.common.service.converter.input.ModifyServiceInputConverter;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastCatEntity;
 import mabubu0203.com.github.cafe.domain.value.HttpUrl;
 import mabubu0203.com.github.cafe.domain.value.Memo;
 import mabubu0203.com.github.cafe.domain.value.cast.CatSex;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatId;
 
-public class CastCatResisterServiceConverter {
+public class CastCatModifyServiceInputConverter implements
+    ModifyServiceInputConverter<CastCatModifyServiceInput, CastCatEntity> {
 
-  public CastCatEntity fromInput(CastCatResisterServiceInput input) {
-    var castCatId = CastCatId.emptyId();
+  @Override
+  public CastCatEntity apply(CastCatModifyServiceInput input) {
+    var castCatId = new CastCatId(input.getCastCatId());
     var sex = CatSex.getByLabel(input.getSex());
     var image = new HttpUrl(input.getImage());
     var memo = new Memo(input.getMemo());
@@ -29,16 +31,7 @@ public class CastCatResisterServiceConverter {
 //        .brothers()
 //        .sisters()
         .memo(memo)
-        .createdDateTime(null)
-        .version(null)
-        .updatedDateTime(null)
+        .version(input.getVersion())
         .build();
   }
-
-  public CastCatResisterServiceOutput toOutput(CastCatId castCatId) {
-    return CastCatResisterServiceOutput.builder()
-        .id(castCatId.value())
-        .build();
-  }
-
 }

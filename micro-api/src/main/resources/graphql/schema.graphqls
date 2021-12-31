@@ -11,57 +11,59 @@ scalar Date
 scalar DateTime
 
 interface HasCommon {
-  id: Int!
-  common: Common!
-}
-
-# 共通フィールド
-type Common {
-  # 登録日時
-  createdDateTime: DateTime
-  # 更新日時
-  updatedDateTime: DateTime
+  # コード
+  code: ID!
   # バージョンフィールド
-  version: Int!
+  version: Int
 }
 
 extend type Query {
-  castFind(id: ID!): Cast
+  # キャスト詳細取得
+  castFind(code: ID!): Cast
+  # キャスト一覧取得
   castSearch: [Cast]!
-  castCatFind(id: ID!): CastCat
+  # キャスト(猫)詳細取得
+  castCatFind(code: ID!): CastCat
+  # キャスト(猫)一覧取得
   castCatSearch: [CastCat]!
 }
 
 extend type Mutation {
+  # キャスト登録
   castCreate(
     input: CastCommand!
-  ): Cast!
+  ): ID
+  # キャスト更新
   castUpdate(
-    # castID
-    id:Int!,
+    # castCode
+    code: ID!,
     input: CastCommand!,
     # バージョンフィールド
     version: Int
-  ): Cast!
+  ): ID
+  # キャスト削除
   castDelete(
-    # castID
-    id:Int,
+    # castCode
+    code: ID!,
     # バージョンフィールド
     version: Int
   ): ID
+  # キャスト(猫)登録
   castCatCreate(
     input: CastCatCommand!
-  ): CastCat!
+  ): ID
+  # キャスト(猫)更新
   castCatUpdate(
-    # castCatID
-    id:Int,
+    # castCatCode
+    code: ID!,
     input: CastCatCommand!,
     # バージョンフィールド
     version: Int
-  ): CastCat!
+  ): ID
+  # キャスト(猫)削除
   castCatDelete(
-    # castCatID
-    id:Int,
+    # castCatCode
+    code: ID!,
     # バージョンフィールド
     version: Int
   ): ID
@@ -96,17 +98,17 @@ input CastCatCommand  {
   # 禁止事項
   prohibition: String
   # 兄弟
-  brothers: [Int]
+  brothers: [ID]
   # 姉妹
-  sisters: [Int]
+  sisters: [ID]
   # キャストメモ
   memo: String
 }
 
 # キャスト詳細
 type Cast implements HasCommon {
-  # キャストID
-  id: Int!
+  # castCode
+  code: ID!
   employmentStatus: EmploymentStatus
   # 初出勤日
   firstAttendanceDate: Date
@@ -114,13 +116,13 @@ type Cast implements HasCommon {
   lastAttendanceDate: Date
   # 店舗メモ
   memo: String
-  common: Common!
+  version: Int
 }
 
 # キャスト(猫)詳細
 type CastCat implements HasCommon {
-  # キャスト(猫)ID
-  id: Int!
+  # castCatCode
+  code: ID!
   # 名前
   name: String
   # 画像
@@ -137,12 +139,12 @@ type CastCat implements HasCommon {
   # 禁止事項
   prohibition: String
   # 兄弟
-  brothers: [Int]
+  brothers: [ID]
   # 姉妹
-  sisters: [Int]
+  sisters: [ID]
   # キャストメモ
   memo: String
-  common: Common!
+  version: Int
 }
 
 # 雇用形態

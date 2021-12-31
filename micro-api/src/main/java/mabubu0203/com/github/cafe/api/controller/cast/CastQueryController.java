@@ -14,11 +14,11 @@ public class CastQueryController {
 
   @QueryMapping
   public Mono<Cast> castFind(
-      @Argument("id") Integer id
+      @Argument("code") String code
   ) {
     return Mono.just(
         Cast.newBuilder()
-            .id(id)
+            .code(code)
             .build());
   }
 
@@ -26,7 +26,7 @@ public class CastQueryController {
   public Flux<Cast> castSearch() {
     return Flux.just(
         Cast.newBuilder()
-            .id(0)
+            .code("")
             .build());
   }
 

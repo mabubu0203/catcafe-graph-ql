@@ -1,7 +1,6 @@
 package mabubu0203.com.github.cafe.domain.entity.cast;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Optional;
 import lombok.Builder;
 import lombok.Value;
@@ -9,7 +8,9 @@ import lombok.With;
 import mabubu0203.com.github.cafe.domain.value.Memo;
 import mabubu0203.com.github.cafe.domain.value.cast.EmploymentStatus;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatId;
+import mabubu0203.com.github.cafe.domain.value.code.CastCode;
 import mabubu0203.com.github.cafe.domain.value.code.CastId;
+import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
 import mabubu0203.com.github.cafe.domain.value.code.StoreId;
 
 /**
@@ -20,26 +21,42 @@ import mabubu0203.com.github.cafe.domain.value.code.StoreId;
 @With
 public class CastEntity {
 
+  @Deprecated
   CastId castId;
+  CastCode castCode;
+  @Deprecated
   StoreId storeId;
+  LocationCode locationCode;
   EmploymentStatus employmentStatus;
   LocalDate firstAttendanceDate;
   LocalDate lastAttendanceDate;
   Memo memo;
-  LocalDateTime createdDateTime;
   Integer version;
-  LocalDateTime updatedDateTime;
   CastCatEntity castCatEntity;
 
+  @Deprecated
   public Integer getCastIdValue() {
     return Optional.ofNullable(this.castId)
         .map(CastId::value)
         .orElse(null);
   }
 
+  public String getCastCodeValue() {
+    return Optional.ofNullable(this.castCode)
+        .map(CastCode::getValue)
+        .orElse(null);
+  }
+
+  @Deprecated
   public Integer getStoreIdValue() {
     return Optional.ofNullable(this.storeId)
         .map(StoreId::value)
+        .orElse(null);
+  }
+
+  public String getLocationCodeValue() {
+    return Optional.ofNullable(this.locationCode)
+        .map(LocationCode::getValue)
         .orElse(null);
   }
 
@@ -55,6 +72,13 @@ public class CastEntity {
         .orElse(null);
   }
 
+  public String getMemoValue() {
+    return Optional.ofNullable(this.memo)
+        .map(Memo::value)
+        .orElse(null);
+  }
+
+  @Deprecated
   public Integer getCastCatIdValue() {
     return Optional.ofNullable(this.castCatEntity)
         .map(CastCatEntity::getCastCatId)
@@ -62,9 +86,9 @@ public class CastEntity {
         .orElse(null);
   }
 
-  public String getMemoValue() {
-    return Optional.ofNullable(this.memo)
-        .map(Memo::value)
+  public String getCastCatCodeValue() {
+    return Optional.ofNullable(this.castCatEntity)
+        .map(CastCatEntity::getCastCatCodeValue)
         .orElse(null);
   }
 

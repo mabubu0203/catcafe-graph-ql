@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastCatEntity;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastEntity;
 import mabubu0203.com.github.cafe.domain.repository.cast.CastRepository;
-import mabubu0203.com.github.cafe.domain.value.code.CastCatId;
-import mabubu0203.com.github.cafe.domain.value.code.CastId;
+import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
+import mabubu0203.com.github.cafe.domain.value.code.CastCode;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
@@ -15,42 +15,42 @@ import reactor.core.publisher.Mono;
 public class CastRepositoryImpl implements CastRepository {
 
   @Override
-  public Mono<CastEntity> findBy(CastId castId) {
+  public Mono<CastEntity> findByCode(CastCode castCode) {
     return Mono.empty();
   }
 
   @Override
-  public Mono<CastCatEntity> findBy(CastCatId castCatId) {
+  public Mono<CastCatEntity> findByCode(CastCatCode castCatCode) {
     return Mono.empty();
   }
 
   @Override
-  public Mono<CastId> resister(CastEntity entity, LocalDateTime receptionTime) {
+  public Mono<CastCode> register(CastEntity entity, LocalDateTime receptionTime) {
     return Mono.empty();
   }
 
   @Override
-  public Mono<CastCatId> resister(CastCatEntity entity, LocalDateTime receptionTime) {
+  public Mono<CastCatCode> register(CastCatEntity entity, LocalDateTime receptionTime) {
     return Mono.empty();
   }
 
   @Override
-  public Mono<CastId> modify(CastEntity entity, LocalDateTime receptionTime) {
+  public Mono<CastCode> modify(CastEntity entity, LocalDateTime receptionTime) {
     return Mono.empty();
   }
 
   @Override
-  public Mono<CastCatId> modify(CastCatEntity entity, LocalDateTime receptionTime) {
+  public Mono<CastCatCode> modify(CastCatEntity entity, LocalDateTime receptionTime) {
     return Mono.empty();
   }
 
   @Override
-  public Mono<CastId> logicalDelete(CastEntity entity, LocalDateTime receptionTime) {
+  public Mono<CastCode> logicalDelete(CastEntity entity, LocalDateTime receptionTime) {
     return Mono.empty();
   }
 
   @Override
-  public Mono<CastCatId> logicalDelete(CastCatEntity entity, LocalDateTime receptionTime) {
+  public Mono<CastCatCode> logicalDelete(CastCatEntity entity, LocalDateTime receptionTime) {
     return Mono.empty();
   }
 

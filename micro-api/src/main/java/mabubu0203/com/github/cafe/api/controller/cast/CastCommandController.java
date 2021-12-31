@@ -32,12 +32,12 @@ public class CastCommandController {
         .flatMap(this.castResisterService::action)
         .map(new CastCreateResponseMapper());
 
-    return Mono.just(new Cast.Builder().id(1).build());
+    return Mono.just(new Cast.Builder().code("1").build());
   }
 
   @MutationMapping
   public Mono<Cast> castUpdate(
-      @Argument("id") Integer id,
+      @Argument("code") String code,
       @Argument("input") CastCommand input,
       @Argument("version") Integer version
   ) {
@@ -49,7 +49,7 @@ public class CastCommandController {
 
   @MutationMapping
   public Integer castDelete(
-      @Argument("id") Integer id,
+      @Argument("code") String code,
       @Argument("version") Integer version
   ) {
     return 1;
