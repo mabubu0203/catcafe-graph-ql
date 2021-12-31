@@ -10,12 +10,9 @@ import mabubu0203.com.github.cafe.common.controller.helper.request.CreateRequest
 public class CastCatCreateRequestMapper implements
     CreateRequestMapper<CastCatCommand, CastCatRegisterServiceInput> {
 
-  private final String cats;
-
   @Override
   public CastCatRegisterServiceInput apply(CastCatCommand request) {
     return CastCatRegisterServiceInput.builder()
-        .cats(this.cats)
         .name(request.getName())
         .image(request.getImage())
         .type(request.getType())

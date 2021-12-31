@@ -3,26 +3,25 @@ package mabubu0203.com.github.cafe.api.service.cast.model.input;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 import mabubu0203.com.github.cafe.common.service.model.ServiceInput;
 
 @Builder
-@Getter
+@Value
 public class CastCatModifyServiceInput implements ServiceInput {
 
-  private final String cats;
-  private final Integer castCatId;
-  private final String name;
-  private final String image;
-  private final String type;
-  private final String sex;
-  private final LocalDate birthdayDate;
-  private final String favorite;
-  private final String dislike;
-  private final String prohibition;
-  private final List<String> brothers;
-  private final List<String> sisters;
-  private final String memo;
-  private final Integer version;
+  String castCatCode;
+  String name;
+  String image;
+  String type;
+  String sex;
+  LocalDate birthdayDate;
+  String favorite;
+  String dislike;
+  String prohibition;
+  List<String> brothers;
+  List<String> sisters;
+  String memo;
+  Integer version;
 
 }

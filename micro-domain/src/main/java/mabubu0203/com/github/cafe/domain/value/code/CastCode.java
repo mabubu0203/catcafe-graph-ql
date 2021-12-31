@@ -3,23 +3,16 @@ package mabubu0203.com.github.cafe.domain.value.code;
 import java.util.Optional;
 import java.util.UUID;
 
-public record CastCode(UUID value) {
+public record CastCode(String value) {
 
-  public static CastCode emptyCode() {
-    return new CastCode(null);
+  public static CastCode newCode() {
+    return new CastCode(UUID.randomUUID().toString());
   }
 
   public boolean isEmpty() {
     return Optional.ofNullable(value)
-        .map(UUID::toString)
         .map(String::isEmpty)
         .orElse(true);
-  }
-
-  public String getValue() {
-    return Optional.ofNullable(value)
-        .map(UUID::toString)
-        .orElse(null);
   }
 
 }

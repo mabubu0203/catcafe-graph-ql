@@ -8,7 +8,7 @@ public class CastCatCreateResponseMapper implements
     CreateResponseMapper<CastCatRegisterServiceOutput, CastCat> {
 
   @Override
-  public CastCat apply(CastCatRegisterServiceOutput castCatResisterServiceOutput) {
+  public CastCat apply(CastCatRegisterServiceOutput output) {
     return new CastCat();
   }
 

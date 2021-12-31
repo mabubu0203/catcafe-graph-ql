@@ -37,9 +37,9 @@ public class CastCatEntity {
   Memo memo;
   Integer version;
 
-  public static CastCatEntity createByCastCatId(Integer castCatId) {
+  public static CastCatEntity createByCastCatCode(String castCatCode) {
     return CastCatEntity.builder()
-        .castCatId(new CastCatId(castCatId))
+        .castCatCode(new CastCatCode(castCatCode))
         .build();
   }
 
@@ -52,7 +52,7 @@ public class CastCatEntity {
 
   public String getCastCatCodeValue() {
     return Optional.ofNullable(this.castCatCode)
-        .map(CastCatCode::getValue)
+        .map(CastCatCode::value)
         .orElse(null);
   }
 

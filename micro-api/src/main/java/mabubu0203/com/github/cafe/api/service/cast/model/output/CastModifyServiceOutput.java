@@ -1,11 +1,13 @@
 package mabubu0203.com.github.cafe.api.service.cast.model.output;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 import mabubu0203.com.github.cafe.common.service.model.ServiceOutput;
 
 @Builder
-@Getter
+@Value
 public class CastModifyServiceOutput implements ServiceOutput {
+
+  String code;
 
 }

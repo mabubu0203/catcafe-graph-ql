@@ -3,23 +3,16 @@ package mabubu0203.com.github.cafe.domain.value.code;
 import java.util.Optional;
 import java.util.UUID;
 
-public record LocationCode(UUID value) {
+public record LocationCode(String value) {
 
-  public static LocationCode emptyCode() {
-    return new LocationCode(null);
+  public static LocationCode newCode() {
+    return new LocationCode(UUID.randomUUID().toString());
   }
 
   public boolean isEmpty() {
     return Optional.ofNullable(value)
-        .map(UUID::toString)
         .map(String::isEmpty)
         .orElse(true);
-  }
-
-  public String getValue() {
-    return Optional.ofNullable(value)
-        .map(UUID::toString)
-        .orElse(null);
   }
 
 }

@@ -5,20 +5,17 @@ import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.service.cast.model.input.CastCatModifyServiceInput;
 import mabubu0203.com.github.cafe.common.controller.helper.request.UpdateRequestMapper;
 
-
 @RequiredArgsConstructor
 public class CastCatUpdateRequestMapper implements
     UpdateRequestMapper<CastCatCommand, CastCatModifyServiceInput> {
 
-  private final String cats;
-  private final Integer castCatId;
+  private final String castCatCode;
   private final Integer version;
 
   @Override
   public CastCatModifyServiceInput apply(CastCatCommand request) {
     return CastCatModifyServiceInput.builder()
-        .cats(this.cats)
-        .castCatId(this.castCatId)
+        .castCatCode(this.castCatCode)
         .name(request.getName())
         .image(request.getImage())
         .type(request.getType())

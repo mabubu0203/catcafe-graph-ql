@@ -1,15 +1,17 @@
 package mabubu0203.com.github.cafe.api.service.cast.impl.converter.output;
 
+import com.netflix.dgs.codegen.types.Cast;
 import mabubu0203.com.github.cafe.api.service.cast.model.output.CastModifyServiceOutput;
 import mabubu0203.com.github.cafe.common.service.converter.output.ModifyServiceOutputConverter;
-import mabubu0203.com.github.cafe.domain.value.code.CastId;
 
 public class CastModifyServiceOutputConverter implements
-    ModifyServiceOutputConverter<CastId, CastModifyServiceOutput> {
+    ModifyServiceOutputConverter<Cast, CastModifyServiceOutput> {
 
   @Override
-  public CastModifyServiceOutput apply(CastId castId) {
-    return null;
+  public CastModifyServiceOutput apply(Cast cast) {
+    return CastModifyServiceOutput.builder()
+        .code(cast.getCode())
+        .build();
   }
 
 }

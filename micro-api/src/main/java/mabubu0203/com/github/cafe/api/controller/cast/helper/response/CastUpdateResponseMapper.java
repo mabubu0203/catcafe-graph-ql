@@ -8,7 +8,7 @@ public class CastUpdateResponseMapper implements
     UpdateResponseMapper<CastModifyServiceOutput, Cast> {
 
   @Override
-  public Cast apply(CastModifyServiceOutput castModifyServiceOutput) {
+  public Cast apply(CastModifyServiceOutput output) {
     return new Cast();
   }
 
