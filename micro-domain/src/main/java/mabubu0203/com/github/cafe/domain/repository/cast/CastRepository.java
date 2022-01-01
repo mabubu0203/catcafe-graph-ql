@@ -5,9 +5,24 @@ import mabubu0203.com.github.cafe.domain.entity.cast.CastCatEntity;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastEntity;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 import mabubu0203.com.github.cafe.domain.value.code.CastCode;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface CastRepository {
+
+  /**
+   * キャストを複数取得する
+   *
+   * @return
+   */
+  Flux<CastEntity> search();
+
+  /**
+   * キャスト(猫)を複数取得する
+   *
+   * @return
+   */
+  Flux<CastCatEntity> search(String castCatCode);
 
   /**
    * キャストを1件取得する
