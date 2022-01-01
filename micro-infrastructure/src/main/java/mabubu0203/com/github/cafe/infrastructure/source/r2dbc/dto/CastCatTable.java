@@ -32,9 +32,6 @@ public class CastCatTable extends BaseTable<Integer> {
   @Column(value = "id")
   private Integer id;
 
-  @Column(value = "code")
-  private String code;
-
   @Column(value = "name")
   private String name;
 
@@ -76,6 +73,20 @@ public class CastCatTable extends BaseTable<Integer> {
   }
 
   @Override
+  @Transient
+  public boolean isNew() {
+    return super.isNew() || Objects.isNull(this.id);
+  }
+
+  @Override
+  @Transient
+  public CastCatTable code(String code) {
+    super.code(code);
+    return this;
+  }
+
+  @Override
+  @Transient
   public CastCatTable createdBy(Integer createdBy) {
     super.createdBy(createdBy);
     return this;
@@ -83,8 +94,16 @@ public class CastCatTable extends BaseTable<Integer> {
 
   @Override
   @Transient
-  public boolean isNew() {
-    return super.isNew() || Objects.isNull(this.id);
+  public CastCatTable version(Integer version) {
+    super.version(version);
+    return this;
+  }
+
+  @Override
+  @Transient
+  public CastCatTable updatedBy(Integer updatedBy) {
+    super.updatedBy(updatedBy);
+    return this;
   }
 
   public CastCatTable attach(CastCatEntity entity) {
@@ -105,7 +124,7 @@ public class CastCatTable extends BaseTable<Integer> {
   }
 
   public CastCatEntity toEntity() {
-    var castCatCode = new CastCatCode(this.code);
+    var castCatCode = new CastCatCode(super.code());
     var image = new HttpUrl(this.image);
     var sex = CatSex.getByLabel(this.sex.name());
     var castCatMemo = new Memo(this.memo());
