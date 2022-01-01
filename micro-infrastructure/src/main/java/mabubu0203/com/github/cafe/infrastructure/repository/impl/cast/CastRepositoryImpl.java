@@ -44,11 +44,11 @@ public class CastRepositoryImpl implements CastRepository {
   public Mono<CastCatCode> register(CastCatEntity entity, LocalDateTime receptionTime) {
     return Optional.of(entity)
         .map(this::attach)
-        .map(dto -> dto.setCreatedBy(0))
+        .map(dto -> dto.createdBy(0))
         .map(CastCatTable.class::cast)
         .map(dto -> this.castCatSource.insert(dto, receptionTime))
         .orElseThrow(RuntimeException::new)
-        .mapNotNull(CastCatTable::getDislike)//
+        .mapNotNull(CastCatTable::code)
         .map(CastCatCode::new);
   }
 

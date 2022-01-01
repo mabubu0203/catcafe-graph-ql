@@ -21,7 +21,7 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Accessors(chain = true)
+@Accessors(fluent = true)
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
@@ -71,45 +71,50 @@ public class CastCatTable extends BaseTable<Integer> {
   private String memo;
 
   @Override
+  public Integer getId() {
+    return this.id;
+  }
+
+  @Override
   @Transient
   public boolean isNew() {
-    return super.isNew() || Objects.isNull(id);
+    return super.isNew() || Objects.isNull(this.id);
   }
 
   public CastCatTable attach(CastCatEntity entity) {
     var sex =
         CastCatTable.Sex.getByLabel(entity.getSexLabel());
-    return setCode(entity.getCastCatCodeValue())
-        .setName(entity.getName())
-        .setImage(entity.getImageValue())
-        .setType(entity.getType())
-        .setSex(sex)
-        .setBirthdayDate(entity.getBirthdayDate())
-        .setFavorite(entity.getFavorite())
-        .setDislike(entity.getDislike())
-        .setProhibition(entity.getProhibition())
+    return code(entity.getCastCatCodeValue())
+        .name(entity.name())
+        .image(entity.getImageValue())
+        .type(entity.type())
+        .sex(sex)
+        .birthdayDate(entity.birthdayDate())
+        .favorite(entity.favorite())
+        .dislike(entity.dislike())
+        .prohibition(entity.prohibition())
 //        .setBrothers()
 //        .setSisters()
-        .setMemo(entity.getMemoValue());
+        .memo(entity.getMemoValue());
   }
 
   public CastCatEntity toEntity() {
-    var castCatCode = new CastCatCode(this.getCode());
-    var image = new HttpUrl(this.getImage());
-    var sex = CatSex.getByLabel(this.getSex().name());
-    var castCatMemo = new Memo(this.getMemo());
+    var castCatCode = new CastCatCode(this.code);
+    var image = new HttpUrl(this.image);
+    var sex = CatSex.getByLabel(this.sex.name());
+    var castCatMemo = new Memo(this.memo());
     return CastCatEntity.builder()
         .castCatCode(castCatCode)
-        .name(this.getName())
+        .name(this.name)
         .image(image)
-        .type(this.getType())
+        .type(this.type)
         .sex(sex)
-        .birthdayDate(this.getBirthdayDate())
-        .favorite(this.getFavorite())
-        .dislike(this.getDislike())
-        .prohibition(this.getProhibition())
+        .birthdayDate(this.birthdayDate)
+        .favorite(this.favorite)
+        .dislike(this.dislike)
+        .prohibition(this.prohibition)
         .memo(castCatMemo)
-        .version(this.getVersion())
+        .version(this.version())
         .build();
   }
 

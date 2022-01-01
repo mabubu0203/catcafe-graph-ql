@@ -12,22 +12,22 @@ public interface TableSource<D extends BaseTable, ID> extends ReactiveSortingRep
   Mono<D> findByCode(String code);
 
   default Mono<D> insert(D entity, LocalDateTime localDateTime) {
-    entity.setCreatedDateTime(localDateTime);
-    entity.setVersion(0);
-    entity.setNew(true);
+    entity.createdDateTime(localDateTime)
+        .version(0)
+        .isNew(true);
     return this.save(entity);
   }
 
   default Mono<D> update(D entity, LocalDateTime localDateTime) {
-    entity.setUpdatedDateTime(localDateTime);
-    entity.setNew(false);
+    entity.updatedDateTime(localDateTime)
+        .isNew(false);
     return this.save(entity);
   }
 
   default Mono<D> logicalDelete(D entity, LocalDateTime localDateTime) {
-    entity.setDeletedDateTime(localDateTime);
-    entity.setDeletedFlag(BaseTable.DeletedFlag.is_true);
-    entity.setNew(false);
+    entity.deletedDateTime(localDateTime)
+        .deletedFlag(BaseTable.DeletedFlag.is_true)
+        .isNew(false);
     return this.save(entity);
   }
 

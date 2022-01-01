@@ -14,19 +14,19 @@ public class CastCatRegisterServiceInputConverter implements
   @Override
   public CastCatEntity apply(CastCatRegisterServiceInput input) {
     var castCatCode = CastCatCode.newCode();
-    var sex = CatSex.getByLabel(input.getSex());
-    var image = new HttpUrl(input.getImage());
-    var memo = new Memo(input.getMemo());
+    var sex = CatSex.getByLabel(input.sex());
+    var image = new HttpUrl(input.image());
+    var memo = new Memo(input.memo());
     return CastCatEntity.builder()
         .castCatCode(castCatCode)
-        .name(input.getName())
+        .name(input.name())
         .image(image)
-        .type(input.getType())
+        .type(input.type())
         .sex(sex)
-        .birthdayDate(input.getBirthdayDate())
-        .favorite(input.getFavorite())
-        .dislike(input.getDislike())
-        .prohibition(input.getProhibition())
+        .birthdayDate(input.birthdayDate())
+        .favorite(input.favorite())
+        .dislike(input.dislike())
+        .prohibition(input.prohibition())
         // TODO
 //        .brothers()
 //        .sisters()

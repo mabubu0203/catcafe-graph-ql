@@ -11,7 +11,7 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Column;
 
-@Accessors(chain = true)
+@Accessors(fluent = true)
 @Data
 public abstract class BaseTable<ID> implements Persistable<ID> {
 
@@ -38,6 +38,7 @@ public abstract class BaseTable<ID> implements Persistable<ID> {
 
   @Column(value = "deleted_flag")
   private DeletedFlag deletedFlag = DeletedFlag.is_false;
+
   @Transient
   private boolean isNew;
 

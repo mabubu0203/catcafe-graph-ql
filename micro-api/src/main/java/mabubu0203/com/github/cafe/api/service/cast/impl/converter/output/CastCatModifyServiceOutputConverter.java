@@ -11,6 +11,18 @@ public class CastCatModifyServiceOutputConverter implements
   public CastCatModifyServiceOutput apply(CastCat castCat) {
     return CastCatModifyServiceOutput.builder()
         .code(castCat.getCode())
+        .name(null)
+        .image(null)
+        .type(null)
+        .sex(null)
+        .birthdayDate(null)
+        .favorite(null)
+        .dislike(null)
+        .prohibition(null)
+        .brothers(null)
+        .sisters(null)
+        .memo(null)
+        .version(null)
         .build();
   }
 
