@@ -2,6 +2,7 @@ package mabubu0203.com.github.cafe.infrastructure.repository.impl.cast;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.common.exception.ResourceNotFoundException;
 import mabubu0203.com.github.cafe.common.source.r2dbc.base.BaseTable;
@@ -13,6 +14,7 @@ import mabubu0203.com.github.cafe.domain.value.code.CastCode;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.CastCatSource;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.CastCatTable;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
@@ -20,6 +22,21 @@ import reactor.core.publisher.Mono;
 public class CastRepositoryImpl implements CastRepository {
 
   private final CastCatSource castCatSource;
+
+
+  @Override
+  public Flux<CastEntity> search() {
+    return null;
+  }
+
+  @Override
+  public Flux<CastCatEntity> search(String castCatCode) {
+    Predicate<CastCatTable> castCatCodeInclude = castCat -> castCat.code().equals(castCatCode);
+    return this.castCatSource.findAll()
+        .filter(BaseTable::isExists)
+        .filter(castCatCodeInclude)
+        .map(CastCatTable::toEntity);
+  }
 
   @Override
   public Mono<CastEntity> findByCode(CastCode castCode) {

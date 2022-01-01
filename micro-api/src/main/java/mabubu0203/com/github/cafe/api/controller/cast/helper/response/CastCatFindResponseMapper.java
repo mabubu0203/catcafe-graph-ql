@@ -2,14 +2,15 @@ package mabubu0203.com.github.cafe.api.controller.cast.helper.response;
 
 import com.netflix.dgs.codegen.types.CastCat;
 import com.netflix.dgs.codegen.types.CatSex;
-import mabubu0203.com.github.cafe.api.service.cast.model.output.CastCatRegisterServiceOutput;
-import mabubu0203.com.github.cafe.common.controller.helper.response.CreateResponseMapper;
+import mabubu0203.com.github.cafe.api.service.cast.model.output.CastCatSearchServiceOutput;
+import mabubu0203.com.github.cafe.common.controller.helper.response.FindResponseMapper;
 
-public class CastCatCreateResponseMapper implements
-    CreateResponseMapper<CastCatRegisterServiceOutput, CastCat> {
+
+public class CastCatFindResponseMapper implements
+    FindResponseMapper<CastCatSearchServiceOutput, CastCat> {
 
   @Override
-  public CastCat apply(CastCatRegisterServiceOutput output) {
+  public CastCat apply(CastCatSearchServiceOutput output) {
     var sex = CatSex.valueOf(output.sex());
     return new CastCat.Builder()
         .code(output.code())
@@ -27,5 +28,4 @@ public class CastCatCreateResponseMapper implements
         .version(output.version())
         .build();
   }
-
 }
