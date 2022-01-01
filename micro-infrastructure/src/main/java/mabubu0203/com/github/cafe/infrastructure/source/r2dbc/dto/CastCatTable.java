@@ -76,6 +76,12 @@ public class CastCatTable extends BaseTable<Integer> {
   }
 
   @Override
+  public CastCatTable createdBy(Integer createdBy) {
+    super.createdBy(createdBy);
+    return this;
+  }
+
+  @Override
   @Transient
   public boolean isNew() {
     return super.isNew() || Objects.isNull(this.id);

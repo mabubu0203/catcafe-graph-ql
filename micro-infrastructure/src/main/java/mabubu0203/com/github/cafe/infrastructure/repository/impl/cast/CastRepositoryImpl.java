@@ -45,7 +45,6 @@ public class CastRepositoryImpl implements CastRepository {
     return Optional.of(entity)
         .map(this::attach)
         .map(dto -> dto.createdBy(0))
-        .map(CastCatTable.class::cast)
         .map(dto -> this.castCatSource.insert(dto, receptionTime))
         .orElseThrow(RuntimeException::new)
         .mapNotNull(CastCatTable::code)
