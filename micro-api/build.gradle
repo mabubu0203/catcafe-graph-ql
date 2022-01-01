@@ -3,7 +3,12 @@ description = getProject().name
 apply plugin: "com.netflix.dgs.codegen"
 
 dependencies {
+    // GraphQL
     implementation 'com.graphql-java:graphql-java-extended-scalars:17.0'
+
+    // mysql
+    runtimeOnly("dev.miku:r2dbc-mysql")
+    runtimeOnly("mysql:mysql-connector-java")
 }
 
 test {
