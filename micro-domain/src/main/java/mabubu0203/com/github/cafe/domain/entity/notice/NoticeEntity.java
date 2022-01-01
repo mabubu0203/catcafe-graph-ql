@@ -5,6 +5,7 @@ import java.util.Optional;
 import lombok.Builder;
 import lombok.Value;
 import lombok.With;
+import lombok.experimental.Accessors;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
 import mabubu0203.com.github.cafe.domain.value.code.NoticeCode;
 import mabubu0203.com.github.cafe.domain.value.code.NoticeId;
@@ -13,6 +14,7 @@ import mabubu0203.com.github.cafe.domain.value.code.StoreId;
 /**
  * お知らせ
  */
+@Accessors(fluent = true)
 @Builder
 @Value
 @With

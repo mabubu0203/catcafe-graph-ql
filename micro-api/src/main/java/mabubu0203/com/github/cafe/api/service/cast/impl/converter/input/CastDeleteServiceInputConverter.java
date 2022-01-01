@@ -10,10 +10,10 @@ public class CastDeleteServiceInputConverter implements
 
   @Override
   public CastEntity apply(CastDeleteServiceInput input) {
-    var castCode = new CastCode(input.getCastCode());
+    var castCode = new CastCode(input.castCode());
     return CastEntity.builder()
         .castCode(castCode)
-        .version(input.getVersion())
+        .version(input.version())
         .build();
   }
 
