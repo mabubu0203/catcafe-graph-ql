@@ -12,7 +12,7 @@ import mabubu0203.com.github.cafe.common.service.model.ServiceOutput;
 @Value
 public class CastCatRegisterServiceOutput implements ServiceOutput {
 
-  String code;
+  String castCatCode;
   String name;
   String image;
   String type;

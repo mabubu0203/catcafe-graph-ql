@@ -11,24 +11,24 @@ public interface TableSource<D extends BaseTable, ID> extends ReactiveSortingRep
 
   Mono<D> findByCode(String code);
 
-  default Mono<D> insert(D entity, LocalDateTime localDateTime) {
-    entity.createdDateTime(localDateTime)
+  default Mono<D> insert(D dto, LocalDateTime localDateTime) {
+    dto.createdDateTime(localDateTime)
         .version(0)
         .isNew(true);
-    return this.save(entity);
+    return this.save(dto);
   }
 
-  default Mono<D> update(D entity, LocalDateTime localDateTime) {
-    entity.updatedDateTime(localDateTime)
+  default Mono<D> update(D dto, LocalDateTime localDateTime) {
+    dto.updatedDateTime(localDateTime)
         .isNew(false);
-    return this.save(entity);
+    return this.save(dto);
   }
 
-  default Mono<D> logicalDelete(D entity, LocalDateTime localDateTime) {
-    entity.deletedDateTime(localDateTime)
+  default Mono<D> logicalDelete(D dto, LocalDateTime localDateTime) {
+    dto.deletedDateTime(localDateTime)
         .deletedFlag(BaseTable.DeletedFlag.is_true)
         .isNew(false);
-    return this.save(entity);
+    return this.save(dto);
   }
 
 }

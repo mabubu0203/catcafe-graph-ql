@@ -1,19 +1,32 @@
 package mabubu0203.com.github.cafe.api.service.cast.impl;
 
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.service.cast.CastCatDeleteService;
+import mabubu0203.com.github.cafe.api.service.cast.impl.converter.input.CastCatDeleteServiceInputConverter;
+import mabubu0203.com.github.cafe.api.service.cast.impl.converter.output.CastCatDeleteServiceOutputConverter;
 import mabubu0203.com.github.cafe.api.service.cast.model.input.CastCatDeleteServiceInput;
 import mabubu0203.com.github.cafe.api.service.cast.model.output.CastCatDeleteServiceOutput;
+import mabubu0203.com.github.cafe.domain.repository.cast.CastRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
 public class CastCatDeleteServiceImpl implements CastCatDeleteService {
 
+  private final CastRepository castRepository;
+
   @Override
+  @Transactional
   public Mono<CastCatDeleteServiceOutput> action(CastCatDeleteServiceInput input) {
-    return Mono.empty();
+    var receptionTime = this.getReceptionTime();
+    return Optional.of(input)
+        .map(new CastCatDeleteServiceInputConverter())
+        .map(entity -> this.castRepository.logicalDelete(entity, receptionTime))
+        .orElseThrow(RuntimeException::new)
+        .map(new CastCatDeleteServiceOutputConverter());
   }
 
 }

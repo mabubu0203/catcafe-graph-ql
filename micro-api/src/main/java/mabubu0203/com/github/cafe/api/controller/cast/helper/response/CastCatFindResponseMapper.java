@@ -13,7 +13,7 @@ public class CastCatFindResponseMapper implements
   public CastCat apply(CastCatSearchServiceOutput output) {
     var sex = CatSex.valueOf(output.sex());
     return new CastCat.Builder()
-        .code(output.code())
+        .code(output.castCatCode())
         .name(output.name())
         .image(output.image())
         .type(output.type())
