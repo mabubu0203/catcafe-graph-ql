@@ -14,15 +14,15 @@ public class CastRegisterServiceInputConverter implements
   @Override
   public CastEntity apply(CastRegisterServiceInput input) {
     var castCode = CastCode.newCode();
-    var employmentStatus = EmploymentStatus.getByLabel(input.getEmploymentStatus());
-    var memo = new Memo(input.getMemo());
-    var castCatEntity = CastCatEntity.createByCastCatCode(input.getCastCatCode());
+    var employmentStatus = EmploymentStatus.getByLabel(input.employmentStatus());
+    var memo = new Memo(input.memo());
+    var castCatEntity = CastCatEntity.createByCastCatCode(input.castCatCode());
     return CastEntity.builder()
         .castCode(castCode)
         .locationCode(null)
         .employmentStatus(employmentStatus)
-        .firstAttendanceDate(input.getFirstAttendanceDate())
-        .lastAttendanceDate(input.getLastAttendanceDate())
+        .firstAttendanceDate(input.firstAttendanceDate())
+        .lastAttendanceDate(input.lastAttendanceDate())
         .memo(memo)
         .version(null)
         .castCatEntity(castCatEntity)

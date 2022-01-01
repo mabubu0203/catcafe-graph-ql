@@ -10,10 +10,10 @@ public class CastCatDeleteServiceInputConverter implements
 
   @Override
   public CastCatEntity apply(CastCatDeleteServiceInput input) {
-    var castCatCode = new CastCatCode(input.getCastCatCode());
+    var castCatCode = new CastCatCode(input.castCatCode());
     return CastCatEntity.builder()
         .castCatCode(castCatCode)
-        .version(input.getVersion())
+        .version(input.version())
         .build();
   }
 
