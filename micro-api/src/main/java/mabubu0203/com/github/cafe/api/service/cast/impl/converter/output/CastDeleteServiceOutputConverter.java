@@ -10,7 +10,7 @@ public class CastDeleteServiceOutputConverter implements
   @Override
   public CastDeleteServiceOutput apply(CastCode castCode) {
     return CastDeleteServiceOutput.builder()
-        .code(castCode.value())
+        .castCode(castCode.value())
         .build();
   }
 

@@ -10,7 +10,7 @@ public class CastRegisterServiceOutputConverter implements
   @Override
   public CastRegisterServiceOutput apply(CastEntity cast) {
     return CastRegisterServiceOutput.builder()
-        .code(cast.getCastCodeValue())
+        .castCode(cast.getCastCodeValue())
         .build();
   }
 }

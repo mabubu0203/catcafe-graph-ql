@@ -8,6 +8,6 @@ public class CastCatDeleteResponseMapper implements
 
   @Override
   public String apply(CastCatDeleteServiceOutput output) {
-    return output.code();
+    return output.castCatCode();
   }
 }

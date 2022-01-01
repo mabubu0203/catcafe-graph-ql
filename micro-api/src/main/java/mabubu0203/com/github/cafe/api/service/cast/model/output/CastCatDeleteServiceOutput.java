@@ -10,6 +10,6 @@ import mabubu0203.com.github.cafe.common.service.model.ServiceOutput;
 @Value
 public class CastCatDeleteServiceOutput implements ServiceOutput {
 
-  String code;
+  String castCatCode;
 
 }

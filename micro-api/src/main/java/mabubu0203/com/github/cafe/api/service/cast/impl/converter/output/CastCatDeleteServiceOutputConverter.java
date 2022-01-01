@@ -10,7 +10,7 @@ public class CastCatDeleteServiceOutputConverter implements
   @Override
   public CastCatDeleteServiceOutput apply(CastCatCode castCatCode) {
     return CastCatDeleteServiceOutput.builder()
-        .code(castCatCode.value())
+        .castCatCode(castCatCode.value())
         .build();
   }
 

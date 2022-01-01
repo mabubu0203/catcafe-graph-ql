@@ -10,7 +10,7 @@ public class CastCatModifyServiceOutputConverter implements
   @Override
   public CastCatModifyServiceOutput apply(CastCatEntity castCat) {
     return CastCatModifyServiceOutput.builder()
-        .code(castCat.getCastCatCodeValue())
+        .castCatCode(castCat.getCastCatCodeValue())
         .name(castCat.name())
         .image(castCat.getImageValue())
         .type(castCat.type())

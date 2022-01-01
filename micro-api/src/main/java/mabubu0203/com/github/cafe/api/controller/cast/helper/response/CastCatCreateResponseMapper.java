@@ -12,7 +12,7 @@ public class CastCatCreateResponseMapper implements
   public CastCat apply(CastCatRegisterServiceOutput output) {
     var sex = CatSex.valueOf(output.sex());
     return new CastCat.Builder()
-        .code(output.code())
+        .code(output.castCatCode())
         .name(output.name())
         .image(output.image())
         .type(output.type())

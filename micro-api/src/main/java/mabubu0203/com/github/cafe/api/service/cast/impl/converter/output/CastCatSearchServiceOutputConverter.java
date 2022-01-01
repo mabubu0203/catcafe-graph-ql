@@ -10,7 +10,7 @@ public class CastCatSearchServiceOutputConverter implements
   @Override
   public CastCatSearchServiceOutput apply(CastCatEntity castCat) {
     return CastCatSearchServiceOutput.builder()
-        .code(castCat.getCastCatCodeValue())
+        .castCatCode(castCat.getCastCatCodeValue())
         .name(castCat.name())
         .image(castCat.getImageValue())
         .type(castCat.type())

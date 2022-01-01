@@ -120,8 +120,7 @@ public class CastCatTable extends BaseTable<Integer> {
         .prohibition(entity.prohibition())
 //        .setBrothers()
 //        .setSisters()
-        .memo(entity.getMemoValue())
-        .version(entity.version());
+        .memo(entity.getMemoValue());
   }
 
   public CastCatEntity toEntity() {
