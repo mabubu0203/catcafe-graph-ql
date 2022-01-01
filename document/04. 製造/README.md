@@ -38,6 +38,7 @@ IntelliJ IDEAを使用します。
 
 - [Api][]
 - [GraphiQL][]
+- [phpMyAdmin][]
 - [Redisinsight][]
 
 ## 停止方法
@@ -54,5 +55,7 @@ IntelliJ IDEAを使用します。
 [Api]: http://localhost:9001/                               "Api"
 
 [GraphiQL]: http://localhost:9001/graphiql?path=/graphql    "GraphiQL"
+
+[phpMyAdmin]: http://localhost:8021/                        "phpMyAdmin"
 
 [Redisinsight]: http://localhost:8001/                      "Redisinsight"
