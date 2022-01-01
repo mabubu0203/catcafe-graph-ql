@@ -1,10 +1,10 @@
 package mabubu0203.com.github.cafe.api.service.cast.model.input;
 
-import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Value;
 import lombok.experimental.Accessors;
 import mabubu0203.com.github.cafe.common.service.model.ServiceInput;
+import java.time.LocalDate;
 
 @Accessors(fluent = true)
 @Builder
