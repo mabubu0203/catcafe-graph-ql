@@ -17,8 +17,8 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
-@Table(value = "store")
-public class StoreTable extends BaseTable<Integer> {
+@Table(value = "location")
+public class LocationTable extends BaseTable<Integer> {
 
   @Id
   @Column(value = "id")
@@ -88,28 +88,28 @@ public class StoreTable extends BaseTable<Integer> {
 
   @Override
   @Transient
-  public StoreTable code(String code) {
+  public LocationTable code(String code) {
     super.code(code);
     return this;
   }
 
   @Override
   @Transient
-  public StoreTable createdBy(Integer createdBy) {
+  public LocationTable createdBy(Integer createdBy) {
     super.createdBy(createdBy);
     return this;
   }
 
   @Override
   @Transient
-  public StoreTable version(Integer version) {
+  public LocationTable version(Integer version) {
     super.version(version);
     return this;
   }
 
   @Override
   @Transient
-  public StoreTable updatedBy(Integer updatedBy) {
+  public LocationTable updatedBy(Integer updatedBy) {
     super.updatedBy(updatedBy);
     return this;
   }

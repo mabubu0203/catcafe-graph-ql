@@ -23,8 +23,8 @@ public class ProvideServiceTable extends BaseTable<Integer> {
   @Column(value = "id")
   private Integer id;
 
-  @Column(value = "store_id")
-  private Integer storeId;
+  @Column(value = "location_code")
+  private String locationCode;
 
   @Column(value = "name")
   private String name;

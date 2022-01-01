@@ -26,11 +26,11 @@ public class CastTable extends BaseTable<Integer> {
   @Column(value = "id")
   private Integer id;
 
-  @Column(value = "store_id")
-  private Integer storeId;
+  @Column(value = "location_code")
+  private String locationCode;
 
-  @Column(value = "cast_cat_id")
-  private Integer castCatId;
+  @Column(value = "cast_cat_code")
+  private String castCatCode;
 
   @Column(value = "employment_status")
   private EmploymentStatus employmentStatus = EmploymentStatus.main;

@@ -23,8 +23,8 @@ public class NoticeTable extends BaseTable<Integer> {
   @Column(value = "id")
   private Integer id;
 
-  @Column(value = "store_id")
-  private Integer storeId;
+  @Column(value = "location_code")
+  private String locationCode;
 
   @Column(value = "summary")
   private String summary;
