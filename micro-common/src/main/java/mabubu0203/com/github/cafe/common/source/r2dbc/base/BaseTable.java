@@ -15,6 +15,9 @@ import org.springframework.data.relational.core.mapping.Column;
 @Data
 public abstract class BaseTable<ID> implements Persistable<ID> {
 
+  @Column(value = "code")
+  private String code;
+
   @CreatedDate
   @Column(value = "created_date_time")
   private LocalDateTime createdDateTime;
