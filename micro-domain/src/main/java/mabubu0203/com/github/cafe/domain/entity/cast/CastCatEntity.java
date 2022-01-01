@@ -6,6 +6,7 @@ import java.util.Optional;
 import lombok.Builder;
 import lombok.Value;
 import lombok.With;
+import lombok.experimental.Accessors;
 import mabubu0203.com.github.cafe.domain.value.HttpUrl;
 import mabubu0203.com.github.cafe.domain.value.Memo;
 import mabubu0203.com.github.cafe.domain.value.cast.CatSex;
@@ -16,6 +17,7 @@ import mabubu0203.com.github.cafe.domain.value.code.CastCatId;
 /**
  * キャスト(猫)
  */
+@Accessors(fluent = true)
 @Builder
 @Value
 @With

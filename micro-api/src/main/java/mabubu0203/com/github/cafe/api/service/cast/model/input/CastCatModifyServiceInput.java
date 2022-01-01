@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.util.List;
 import lombok.Builder;
 import lombok.Value;
+import lombok.experimental.Accessors;
 import mabubu0203.com.github.cafe.common.service.model.ServiceInput;
 
+@Accessors(fluent = true)
 @Builder
 @Value
 public class CastCatModifyServiceInput implements ServiceInput {

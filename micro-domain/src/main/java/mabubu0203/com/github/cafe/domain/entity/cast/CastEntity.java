@@ -81,7 +81,7 @@ public class CastEntity {
   @Deprecated
   public Integer getCastCatIdValue() {
     return Optional.ofNullable(this.castCatEntity)
-        .map(CastCatEntity::getCastCatId)
+        .map(CastCatEntity::castCatId)
         .map(CastCatId::value)
         .orElse(null);
   }

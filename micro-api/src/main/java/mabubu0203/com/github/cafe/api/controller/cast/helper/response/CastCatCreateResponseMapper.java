@@ -9,7 +9,21 @@ public class CastCatCreateResponseMapper implements
 
   @Override
   public CastCat apply(CastCatRegisterServiceOutput output) {
-    return new CastCat();
+    return new CastCat.Builder()
+        .code(output.code())
+        .name(output.name())
+        .image(output.image())
+        .type(output.type())
+        .sex(null)
+        .birthdayDate(output.birthdayDate())
+        .favorite(output.favorite())
+        .dislike(output.dislike())
+        .prohibition(output.prohibition())
+        .brothers(null)
+        .sisters(null)
+        .memo(output.memo())
+        .version(output.version())
+        .build();
   }
 
 }

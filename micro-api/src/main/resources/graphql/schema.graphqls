@@ -32,7 +32,7 @@ extend type Mutation {
   # キャスト登録
   castCreate(
     input: CastCommand!
-  ): ID
+  ): Cast
   # キャスト更新
   castUpdate(
     # castCode
@@ -40,7 +40,7 @@ extend type Mutation {
     input: CastCommand!,
     # バージョンフィールド
     version: Int
-  ): ID
+  ): Cast
   # キャスト削除
   castDelete(
     # castCode
@@ -51,7 +51,7 @@ extend type Mutation {
   # キャスト(猫)登録
   castCatCreate(
     input: CastCatCommand!
-  ): ID
+  ): CastCat
   # キャスト(猫)更新
   castCatUpdate(
     # castCatCode
@@ -59,7 +59,7 @@ extend type Mutation {
     input: CastCatCommand!,
     # バージョンフィールド
     version: Int
-  ): ID
+  ): CastCat
   # キャスト(猫)削除
   castCatDelete(
     # castCatCode
