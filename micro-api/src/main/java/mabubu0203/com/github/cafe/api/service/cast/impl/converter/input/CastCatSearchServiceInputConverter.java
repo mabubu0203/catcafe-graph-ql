@@ -2,12 +2,12 @@ package mabubu0203.com.github.cafe.api.service.cast.impl.converter.input;
 
 import java.util.Optional;
 import mabubu0203.com.github.cafe.api.service.cast.model.input.CastCatSearchServiceInput;
-import mabubu0203.com.github.cafe.common.service.converter.input.SearchServiceInputConverter;
+import mabubu0203.com.github.cafe.common.service.converter.ServiceInputConverter;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastCatSearchConditions;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 
 public class CastCatSearchServiceInputConverter implements
-    SearchServiceInputConverter<CastCatSearchServiceInput, CastCatSearchConditions> {
+    ServiceInputConverter<CastCatSearchServiceInput, CastCatSearchConditions> {
 
   @Override
   public CastCatSearchConditions apply(CastCatSearchServiceInput input) {

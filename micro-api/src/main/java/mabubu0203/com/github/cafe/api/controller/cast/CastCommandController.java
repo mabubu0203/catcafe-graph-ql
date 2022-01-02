@@ -6,9 +6,8 @@ import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCreateRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastDeleteRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastUpdateRequestMapper;
-import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCreateResponseMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastDeleteResponseMapper;
-import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastUpdateResponseMapper;
+import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastResponseMapper;
 import mabubu0203.com.github.cafe.api.service.cast.CastDeleteService;
 import mabubu0203.com.github.cafe.api.service.cast.CastModifyService;
 import mabubu0203.com.github.cafe.api.service.cast.CastRegisterService;
@@ -32,7 +31,7 @@ public class CastCommandController {
     Mono.just(input)
         .map(new CastCreateRequestMapper())
         .flatMap(this.castResisterService::action)
-        .map(new CastCreateResponseMapper());
+        .map(new CastResponseMapper());
 
     return Mono.just(new Cast.Builder().code("1").build());
   }
@@ -46,7 +45,7 @@ public class CastCommandController {
     return Mono.just(input)
         .map(new CastUpdateRequestMapper(code, version))
         .flatMap(this.castModifyService::action)
-        .map(new CastUpdateResponseMapper());
+        .map(new CastResponseMapper());
   }
 
   @MutationMapping

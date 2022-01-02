@@ -17,20 +17,9 @@ interface HasCommon {
   version: Int
 }
 
-type PageInfo {
-  hasPreviousPage: Boolean!
-  hasNextPage: Boolean!
-  startCursor: String
-  endCursor: String
-}
-
 extend type Query {
-  # キャスト詳細取得
-  castFind(code: ID!): Cast
   # キャスト一覧取得
   castSearch: [Cast]!
-  # キャスト(猫)詳細取得
-  castCatFind(code: ID!): CastCat
   # キャスト(猫)一覧取得
   castCatSearch(
     # castCatCode

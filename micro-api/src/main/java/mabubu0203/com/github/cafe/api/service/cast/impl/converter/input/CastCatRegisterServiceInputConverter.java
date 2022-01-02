@@ -1,7 +1,7 @@
 package mabubu0203.com.github.cafe.api.service.cast.impl.converter.input;
 
 import mabubu0203.com.github.cafe.api.service.cast.model.input.CastCatRegisterServiceInput;
-import mabubu0203.com.github.cafe.common.service.converter.input.RegisterServiceInputConverter;
+import mabubu0203.com.github.cafe.common.service.converter.ServiceInputConverter;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastCatEntity;
 import mabubu0203.com.github.cafe.domain.value.HttpUrl;
 import mabubu0203.com.github.cafe.domain.value.Memo;
@@ -9,7 +9,7 @@ import mabubu0203.com.github.cafe.domain.value.cast.CatSex;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 
 public class CastCatRegisterServiceInputConverter implements
-    RegisterServiceInputConverter<CastCatRegisterServiceInput, CastCatEntity> {
+    ServiceInputConverter<CastCatRegisterServiceInput, CastCatEntity> {
 
   @Override
   public CastCatEntity apply(CastCatRegisterServiceInput input) {
