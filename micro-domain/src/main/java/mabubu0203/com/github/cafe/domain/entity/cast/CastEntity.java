@@ -8,7 +8,6 @@ import lombok.With;
 import lombok.experimental.Accessors;
 import mabubu0203.com.github.cafe.domain.value.Memo;
 import mabubu0203.com.github.cafe.domain.value.cast.EmploymentStatus;
-import mabubu0203.com.github.cafe.domain.value.code.CastCatId;
 import mabubu0203.com.github.cafe.domain.value.code.CastCode;
 import mabubu0203.com.github.cafe.domain.value.code.CastId;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
@@ -34,7 +33,6 @@ public class CastEntity {
   LocalDate lastAttendanceDate;
   Memo memo;
   Integer version;
-  CastCatEntity castCatEntity;
 
   @Deprecated
   public Integer getCastIdValue() {
@@ -77,20 +75,6 @@ public class CastEntity {
   public String getMemoValue() {
     return Optional.ofNullable(this.memo)
         .map(Memo::value)
-        .orElse(null);
-  }
-
-  @Deprecated
-  public Integer getCastCatIdValue() {
-    return Optional.ofNullable(this.castCatEntity)
-        .map(CastCatEntity::castCatId)
-        .map(CastCatId::value)
-        .orElse(null);
-  }
-
-  public String getCastCatCodeValue() {
-    return Optional.ofNullable(this.castCatEntity)
-        .map(CastCatEntity::getCastCatCodeValue)
         .orElse(null);
   }
 

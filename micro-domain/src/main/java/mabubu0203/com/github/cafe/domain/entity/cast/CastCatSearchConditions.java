@@ -12,9 +12,9 @@ import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 @Accessors(fluent = true)
 @Value
 @EqualsAndHashCode(callSuper = true)
-public class CastCatSearchConditions<T> extends SearchConditions {
+public class CastCatSearchConditions extends SearchConditions {
 
-  private Optional<List<CastCatCode>> optCastCatCodes;
+  Optional<List<CastCatCode>> optCastCatCodes;
 
   public List<String> castCatCodes() {
     return this.optCastCatCodes.orElseGet(Collections::emptyList)
