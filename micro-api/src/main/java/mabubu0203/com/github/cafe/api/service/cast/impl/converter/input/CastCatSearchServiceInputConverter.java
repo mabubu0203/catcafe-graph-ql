@@ -6,8 +6,8 @@ import mabubu0203.com.github.cafe.common.service.converter.ServiceInputConverter
 import mabubu0203.com.github.cafe.domain.entity.cast.CastCatSearchConditions;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 
-public class CastCatSearchServiceInputConverter implements
-    ServiceInputConverter<CastCatSearchServiceInput, CastCatSearchConditions> {
+public class CastCatSearchServiceInputConverter
+    implements ServiceInputConverter<CastCatSearchServiceInput, CastCatSearchConditions> {
 
   @Override
   public CastCatSearchConditions apply(CastCatSearchServiceInput input) {
