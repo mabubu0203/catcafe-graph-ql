@@ -2,6 +2,7 @@ package mabubu0203.com.github.cafe.api.controller.cast;
 
 import com.netflix.dgs.codegen.types.CastCat;
 import com.netflix.dgs.codegen.types.CastCatCommand;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCatCreateRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCatDeleteRequestMapper;
@@ -27,7 +28,7 @@ public class CastCatCommandController {
 
   @MutationMapping
   public Mono<CastCat> castCatCreate(
-      @Argument("input") CastCatCommand input
+      @Argument("input") @Valid CastCatCommand input
   ) {
     return Mono.just(input)
         .map(new CastCatCreateRequestMapper())
@@ -38,7 +39,7 @@ public class CastCatCommandController {
   @MutationMapping
   public Mono<CastCat> castCatUpdate(
       @Argument("code") String code,
-      @Argument("input") CastCatCommand input,
+      @Argument("input") @Valid CastCatCommand input,
       @Argument("version") Integer version
   ) {
     return Mono.just(input)

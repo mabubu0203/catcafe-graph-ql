@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.common.exception.ResourceNotFoundException;
 import mabubu0203.com.github.cafe.common.source.r2dbc.base.BaseTable;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastCatEntity;
+import mabubu0203.com.github.cafe.domain.entity.cast.CastCatSearchConditions;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastEntity;
 import mabubu0203.com.github.cafe.domain.repository.cast.CastRepository;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
@@ -23,18 +24,23 @@ public class CastRepositoryImpl implements CastRepository {
 
   private final CastCatSource castCatSource;
 
-
   @Override
   public Flux<CastEntity> search() {
     return null;
   }
 
   @Override
-  public Flux<CastCatEntity> search(String castCatCode) {
-    Predicate<CastCatTable> castCatCodeInclude = castCat -> castCat.code().equals(castCatCode);
+  public Flux<CastCatEntity> search(CastCatSearchConditions searchConditions) {
+
+    Predicate<CastCatTable> isExists = BaseTable::isExists;
+
+    Predicate<CastCatTable> castCatCodeInclude = castCat -> {
+      var castCatCodes = searchConditions.castCatCodes();
+      return castCatCodes.size() == 0 || castCatCodes.contains(castCat.code());
+    };
+
     return this.castCatSource.findAll()
-        .filter(BaseTable::isExists)
-        .filter(castCatCodeInclude)
+        .filter(isExists.and(castCatCodeInclude))
         .map(CastCatTable::toEntity);
   }
 

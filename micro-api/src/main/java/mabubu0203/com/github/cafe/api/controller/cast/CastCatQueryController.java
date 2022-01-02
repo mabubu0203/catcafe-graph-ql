@@ -1,9 +1,12 @@
 package mabubu0203.com.github.cafe.api.controller.cast;
 
 import com.netflix.dgs.codegen.types.CastCat;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCatFindRequestMapper;
+import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCatSearchRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCatFindResponseMapper;
+import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCatSearchResponseMapper;
 import mabubu0203.com.github.cafe.api.service.cast.CastCatSearchService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -17,7 +20,8 @@ public class CastCatQueryController {
 
   private final CastCatSearchService castCatSearchService;
 
-  @QueryMapping
+  @QueryMapping(name = "castCatFind")
+  @Deprecated
   public Mono<CastCat> castCatFind(
       @Argument("code") String code
   ) {
@@ -28,12 +32,15 @@ public class CastCatQueryController {
         .map(new CastCatFindResponseMapper());
   }
 
-  @QueryMapping
-  public Flux<CastCat> castCatSearch() {
-    return Flux.just(
-        CastCat.newBuilder()
-            .code("")
-            .build());
+  @QueryMapping(name = "castCatSearch")
+  public Flux<CastCat> castCatSearch(
+      @Argument("codes") List<String> codes
+  ) {
+    return new CastCatSearchRequestMapper(codes)
+        .get()
+        .map(this.castCatSearchService::action)
+        .orElse(Flux.empty())
+        .map(new CastCatSearchResponseMapper());
   }
 
 }
