@@ -8,6 +8,6 @@ public class CastDeleteResponseMapper
 
   @Override
   public String apply(CastDeleteServiceOutput output) {
-    return null;
+    return output.castCode();
   }
 }
