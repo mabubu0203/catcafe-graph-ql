@@ -1,6 +1,11 @@
 package mabubu0203.com.github.cafe.api.controller.cast;
 
 import com.netflix.dgs.codegen.types.CastCat;
+import graphql.relay.Connection;
+import graphql.relay.DefaultConnection;
+import graphql.relay.DefaultPageInfo;
+import graphql.relay.Edge;
+import java.util.ArrayList;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCatFindRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCatFindResponseMapper;
@@ -29,11 +34,21 @@ public class CastCatQueryController {
   }
 
   @QueryMapping
-  public Flux<CastCat> castCatSearch() {
-    return Flux.just(
-        CastCat.newBuilder()
-            .code("")
-            .build());
+  public Connection<CastCat> castCatSearch(
+      @Argument int first,
+      @Argument String after,
+      @Argument int last,
+      @Argument String before
+  ) {
+    var edges = new ArrayList<Edge<CastCat>>();
+    var pageInfo = new DefaultPageInfo(null, null, true, true);
+    return new DefaultConnection<>(edges, pageInfo);
+//    return new SimpleListConnection<>(Collections.singletonList(new CastCat())).get(env);
+//    return Mono.just("")
+//        .map(new CastCatFindRequestMapper())
+//        .map(this.castCatSearchService::action)
+//        .mapNotNull(Flux::blockFirst)
+//        .map(new CastCatFindResponseMapper());
   }
 
 }

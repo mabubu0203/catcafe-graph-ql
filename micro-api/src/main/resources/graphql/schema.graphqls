@@ -17,15 +17,22 @@ interface HasCommon {
   version: Int
 }
 
+type PageInfo {
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
 extend type Query {
   # キャスト詳細取得
   castFind(code: ID!): Cast
   # キャスト一覧取得
-  castSearch: [Cast]!
+  castSearch(first: Int, after: String, last: Int, before: String): [Cast]!
   # キャスト(猫)詳細取得
   castCatFind(code: ID!): CastCat
   # キャスト(猫)一覧取得
-  castCatSearch: [CastCat]!
+  castCatSearch: CastCatsConnection
 }
 
 extend type Mutation {
@@ -145,6 +152,16 @@ type CastCat implements HasCommon {
   # キャストメモ
   memo: String
   version: Int
+}
+
+type CastCatsConnection {
+  edges: [CastCatsEdge]!
+  pageInfo: PageInfo!
+}
+
+type CastCatsEdge {
+  node: CastCat!
+  cursor: String!
 }
 
 # 雇用形態
