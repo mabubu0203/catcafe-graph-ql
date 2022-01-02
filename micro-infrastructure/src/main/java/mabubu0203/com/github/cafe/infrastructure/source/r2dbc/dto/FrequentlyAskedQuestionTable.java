@@ -1,6 +1,5 @@
 package mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto;
 
-import java.util.Objects;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -10,6 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+import java.util.Objects;
 
 @Accessors(fluent = true)
 @Data

@@ -2,12 +2,12 @@ package mabubu0203.com.github.cafe.common.source.r2dbc;
 
 import java.time.LocalDateTime;
 import mabubu0203.com.github.cafe.common.source.r2dbc.base.BaseTable;
+import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.data.repository.reactive.ReactiveSortingRepository;
 import reactor.core.publisher.Mono;
 
 @NoRepositoryBean
-public interface TableSource<D extends BaseTable, ID> extends ReactiveSortingRepository<D, ID> {
+public interface TableSource<D extends BaseTable, ID> extends R2dbcRepository<D, ID> {
 
   Mono<D> findByCode(String code);
 

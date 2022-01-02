@@ -1,14 +1,12 @@
 package mabubu0203.com.github.cafe.api.controller.cast;
 
 import com.netflix.dgs.codegen.types.CastCat;
-import graphql.relay.Connection;
-import graphql.relay.DefaultConnection;
-import graphql.relay.DefaultPageInfo;
-import graphql.relay.Edge;
-import java.util.ArrayList;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCatFindRequestMapper;
+import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCatSearchRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCatFindResponseMapper;
+import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCatSearchResponseMapper;
 import mabubu0203.com.github.cafe.api.service.cast.CastCatSearchService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -22,7 +20,8 @@ public class CastCatQueryController {
 
   private final CastCatSearchService castCatSearchService;
 
-  @QueryMapping
+  @QueryMapping(name = "castCatFind")
+  @Deprecated
   public Mono<CastCat> castCatFind(
       @Argument("code") String code
   ) {
@@ -33,22 +32,15 @@ public class CastCatQueryController {
         .map(new CastCatFindResponseMapper());
   }
 
-  @QueryMapping
-  public Connection<CastCat> castCatSearch(
-      @Argument int first,
-      @Argument String after,
-      @Argument int last,
-      @Argument String before
+  @QueryMapping(name = "castCatSearch")
+  public Flux<CastCat> castCatSearch(
+      @Argument("codes") List<String> codes
   ) {
-    var edges = new ArrayList<Edge<CastCat>>();
-    var pageInfo = new DefaultPageInfo(null, null, true, true);
-    return new DefaultConnection<>(edges, pageInfo);
-//    return new SimpleListConnection<>(Collections.singletonList(new CastCat())).get(env);
-//    return Mono.just("")
-//        .map(new CastCatFindRequestMapper())
-//        .map(this.castCatSearchService::action)
-//        .mapNotNull(Flux::blockFirst)
-//        .map(new CastCatFindResponseMapper());
+    return new CastCatSearchRequestMapper(codes)
+        .get()
+        .map(this.castCatSearchService::action)
+        .orElse(Flux.empty())
+        .map(new CastCatSearchResponseMapper());
   }
 
 }
