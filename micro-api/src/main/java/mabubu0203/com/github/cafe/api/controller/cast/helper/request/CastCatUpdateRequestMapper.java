@@ -3,11 +3,11 @@ package mabubu0203.com.github.cafe.api.controller.cast.helper.request;
 import com.netflix.dgs.codegen.types.CastCatCommand;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.service.cast.model.input.CastCatModifyServiceInput;
-import mabubu0203.com.github.cafe.common.controller.helper.request.UpdateRequestMapper;
+import mabubu0203.com.github.cafe.common.controller.helper.request.WriteRequestMapper;
 
 @RequiredArgsConstructor
 public class CastCatUpdateRequestMapper implements
-    UpdateRequestMapper<CastCatCommand, CastCatModifyServiceInput> {
+    WriteRequestMapper<CastCatCommand, CastCatModifyServiceInput> {
 
   private final String castCatCode;
   private final Integer version;

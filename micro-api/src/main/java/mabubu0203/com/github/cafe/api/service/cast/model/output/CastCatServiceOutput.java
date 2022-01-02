@@ -10,7 +10,7 @@ import mabubu0203.com.github.cafe.common.service.model.ServiceOutput;
 @Accessors(fluent = true)
 @Builder
 @Value
-public class CastCatSearchServiceOutput implements ServiceOutput {
+public class CastCatServiceOutput implements ServiceOutput {
 
   String castCatCode;
   String name;

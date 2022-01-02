@@ -8,7 +8,7 @@ import mabubu0203.com.github.cafe.common.service.model.ServiceOutput;
 @Accessors(fluent = true)
 @Builder
 @Value
-public class CastRegisterServiceOutput implements ServiceOutput {
+public class CastServiceOutput implements ServiceOutput {
 
   String castCode;
 

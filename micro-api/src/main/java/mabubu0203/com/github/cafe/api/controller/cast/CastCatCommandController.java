@@ -7,9 +7,8 @@ import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCatCreateRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCatDeleteRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCatUpdateRequestMapper;
-import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCatCreateResponseMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCatDeleteResponseMapper;
-import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCatUpdateResponseMapper;
+import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCatResponseMapper;
 import mabubu0203.com.github.cafe.api.service.cast.CastCatDeleteService;
 import mabubu0203.com.github.cafe.api.service.cast.CastCatModifyService;
 import mabubu0203.com.github.cafe.api.service.cast.CastCatRegisterService;
@@ -26,17 +25,17 @@ public class CastCatCommandController {
   private final CastCatModifyService castCatModifyService;
   private final CastCatDeleteService castCatDeleteService;
 
-  @MutationMapping
+  @MutationMapping(name = "castCatCreate")
   public Mono<CastCat> castCatCreate(
       @Argument("input") @Valid CastCatCommand input
   ) {
     return Mono.just(input)
         .map(new CastCatCreateRequestMapper())
         .flatMap(this.castCatRegisterService::action)
-        .map(new CastCatCreateResponseMapper());
+        .map(new CastCatResponseMapper());
   }
 
-  @MutationMapping
+  @MutationMapping(name = "castCatUpdate")
   public Mono<CastCat> castCatUpdate(
       @Argument("code") String code,
       @Argument("input") @Valid CastCatCommand input,
@@ -45,10 +44,10 @@ public class CastCatCommandController {
     return Mono.just(input)
         .map(new CastCatUpdateRequestMapper(code, version))
         .flatMap(this.castCatModifyService::action)
-        .map(new CastCatUpdateResponseMapper());
+        .map(new CastCatResponseMapper());
   }
 
-  @MutationMapping
+  @MutationMapping(name = "castCatDelete")
   public Mono<String> castCatDelete(
       @Argument("code") String code,
       @Argument("version") Integer version

@@ -12,7 +12,6 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class CastQueryController {
 
-  @QueryMapping
   public Mono<Cast> castFind(
       @Argument("code") String code
   ) {

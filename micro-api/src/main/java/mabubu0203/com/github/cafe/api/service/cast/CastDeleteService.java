@@ -4,7 +4,7 @@ import mabubu0203.com.github.cafe.api.service.cast.model.input.CastDeleteService
 import mabubu0203.com.github.cafe.api.service.cast.model.output.CastDeleteServiceOutput;
 import mabubu0203.com.github.cafe.common.service.WriteApplicationService;
 
-public interface CastDeleteService extends
-    WriteApplicationService<CastDeleteServiceInput, CastDeleteServiceOutput> {
+public interface CastDeleteService
+    extends WriteApplicationService<CastDeleteServiceInput, CastDeleteServiceOutput> {
 
 }
