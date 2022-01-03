@@ -4,6 +4,7 @@ import mabubu0203.com.github.cafe.api.service.cast.model.input.CastRegisterServi
 import mabubu0203.com.github.cafe.common.service.converter.ServiceInputConverter;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastEntity;
 import mabubu0203.com.github.cafe.domain.value.Memo;
+import mabubu0203.com.github.cafe.domain.value.Version;
 import mabubu0203.com.github.cafe.domain.value.cast.EmploymentStatus;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 import mabubu0203.com.github.cafe.domain.value.code.CastCode;
@@ -19,6 +20,7 @@ public class CastRegisterServiceInputConverter
     var castCatCode = new CastCatCode(input.castCatCode());
     var employmentStatus = EmploymentStatus.getByLabel(input.employmentStatus());
     var memo = new Memo(input.memo());
+    var version = Version.empty();
     return CastEntity.builder()
         .castCode(castCode)
         .locationCode(locationCode)
@@ -27,7 +29,7 @@ public class CastRegisterServiceInputConverter
         .firstAttendanceDate(input.firstAttendanceDate())
         .lastAttendanceDate(input.lastAttendanceDate())
         .memo(memo)
-        .version(null)
+        .version(version)
         .build();
   }
 }

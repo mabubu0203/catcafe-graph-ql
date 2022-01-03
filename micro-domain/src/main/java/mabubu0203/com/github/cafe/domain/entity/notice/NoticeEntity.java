@@ -6,10 +6,9 @@ import lombok.Builder;
 import lombok.Value;
 import lombok.With;
 import lombok.experimental.Accessors;
+import mabubu0203.com.github.cafe.domain.value.Version;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
 import mabubu0203.com.github.cafe.domain.value.code.NoticeCode;
-import mabubu0203.com.github.cafe.domain.value.code.NoticeId;
-import mabubu0203.com.github.cafe.domain.value.code.StoreId;
 
 /**
  * お知らせ
@@ -20,24 +19,13 @@ import mabubu0203.com.github.cafe.domain.value.code.StoreId;
 @With
 public class NoticeEntity {
 
-  @Deprecated
-  NoticeId noticeId;
   NoticeCode noticeCode;
-  @Deprecated
-  StoreId storeId;
   LocationCode locationCode;
   String summary;
   String detail;
   LocalDateTime publicationStartDateTime;
   LocalDateTime publicationEndDateTime;
-  Integer version;
-
-  @Deprecated
-  public Integer getNoticeIdValue() {
-    return Optional.ofNullable(this.noticeId)
-        .map(NoticeId::value)
-        .orElse(null);
-  }
+  Version version;
 
   public String getNoticeCodeValue() {
     return Optional.ofNullable(this.noticeCode)
@@ -45,16 +33,15 @@ public class NoticeEntity {
         .orElse(null);
   }
 
-  @Deprecated
-  public Integer getStoreIdValue() {
-    return Optional.ofNullable(this.storeId)
-        .map(StoreId::value)
-        .orElse(null);
-  }
-
   public String getLocationCodeValue() {
     return Optional.ofNullable(this.locationCode)
         .map(LocationCode::value)
+        .orElse(null);
+  }
+
+  public Integer getVersionValue() {
+    return Optional.ofNullable(this.version)
+        .map(Version::value)
         .orElse(null);
   }
 

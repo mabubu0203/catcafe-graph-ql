@@ -9,9 +9,9 @@ import lombok.With;
 import lombok.experimental.Accessors;
 import mabubu0203.com.github.cafe.domain.value.HttpUrl;
 import mabubu0203.com.github.cafe.domain.value.Memo;
+import mabubu0203.com.github.cafe.domain.value.Version;
 import mabubu0203.com.github.cafe.domain.value.cast.CatSex;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
-import mabubu0203.com.github.cafe.domain.value.code.CastCatId;
 
 
 /**
@@ -23,8 +23,6 @@ import mabubu0203.com.github.cafe.domain.value.code.CastCatId;
 @With
 public class CastCatEntity {
 
-  @Deprecated
-  CastCatId castCatId;
   CastCatCode castCatCode;
   String name;
   HttpUrl image;
@@ -37,20 +35,7 @@ public class CastCatEntity {
   List<CastCatCode> brothers;
   List<CastCatCode> sisters;
   Memo memo;
-  Integer version;
-
-  public static CastCatEntity createByCastCatCode(String castCatCode) {
-    return CastCatEntity.builder()
-        .castCatCode(new CastCatCode(castCatCode))
-        .build();
-  }
-
-  @Deprecated
-  public Integer getCastCatIdValue() {
-    return Optional.ofNullable(this.castCatId)
-        .map(CastCatId::value)
-        .orElse(null);
-  }
+  Version version;
 
   public String getCastCatCodeValue() {
     return Optional.ofNullable(this.castCatCode)
@@ -79,6 +64,12 @@ public class CastCatEntity {
   public String getMemoValue() {
     return Optional.ofNullable(this.memo)
         .map(Memo::value)
+        .orElse(null);
+  }
+
+  public Integer getVersionValue() {
+    return Optional.ofNullable(this.version)
+        .map(Version::value)
         .orElse(null);
   }
 

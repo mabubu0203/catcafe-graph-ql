@@ -7,12 +7,11 @@ import lombok.Value;
 import lombok.With;
 import lombok.experimental.Accessors;
 import mabubu0203.com.github.cafe.domain.value.Memo;
+import mabubu0203.com.github.cafe.domain.value.Version;
 import mabubu0203.com.github.cafe.domain.value.cast.EmploymentStatus;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 import mabubu0203.com.github.cafe.domain.value.code.CastCode;
-import mabubu0203.com.github.cafe.domain.value.code.CastId;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
-import mabubu0203.com.github.cafe.domain.value.code.StoreId;
 
 /**
  * キャスト
@@ -23,36 +22,18 @@ import mabubu0203.com.github.cafe.domain.value.code.StoreId;
 @With
 public class CastEntity {
 
-  @Deprecated
-  CastId castId;
   CastCode castCode;
-  @Deprecated
-  StoreId storeId;
   LocationCode locationCode;
   CastCatCode castCatCode;
   EmploymentStatus employmentStatus;
   LocalDate firstAttendanceDate;
   LocalDate lastAttendanceDate;
   Memo memo;
-  Integer version;
-
-  @Deprecated
-  public Integer getCastIdValue() {
-    return Optional.ofNullable(this.castId)
-        .map(CastId::value)
-        .orElse(null);
-  }
+  Version version;
 
   public String getCastCodeValue() {
     return Optional.ofNullable(this.castCode)
         .map(CastCode::value)
-        .orElse(null);
-  }
-
-  @Deprecated
-  public Integer getStoreIdValue() {
-    return Optional.ofNullable(this.storeId)
-        .map(StoreId::value)
         .orElse(null);
   }
 
@@ -83,6 +64,12 @@ public class CastEntity {
   public String getMemoValue() {
     return Optional.ofNullable(this.memo)
         .map(Memo::value)
+        .orElse(null);
+  }
+
+  public Integer getVersionValue() {
+    return Optional.ofNullable(this.version)
+        .map(Version::value)
         .orElse(null);
   }
 

@@ -14,6 +14,7 @@ import mabubu0203.com.github.cafe.common.source.r2dbc.base.BaseTable;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastCatEntity;
 import mabubu0203.com.github.cafe.domain.value.HttpUrl;
 import mabubu0203.com.github.cafe.domain.value.Memo;
+import mabubu0203.com.github.cafe.domain.value.Version;
 import mabubu0203.com.github.cafe.domain.value.cast.CatSex;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 import org.springframework.data.annotation.Id;
@@ -120,7 +121,8 @@ public class CastCatTable extends BaseTable<Integer> {
         .prohibition(entity.prohibition())
 //        .setBrothers()
 //        .setSisters()
-        .memo(entity.getMemoValue());
+        .memo(entity.getMemoValue())
+        .version(entity.getVersionValue());
   }
 
   public CastCatEntity toEntity() {
@@ -128,6 +130,7 @@ public class CastCatTable extends BaseTable<Integer> {
     var image = new HttpUrl(this.image);
     var sex = CatSex.getByLabel(this.sex.name());
     var castCatMemo = new Memo(this.memo());
+    var version = new Version(this.version());
     return CastCatEntity.builder()
         .castCatCode(castCatCode)
         .name(this.name)
@@ -139,7 +142,7 @@ public class CastCatTable extends BaseTable<Integer> {
         .dislike(this.dislike)
         .prohibition(this.prohibition)
         .memo(castCatMemo)
-        .version(this.version())
+        .version(version)
         .build();
   }
 

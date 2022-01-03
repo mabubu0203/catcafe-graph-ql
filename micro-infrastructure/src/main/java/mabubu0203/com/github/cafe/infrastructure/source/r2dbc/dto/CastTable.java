@@ -12,6 +12,7 @@ import lombok.experimental.Accessors;
 import mabubu0203.com.github.cafe.common.source.r2dbc.base.BaseTable;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastEntity;
 import mabubu0203.com.github.cafe.domain.value.Memo;
+import mabubu0203.com.github.cafe.domain.value.Version;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 import mabubu0203.com.github.cafe.domain.value.code.CastCode;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
@@ -97,7 +98,8 @@ public class CastTable extends BaseTable<Integer> {
         .employmentStatus(employmentStatus)
         .firstAttendanceDate(entity.firstAttendanceDate())
         .lastAttendanceDate(entity.lastAttendanceDate())
-        .memo(entity.getMemoValue());
+        .memo(entity.getMemoValue())
+        .version(entity.getVersionValue());
   }
 
   public CastEntity toEntity() {
@@ -108,6 +110,7 @@ public class CastTable extends BaseTable<Integer> {
         mabubu0203.com.github.cafe.domain.value.cast.EmploymentStatus.getByLabel(
             this.employmentStatus().name());
     var castMemo = new Memo(this.memo());
+    var version = new Version(this.version());
     return CastEntity.builder()
         .castCode(castCode)
         .locationCode(locationCode)
@@ -116,7 +119,7 @@ public class CastTable extends BaseTable<Integer> {
         .firstAttendanceDate(this.firstAttendanceDate())
         .lastAttendanceDate(this.lastAttendanceDate())
         .memo(castMemo)
-        .version(this.version())
+        .version(version)
         .build();
   }
 
