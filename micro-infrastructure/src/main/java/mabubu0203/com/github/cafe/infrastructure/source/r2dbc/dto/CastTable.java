@@ -108,16 +108,16 @@ public class CastTable extends BaseTable<Integer> {
     var castCatCode = new CastCatCode(this.castCatCode);
     var employmentStatus =
         mabubu0203.com.github.cafe.domain.value.cast.EmploymentStatus.getByLabel(
-            this.employmentStatus().name());
-    var castMemo = new Memo(this.memo());
-    var version = new Version(this.version());
+            this.employmentStatus.name());
+    var castMemo = new Memo(this.memo);
+    var version = new Version(super.version());
     return CastEntity.builder()
         .castCode(castCode)
         .locationCode(locationCode)
         .castCatCode(castCatCode)
         .employmentStatus(employmentStatus)
-        .firstAttendanceDate(this.firstAttendanceDate())
-        .lastAttendanceDate(this.lastAttendanceDate())
+        .firstAttendanceDate(this.firstAttendanceDate)
+        .lastAttendanceDate(this.lastAttendanceDate)
         .memo(castMemo)
         .version(version)
         .build();
