@@ -28,7 +28,6 @@ public class CastCatQueryController {
         .orElse(Flux.empty())
         .last()
         .map(new CastCatResponseMapper());
-
   }
 
   @QueryMapping(name = "castCatSearch")

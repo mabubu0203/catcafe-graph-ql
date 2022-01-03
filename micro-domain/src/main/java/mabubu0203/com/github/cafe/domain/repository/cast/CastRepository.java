@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastCatEntity;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastCatSearchConditions;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastEntity;
+import mabubu0203.com.github.cafe.domain.entity.cast.CastSearchConditions;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 import mabubu0203.com.github.cafe.domain.value.code.CastCode;
 import reactor.core.publisher.Flux;
@@ -14,9 +15,10 @@ public interface CastRepository {
   /**
    * キャストを複数取得する
    *
+   * @param searchConditions
    * @return
    */
-  Flux<CastEntity> search();
+  Flux<CastEntity> search(CastSearchConditions searchConditions);
 
   /**
    * キャスト(猫)を複数取得する

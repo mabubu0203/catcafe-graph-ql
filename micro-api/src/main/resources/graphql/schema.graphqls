@@ -4,7 +4,6 @@ type Query {
 
 # Root
 type Mutation {
-
 }
 
 scalar Date
@@ -14,12 +13,17 @@ interface HasCommon {
   # コード
   code: ID!
   # バージョンフィールド
-  version: Int
+  version: Int!
 }
 
 extend type Query {
   # キャスト一覧取得
-  castSearch: [Cast]!
+  castSearch(
+    # castCode
+    codes: [ID]!
+    # locationCode
+    locationCodes: [ID]!
+  ): [Cast]!
   # キャスト(猫)一覧取得
   castCatSearch(
     # castCatCode
@@ -70,6 +74,8 @@ extend type Mutation {
 
 # キャスト登録/更新
 input CastCommand {
+  locationCode: ID!
+  castCatCode: ID!
   employmentStatus: EmploymentStatus
   # 初出勤日
   firstAttendanceDate: Date
@@ -97,9 +103,9 @@ input CastCatCommand  {
   # 禁止事項
   prohibition: String
   # 兄弟
-  brothers: [ID]
+  brothers: [ID]!
   # 姉妹
-  sisters: [ID]
+  sisters: [ID]!
   # キャストメモ
   memo: String
 }
@@ -108,6 +114,11 @@ input CastCatCommand  {
 type Cast implements HasCommon {
   # castCode
   code: ID!
+  # locationCode
+  locationCode: ID!
+  # castCatCode
+  castCatCode: ID!
+  # 雇用形態
   employmentStatus: EmploymentStatus
   # 初出勤日
   firstAttendanceDate: Date
@@ -115,7 +126,8 @@ type Cast implements HasCommon {
   lastAttendanceDate: Date
   # 店舗メモ
   memo: String
-  version: Int
+  # バージョンフィールド
+  version: Int!
 }
 
 # キャスト(猫)詳細
@@ -128,6 +140,7 @@ type CastCat implements HasCommon {
   image: String
   # 種類
   type: String
+  # キャスト(猫)性別
   sex: CatSex
   # 誕生日
   birthdayDate: Date
@@ -138,12 +151,13 @@ type CastCat implements HasCommon {
   # 禁止事項
   prohibition: String
   # 兄弟
-  brothers: [ID]
+  brothers: [ID]!
   # 姉妹
-  sisters: [ID]
+  sisters: [ID]!
   # キャストメモ
   memo: String
-  version: Int
+  # バージョンフィールド
+  version: Int!
 }
 
 # 雇用形態

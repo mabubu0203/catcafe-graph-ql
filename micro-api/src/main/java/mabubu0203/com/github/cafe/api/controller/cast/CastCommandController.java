@@ -24,19 +24,17 @@ public class CastCommandController {
   private final CastModifyService castModifyService;
   private final CastDeleteService castDeleteService;
 
-  @MutationMapping
+  @MutationMapping(name = "castCreate")
   public Mono<Cast> castCreate(
       @Argument("input") CastCommand input
   ) {
-    Mono.just(input)
+    return Mono.just(input)
         .map(new CastCreateRequestMapper())
         .flatMap(this.castResisterService::action)
         .map(new CastResponseMapper());
-
-    return Mono.just(new Cast.Builder().code("1").build());
   }
 
-  @MutationMapping
+  @MutationMapping(name = "castUpdate")
   public Mono<Cast> castUpdate(
       @Argument("code") String code,
       @Argument("input") CastCommand input,
@@ -48,7 +46,7 @@ public class CastCommandController {
         .map(new CastResponseMapper());
   }
 
-  @MutationMapping
+  @MutationMapping(name = "castDelete")
   public Mono<String> castDelete(
       @Argument("code") String code,
       @Argument("version") Integer version

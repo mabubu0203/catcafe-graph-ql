@@ -5,8 +5,8 @@ import mabubu0203.com.github.cafe.common.service.converter.ServiceInputConverter
 import mabubu0203.com.github.cafe.domain.entity.cast.CastEntity;
 import mabubu0203.com.github.cafe.domain.value.code.CastCode;
 
-public class CastDeleteServiceInputConverter implements
-    ServiceInputConverter<CastDeleteServiceInput, CastEntity> {
+public class CastDeleteServiceInputConverter
+    implements ServiceInputConverter<CastDeleteServiceInput, CastEntity> {
 
   @Override
   public CastEntity apply(CastDeleteServiceInput input) {

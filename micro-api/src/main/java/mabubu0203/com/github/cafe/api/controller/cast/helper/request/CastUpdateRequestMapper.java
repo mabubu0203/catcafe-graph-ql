@@ -6,8 +6,8 @@ import mabubu0203.com.github.cafe.api.service.cast.model.input.CastModifyService
 import mabubu0203.com.github.cafe.common.controller.helper.request.WriteRequestMapper;
 
 @RequiredArgsConstructor
-public class CastUpdateRequestMapper implements
-    WriteRequestMapper<CastCommand, CastModifyServiceInput> {
+public class CastUpdateRequestMapper
+    implements WriteRequestMapper<CastCommand, CastModifyServiceInput> {
 
   private final String castCode;
   private final Integer version;
@@ -16,6 +16,12 @@ public class CastUpdateRequestMapper implements
   public CastModifyServiceInput apply(CastCommand request) {
     return CastModifyServiceInput.builder()
         .castCode(this.castCode)
+        .locationCode(request.getLocationCode())
+        .castCatCode(request.getCastCatCode())
+        .employmentStatus(request.getEmploymentStatus().name())
+        .firstAttendanceDate(request.getFirstAttendanceDate())
+        .lastAttendanceDate(request.getLastAttendanceDate())
+        .memo(request.getMemo())
         .version(this.version)
         .build();
   }

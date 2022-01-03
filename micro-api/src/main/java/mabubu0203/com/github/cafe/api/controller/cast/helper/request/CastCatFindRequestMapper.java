@@ -6,7 +6,8 @@ import mabubu0203.com.github.cafe.api.service.cast.model.input.CastCatSearchServ
 import mabubu0203.com.github.cafe.common.controller.helper.request.ReadRequestMapper;
 
 @RequiredArgsConstructor
-public class CastCatFindRequestMapper implements ReadRequestMapper<CastCatSearchServiceInput> {
+public class CastCatFindRequestMapper
+    implements ReadRequestMapper<CastCatSearchServiceInput> {
 
   private final String castCatCode;
 
