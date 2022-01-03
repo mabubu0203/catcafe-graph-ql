@@ -11,20 +11,12 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @Controller
 @RequiredArgsConstructor
 public class CastQueryController {
 
   private final CastSearchService castSearchService;
-
-  // 未実装
-  public Mono<Cast> castFind(
-      @Argument("code") String code
-  ) {
-    return Mono.empty();
-  }
 
   @QueryMapping(name = "castSearch")
   public Flux<Cast> castSearch(
@@ -36,6 +28,5 @@ public class CastQueryController {
         .orElse(Flux.empty())
         .map(new CastResponseMapper());
   }
-
 
 }
