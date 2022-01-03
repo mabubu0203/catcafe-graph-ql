@@ -8,8 +8,8 @@ import mabubu0203.com.github.cafe.domain.value.Memo;
 import mabubu0203.com.github.cafe.domain.value.cast.CatSex;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 
-public class CastCatRegisterServiceInputConverter implements
-    ServiceInputConverter<CastCatRegisterServiceInput, CastCatEntity> {
+public class CastCatRegisterServiceInputConverter
+    implements ServiceInputConverter<CastCatRegisterServiceInput, CastCatEntity> {
 
   @Override
   public CastCatEntity apply(CastCatRegisterServiceInput input) {

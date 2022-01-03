@@ -5,8 +5,8 @@ import mabubu0203.com.github.cafe.api.service.cast.model.input.CastDeleteService
 import mabubu0203.com.github.cafe.common.controller.helper.request.WriteRequestMapper;
 
 @RequiredArgsConstructor
-public class CastDeleteRequestMapper implements
-    WriteRequestMapper<String, CastDeleteServiceInput> {
+public class CastDeleteRequestMapper
+    implements WriteRequestMapper<String, CastDeleteServiceInput> {
 
   private final Integer version;
 

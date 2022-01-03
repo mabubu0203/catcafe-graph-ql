@@ -4,11 +4,20 @@ import mabubu0203.com.github.cafe.api.service.cast.model.output.CastServiceOutpu
 import mabubu0203.com.github.cafe.common.service.converter.ServiceOutputConverter;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastEntity;
 
-public class CastServiceOutputConverter implements
-    ServiceOutputConverter<CastEntity, CastServiceOutput> {
+public class CastServiceOutputConverter
+    implements ServiceOutputConverter<CastEntity, CastServiceOutput> {
 
   @Override
-  public CastServiceOutput apply(CastEntity castEntity) {
-    return CastServiceOutput.builder().build();
+  public CastServiceOutput apply(CastEntity cast) {
+
+    return CastServiceOutput.builder()
+        .castCode(cast.getCastCodeValue())
+        .locationCode(cast.getLocationCodeValue())
+        .castCatCode(cast.getCastCatCodeValue())
+        .employmentStatus(cast.getEmploymentStatusLabel())
+        .firstAttendanceDate(cast.firstAttendanceDate())
+        .lastAttendanceDate(cast.lastAttendanceDate())
+        .memo(cast.getMemoValue())
+        .build();
   }
 }

@@ -12,8 +12,8 @@ import mabubu0203.com.github.cafe.common.service.model.ServiceInput;
 public class CastModifyServiceInput implements ServiceInput {
 
   String castCode;
-  String castCatCode;
   String locationCode;
+  String castCatCode;
   String employmentStatus;
   LocalDate firstAttendanceDate;
   LocalDate lastAttendanceDate;

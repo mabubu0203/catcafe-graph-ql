@@ -11,8 +11,8 @@ import mabubu0203.com.github.cafe.common.service.model.ServiceInput;
 @Value
 public class CastRegisterServiceInput implements ServiceInput {
 
-  String castCatCode;
   String locationCode;
+  String castCatCode;
   String employmentStatus;
   LocalDate firstAttendanceDate;
   LocalDate lastAttendanceDate;

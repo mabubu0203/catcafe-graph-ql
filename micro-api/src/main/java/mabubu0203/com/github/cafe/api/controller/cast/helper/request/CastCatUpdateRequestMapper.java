@@ -6,8 +6,8 @@ import mabubu0203.com.github.cafe.api.service.cast.model.input.CastCatModifyServ
 import mabubu0203.com.github.cafe.common.controller.helper.request.WriteRequestMapper;
 
 @RequiredArgsConstructor
-public class CastCatUpdateRequestMapper implements
-    WriteRequestMapper<CastCatCommand, CastCatModifyServiceInput> {
+public class CastCatUpdateRequestMapper
+    implements WriteRequestMapper<CastCatCommand, CastCatModifyServiceInput> {
 
   private final String castCatCode;
   private final Integer version;

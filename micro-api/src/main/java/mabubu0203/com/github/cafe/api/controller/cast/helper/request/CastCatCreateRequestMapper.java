@@ -7,8 +7,8 @@ import mabubu0203.com.github.cafe.common.controller.helper.request.WriteRequestM
 
 
 @RequiredArgsConstructor
-public class CastCatCreateRequestMapper implements
-    WriteRequestMapper<CastCatCommand, CastCatRegisterServiceInput> {
+public class CastCatCreateRequestMapper
+    implements WriteRequestMapper<CastCatCommand, CastCatRegisterServiceInput> {
 
   @Override
   public CastCatRegisterServiceInput apply(CastCatCommand request) {

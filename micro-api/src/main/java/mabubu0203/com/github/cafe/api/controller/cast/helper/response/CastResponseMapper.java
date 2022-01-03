@@ -15,6 +15,7 @@ public class CastResponseMapper
     return new Cast.Builder()
         .code(output.castCode())
         .locationCode(output.locationCode())
+        .castCatCode(output.castCatCode())
         .employmentStatus(employmentStatus)
         .firstAttendanceDate(output.firstAttendanceDate())
         .lastAttendanceDate(output.lastAttendanceDate())

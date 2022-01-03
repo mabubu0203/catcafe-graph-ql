@@ -13,6 +13,7 @@ public class CastServiceOutput implements ServiceOutput {
 
   String castCode;
   String locationCode;
+  String castCatCode;
   String employmentStatus;
   LocalDate firstAttendanceDate;
   LocalDate lastAttendanceDate;

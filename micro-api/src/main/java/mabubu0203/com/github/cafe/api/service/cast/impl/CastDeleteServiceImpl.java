@@ -1,7 +1,10 @@
 package mabubu0203.com.github.cafe.api.service.cast.impl;
 
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.service.cast.CastDeleteService;
+import mabubu0203.com.github.cafe.api.service.cast.impl.converter.input.CastDeleteServiceInputConverter;
+import mabubu0203.com.github.cafe.api.service.cast.impl.converter.output.CastDeleteServiceOutputConverter;
 import mabubu0203.com.github.cafe.api.service.cast.model.input.CastDeleteServiceInput;
 import mabubu0203.com.github.cafe.api.service.cast.model.output.CastDeleteServiceOutput;
 import mabubu0203.com.github.cafe.domain.repository.cast.CastRepository;
@@ -16,7 +19,12 @@ public class CastDeleteServiceImpl implements CastDeleteService {
 
   @Override
   public Mono<CastDeleteServiceOutput> action(CastDeleteServiceInput input) {
-    return Mono.empty();
+    var receptionTime = this.getReceptionTime();
+    return Optional.of(input)
+        .map(new CastDeleteServiceInputConverter())
+        .map(entity -> this.castRepository.logicalDelete(entity, receptionTime))
+        .orElseThrow(RuntimeException::new)
+        .map(new CastDeleteServiceOutputConverter());
   }
 
 }

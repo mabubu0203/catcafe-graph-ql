@@ -4,8 +4,8 @@ import mabubu0203.com.github.cafe.api.service.cast.model.output.CastDeleteServic
 import mabubu0203.com.github.cafe.common.service.converter.ServiceOutputConverter;
 import mabubu0203.com.github.cafe.domain.value.code.CastCode;
 
-public class CastDeleteServiceOutputConverter implements
-    ServiceOutputConverter<CastCode, CastDeleteServiceOutput> {
+public class CastDeleteServiceOutputConverter
+    implements ServiceOutputConverter<CastCode, CastDeleteServiceOutput> {
 
   @Override
   public CastDeleteServiceOutput apply(CastCode castCode) {
