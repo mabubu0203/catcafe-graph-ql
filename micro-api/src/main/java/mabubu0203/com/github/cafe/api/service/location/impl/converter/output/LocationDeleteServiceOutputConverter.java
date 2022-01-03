@@ -10,6 +10,7 @@ public class LocationDeleteServiceOutputConverter
   @Override
   public LocationDeleteServiceOutput apply(LocationCode locationCode) {
     return LocationDeleteServiceOutput.builder()
+        .locationCode(locationCode.value())
         .build();
   }
 
