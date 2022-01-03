@@ -26,6 +26,7 @@ public class CastCatQueryController {
   public Mono<CastCat> castCat(Cast cast) {
     return Optional.of(cast)
         .map(Cast::getCastCat)
+        .map(CastCat.class::cast)
         .map(CastCat::getCode)
         .map(code -> new CastCatFindRequestMapper(code).get())
         .map(this.castCatSearchService::action)

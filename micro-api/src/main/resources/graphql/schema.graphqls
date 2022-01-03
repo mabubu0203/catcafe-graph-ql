@@ -116,8 +116,6 @@ type Cast implements HasCommon {
   code: ID!
   # locationCode
   locationCode: ID!
-  # castCatCode
-  castCatCode: ID!
   castCat: CastCat
   # 雇用形態
   employmentStatus: EmploymentStatus
