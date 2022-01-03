@@ -12,6 +12,7 @@ import lombok.experimental.Accessors;
 import mabubu0203.com.github.cafe.common.source.r2dbc.base.BaseTable;
 import mabubu0203.com.github.cafe.domain.entity.cast.CastEntity;
 import mabubu0203.com.github.cafe.domain.value.Memo;
+import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 import mabubu0203.com.github.cafe.domain.value.code.CastCode;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
 import org.springframework.data.annotation.Id;
@@ -92,7 +93,7 @@ public class CastTable extends BaseTable<Integer> {
         CastTable.EmploymentStatus.getByLabel(entity.getEmploymentStatusLabel());
     return code(entity.getCastCodeValue())
         .locationCode(entity.getLocationCodeValue())
-        .castCatCode(null)
+        .castCatCode(entity.getCastCatCodeValue())
         .employmentStatus(employmentStatus)
         .firstAttendanceDate(entity.firstAttendanceDate())
         .lastAttendanceDate(entity.lastAttendanceDate())
@@ -102,6 +103,7 @@ public class CastTable extends BaseTable<Integer> {
   public CastEntity toEntity() {
     var castCode = new CastCode(super.code());
     var locationCode = new LocationCode(this.locationCode);
+    var castCatCode = new CastCatCode(this.castCatCode);
     var employmentStatus =
         mabubu0203.com.github.cafe.domain.value.cast.EmploymentStatus.getByLabel(
             this.employmentStatus().name());
@@ -109,6 +111,7 @@ public class CastTable extends BaseTable<Integer> {
     return CastEntity.builder()
         .castCode(castCode)
         .locationCode(locationCode)
+        .castCatCode(castCatCode)
         .employmentStatus(employmentStatus)
         .firstAttendanceDate(this.firstAttendanceDate())
         .lastAttendanceDate(this.lastAttendanceDate())

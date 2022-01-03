@@ -32,9 +32,17 @@ public class CastRepositoryImpl implements CastRepository {
   public Flux<CastEntity> search(CastSearchConditions searchConditions) {
 
     Predicate<CastTable> isExists = BaseTable::isExists;
+    Predicate<CastTable> castCodeInclude = cast -> {
+      var castCodes = searchConditions.castCodes();
+      return castCodes.size() == 0 || castCodes.contains(cast.code());
+    };
+    Predicate<CastTable> locationCodeInclude = cast -> {
+      var locationCodes = searchConditions.locationCodes();
+      return locationCodes.size() == 0 || locationCodes.contains(cast.locationCode());
+    };
 
     return this.castSource.findAll()
-        .filter(isExists)
+        .filter(isExists.and(castCodeInclude).and(locationCodeInclude))
         .map(CastTable::toEntity);
   }
 
@@ -145,8 +153,6 @@ public class CastRepositoryImpl implements CastRepository {
   }
 
   private CastTable attach(CastTable dto, CastEntity entity) {
-    var employmentStatus =
-        CastTable.EmploymentStatus.getByLabel(entity.getEmploymentStatusLabel());
     return Optional.ofNullable(dto)
         .orElse(new CastTable())
         .attach(entity);
