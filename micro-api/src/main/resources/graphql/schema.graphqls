@@ -72,7 +72,22 @@ extend type Mutation {
   ): ID
 }
 
-# キャスト登録/更新
+# 所在地/店舗-登録/更新
+type LocationCommand {
+  # 店舗名
+  name: String
+  contact: LocationContact!
+  address: LocationAddress!
+  # 店舗開店日
+  openDate: Date
+  # 店舗閉店日
+  closeDate: Date
+  hours: LocationHours!
+  # 店舗メモ
+  memo: String
+}
+
+# キャスト-登録/更新
 input CastCommand {
   locationCode: ID!
   castCatCode: ID!
@@ -85,7 +100,7 @@ input CastCommand {
   memo: String
 }
 
-# キャスト(猫)登録/更新
+# キャスト(猫)-登録/更新
 input CastCatCommand  {
   # 名前
   name: String
@@ -110,12 +125,68 @@ input CastCatCommand  {
   memo: String
 }
 
+# 所在地/店舗詳細
+type Location implements HasCommon {
+  # locationCode
+  code: ID!
+  # 店舗名
+  name: String
+  contact: LocationContact!
+  address: LocationAddress!
+  # 店舗開店日
+  openDate: Date
+  # 店舗閉店日
+  closeDate: Date
+  hours: LocationHours!
+  # 店舗メモ
+  memo: String
+  # バージョンフィールド
+  version: Int!
+}
+
+type LocationContact {
+  # 店舗連絡先(電話番号)
+  phoneNumber: String
+  # 店舗連絡先(メールアドレス)
+  mailAddress: String
+}
+
+type LocationAddress {
+  # 店舗住所(郵便番号)
+  postalCode: String
+  # 店舗住所(都道府県コード)
+  prefectureCode: Int
+  # 店舗住所(都道府県)
+  prefectureLabel: String
+  # 店舗住所(都道府県)
+  address1: String
+  # 店舗住所(市区町村)
+  address2: String
+  # 店舗住所(町域)
+  address3: String
+  # 店舗住所(番地)
+  streetAddress: String
+  # 店舗住所(建物名)
+  buildingName: String
+  # 店舗住所(補足)
+  supplement: String
+}
+
+type LocationHours {
+  # 店舗営業時間(開店時間)
+  openingTime: DateTime
+  # 店舗営業時間(閉店時間)
+  closingTime: DateTime
+  # 店舗営業時間(補足)
+  supplement: String
+}
+
 # キャスト詳細
 type Cast implements HasCommon {
   # castCode
   code: ID!
-  # locationCode
-  locationCode: ID!
+  # locationCode -> location
+  locationCode: ID
   castCat: CastCat
   # 雇用形態
   employmentStatus: EmploymentStatus
