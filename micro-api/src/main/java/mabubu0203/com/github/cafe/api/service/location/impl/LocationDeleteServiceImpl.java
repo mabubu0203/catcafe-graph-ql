@@ -1,6 +1,5 @@
 package mabubu0203.com.github.cafe.api.service.location.impl;
 
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.service.location.LocationDeleteService;
 import mabubu0203.com.github.cafe.api.service.location.impl.converter.input.LocationDeleteServiceInputConverter;
@@ -22,10 +21,9 @@ public class LocationDeleteServiceImpl implements LocationDeleteService {
   @Transactional
   public Mono<LocationDeleteServiceOutput> action(LocationDeleteServiceInput input) {
     var receptionTime = this.getReceptionTime();
-    return Optional.of(input)
+    return Mono.just(input)
         .map(new LocationDeleteServiceInputConverter())
-        .map(entity -> this.locationRepository.logicalDelete(entity, receptionTime))
-        .orElseThrow(RuntimeException::new)
+        .flatMap(entity -> this.locationRepository.logicalDelete(entity, receptionTime))
         .map(new LocationDeleteServiceOutputConverter());
   }
 

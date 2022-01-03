@@ -2,7 +2,6 @@ package mabubu0203.com.github.cafe.api.controller.cast;
 
 import com.netflix.dgs.codegen.types.Cast;
 import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastSearchRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastResponseMapper;
@@ -23,9 +22,8 @@ public class CastQueryController {
       @Argument("codes") List<String> codes,
       @Argument("locationCodes") List<String> locationCodes
   ) {
-    return Optional.of(new CastSearchRequestMapper(codes, locationCodes).get())
-        .map(this.castSearchService::action)
-        .orElse(Flux.empty())
+    return Flux.just(new CastSearchRequestMapper(codes, locationCodes).get())
+        .flatMap(this.castSearchService::action)
         .map(new CastResponseMapper());
   }
 

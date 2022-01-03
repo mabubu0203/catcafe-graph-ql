@@ -74,23 +74,21 @@ public class CastRepositoryImpl implements CastRepository {
 
   @Override
   public Mono<CastCode> register(CastEntity entity, LocalDateTime receptionTime) {
-    return Optional.of(entity)
+    return Mono.just(entity)
         .map(this::attach)
         .map(dto -> dto.createdBy(0))
-        .map(dto -> this.castSource.insert(dto, receptionTime))
-        .orElseThrow(RuntimeException::new)
-        .mapNotNull(CastTable::code)
+        .flatMap(dto -> this.castSource.insert(dto, receptionTime))
+        .map(CastTable::code)
         .map(CastCode::new);
   }
 
   @Override
   public Mono<CastCatCode> register(CastCatEntity entity, LocalDateTime receptionTime) {
-    return Optional.of(entity)
+    return Mono.just(entity)
         .map(this::attach)
         .map(dto -> dto.createdBy(0))
-        .map(dto -> this.castCatSource.insert(dto, receptionTime))
-        .orElseThrow(RuntimeException::new)
-        .mapNotNull(CastCatTable::code)
+        .flatMap(dto -> this.castCatSource.insert(dto, receptionTime))
+        .map(CastCatTable::code)
         .map(CastCatCode::new);
   }
 
@@ -100,7 +98,7 @@ public class CastRepositoryImpl implements CastRepository {
         .map(dto -> this.attach(dto, entity))
         .map(dto -> dto.updatedBy(0))
         .flatMap(dto -> this.castSource.update(dto, receptionTime))
-        .mapNotNull(CastTable::code)
+        .map(CastTable::code)
         .map(CastCode::new);
   }
 
@@ -110,7 +108,7 @@ public class CastRepositoryImpl implements CastRepository {
         .map(dto -> this.attach(dto, entity))
         .map(dto -> dto.updatedBy(0))
         .flatMap(dto -> this.castCatSource.update(dto, receptionTime))
-        .mapNotNull(CastCatTable::code)
+        .map(CastCatTable::code)
         .map(CastCatCode::new);
   }
 
@@ -119,7 +117,7 @@ public class CastRepositoryImpl implements CastRepository {
     return this.findDto(entity.castCode())
         .map(dto -> dto.version(entity.getVersionValue()))
         .flatMap(dto -> this.castSource.logicalDelete(dto, receptionTime))
-        .mapNotNull(CastTable::code)
+        .map(CastTable::code)
         .map(CastCode::new);
   }
 
@@ -128,7 +126,7 @@ public class CastRepositoryImpl implements CastRepository {
     return this.findDto(entity.castCatCode())
         .map(dto -> dto.version(entity.getVersionValue()))
         .flatMap(dto -> this.castCatSource.logicalDelete(dto, receptionTime))
-        .mapNotNull(CastCatTable::code)
+        .map(CastCatTable::code)
         .map(CastCatCode::new);
   }
 

@@ -1,6 +1,5 @@
 package mabubu0203.com.github.cafe.api.service.cast.impl;
 
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.service.cast.CastSearchService;
 import mabubu0203.com.github.cafe.api.service.cast.impl.converter.input.CastSearchServiceInputConverter;
@@ -21,10 +20,9 @@ public class CastSearchServiceImpl implements CastSearchService {
   @Override
   @Transactional(readOnly = true)
   public Flux<CastServiceOutput> action(CastSearchServiceInput input) {
-    return Optional.of(input)
+    return Flux.just(input)
         .map(new CastSearchServiceInputConverter())
-        .map(this.castRepository::search)
-        .orElseThrow(RuntimeException::new)
+        .flatMap(this.castRepository::search)
         .map(new CastServiceOutputConverter());
   }
 }

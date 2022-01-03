@@ -1,6 +1,5 @@
 package mabubu0203.com.github.cafe.api.service.location.impl;
 
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.service.location.LocationRegisterService;
 import mabubu0203.com.github.cafe.api.service.location.impl.converter.input.LocationRegisterServiceInputConverter;
@@ -22,10 +21,9 @@ public class LocationRegisterServiceImpl implements LocationRegisterService {
   @Transactional
   public Mono<LocationServiceOutput> action(LocationRegisterServiceInput input) {
     var receptionTime = this.getReceptionTime();
-    return Optional.of(input)
+    return Mono.just(input)
         .map(new LocationRegisterServiceInputConverter())
-        .map(entity -> this.locationRepository.register(entity, receptionTime))
-        .orElseThrow(RuntimeException::new)
+        .flatMap(entity -> this.locationRepository.register(entity, receptionTime))
         .flatMap(this.locationRepository::findByCode)
         .map(new LocationServiceOutputConverter());
   }

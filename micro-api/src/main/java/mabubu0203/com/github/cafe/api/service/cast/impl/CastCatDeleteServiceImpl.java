@@ -1,6 +1,5 @@
 package mabubu0203.com.github.cafe.api.service.cast.impl;
 
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.service.cast.CastCatDeleteService;
 import mabubu0203.com.github.cafe.api.service.cast.impl.converter.input.CastCatDeleteServiceInputConverter;
@@ -22,10 +21,9 @@ public class CastCatDeleteServiceImpl implements CastCatDeleteService {
   @Transactional
   public Mono<CastCatDeleteServiceOutput> action(CastCatDeleteServiceInput input) {
     var receptionTime = this.getReceptionTime();
-    return Optional.of(input)
+    return Mono.just(input)
         .map(new CastCatDeleteServiceInputConverter())
-        .map(entity -> this.castRepository.logicalDelete(entity, receptionTime))
-        .orElseThrow(RuntimeException::new)
+        .flatMap(entity -> this.castRepository.logicalDelete(entity, receptionTime))
         .map(new CastCatDeleteServiceOutputConverter());
   }
 

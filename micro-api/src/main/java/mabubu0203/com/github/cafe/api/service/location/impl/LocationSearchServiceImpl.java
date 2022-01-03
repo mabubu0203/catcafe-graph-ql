@@ -1,6 +1,5 @@
 package mabubu0203.com.github.cafe.api.service.location.impl;
 
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.service.location.LocationSearchService;
 import mabubu0203.com.github.cafe.api.service.location.impl.converter.input.LocationSearchServiceInputConverter;
@@ -21,10 +20,9 @@ public class LocationSearchServiceImpl implements LocationSearchService {
   @Override
   @Transactional(readOnly = true)
   public Flux<LocationServiceOutput> action(LocationSearchServiceInput input) {
-    return Optional.of(input)
+    return Flux.just(input)
         .map(new LocationSearchServiceInputConverter())
-        .map(this.locationRepository::search)
-        .orElseThrow(RuntimeException::new)
+        .flatMap(this.locationRepository::search)
         .map(new LocationServiceOutputConverter());
   }
 

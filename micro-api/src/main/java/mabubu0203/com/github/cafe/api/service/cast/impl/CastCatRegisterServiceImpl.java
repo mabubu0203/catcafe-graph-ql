@@ -1,6 +1,5 @@
 package mabubu0203.com.github.cafe.api.service.cast.impl;
 
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.service.cast.CastCatRegisterService;
 import mabubu0203.com.github.cafe.api.service.cast.impl.converter.input.CastCatRegisterServiceInputConverter;
@@ -22,10 +21,9 @@ public class CastCatRegisterServiceImpl implements CastCatRegisterService {
   @Transactional
   public Mono<CastCatServiceOutput> action(CastCatRegisterServiceInput input) {
     var receptionTime = this.getReceptionTime();
-    return Optional.of(input)
+    return Mono.just(input)
         .map(new CastCatRegisterServiceInputConverter())
-        .map(entity -> this.castRepository.register(entity, receptionTime))
-        .orElseThrow(RuntimeException::new)
+        .flatMap(entity -> this.castRepository.register(entity, receptionTime))
         .flatMap(this.castRepository::findByCode)
         .map(new CastCatServiceOutputConverter());
   }

@@ -3,7 +3,6 @@ package mabubu0203.com.github.cafe.api.controller.cast;
 import com.netflix.dgs.codegen.types.Cast;
 import com.netflix.dgs.codegen.types.CastCat;
 import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCatFindRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.cast.helper.request.CastCatSearchRequestMapper;
@@ -24,13 +23,12 @@ public class CastCatQueryController {
 
   @SchemaMapping
   public Mono<CastCat> castCat(Cast cast) {
-    return Optional.of(cast)
+    return Flux.just(cast)
         .map(Cast::getCastCat)
-        .map(CastCat.class::cast)
+        .cast(CastCat.class)
         .map(CastCat::getCode)
         .map(code -> new CastCatFindRequestMapper(code).get())
-        .map(this.castCatSearchService::action)
-        .orElse(Flux.empty())
+        .flatMap(this.castCatSearchService::action)
         .last()
         .map(new CastCatResponseMapper());
   }
@@ -39,9 +37,8 @@ public class CastCatQueryController {
   public Flux<CastCat> castCatSearch(
       @Argument("codes") List<String> codes
   ) {
-    return Optional.of(new CastCatSearchRequestMapper(codes).get())
-        .map(this.castCatSearchService::action)
-        .orElse(Flux.empty())
+    return Flux.just(new CastCatSearchRequestMapper(codes).get())
+        .flatMap(this.castCatSearchService::action)
         .map(new CastCatResponseMapper());
   }
 
