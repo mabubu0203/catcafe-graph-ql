@@ -129,8 +129,8 @@ public class CastCatTable extends BaseTable<Integer> {
     var castCatCode = new CastCatCode(super.code());
     var image = new HttpUrl(this.image);
     var sex = CatSex.getByLabel(this.sex.name());
-    var castCatMemo = new Memo(this.memo());
-    var version = new Version(this.version());
+    var castCatMemo = new Memo(this.memo);
+    var version = new Version(super.version());
     return CastCatEntity.builder()
         .castCatCode(castCatCode)
         .name(this.name)
