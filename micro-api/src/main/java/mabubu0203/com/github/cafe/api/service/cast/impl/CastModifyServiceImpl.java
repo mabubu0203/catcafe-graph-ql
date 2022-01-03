@@ -9,6 +9,7 @@ import mabubu0203.com.github.cafe.api.service.cast.model.input.CastModifyService
 import mabubu0203.com.github.cafe.api.service.cast.model.output.CastServiceOutput;
 import mabubu0203.com.github.cafe.domain.repository.cast.CastRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -18,6 +19,7 @@ public class CastModifyServiceImpl implements CastModifyService {
   private final CastRepository castRepository;
 
   @Override
+  @Transactional
   public Mono<CastServiceOutput> action(CastModifyServiceInput input) {
     var receptionTime = this.getReceptionTime();
     return Optional.of(input)

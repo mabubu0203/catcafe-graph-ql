@@ -14,7 +14,7 @@ public class CastModifyServiceInputConverter
 
   @Override
   public CastEntity apply(CastModifyServiceInput input) {
-    var castCode = new CastCode(input.castCatCode());
+    var castCode = new CastCode(input.castCode());
     var locationCode = new LocationCode(input.locationCode());
     var castCatCode = new CastCatCode(input.castCatCode());
     var employmentStatus = EmploymentStatus.getByLabel(input.employmentStatus());

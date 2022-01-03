@@ -9,7 +9,6 @@ public class CastServiceOutputConverter
 
   @Override
   public CastServiceOutput apply(CastEntity cast) {
-
     return CastServiceOutput.builder()
         .castCode(cast.getCastCodeValue())
         .locationCode(cast.getLocationCodeValue())
@@ -18,6 +17,8 @@ public class CastServiceOutputConverter
         .firstAttendanceDate(cast.firstAttendanceDate())
         .lastAttendanceDate(cast.lastAttendanceDate())
         .memo(cast.getMemoValue())
+        .version(cast.version())
         .build();
   }
+
 }
