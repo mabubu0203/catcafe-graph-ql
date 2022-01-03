@@ -7,7 +7,9 @@ import mabubu0203.com.github.cafe.api.service.cast.impl.converter.input.CastRegi
 import mabubu0203.com.github.cafe.api.service.cast.impl.converter.output.CastServiceOutputConverter;
 import mabubu0203.com.github.cafe.api.service.cast.model.input.CastRegisterServiceInput;
 import mabubu0203.com.github.cafe.api.service.cast.model.output.CastServiceOutput;
+import mabubu0203.com.github.cafe.domain.entity.cast.CastEntity;
 import mabubu0203.com.github.cafe.domain.repository.cast.CastRepository;
+import mabubu0203.com.github.cafe.domain.repository.location.LocationRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
@@ -17,6 +19,7 @@ import reactor.core.publisher.Mono;
 public class CastRegisterServiceImpl implements CastRegisterService {
 
   private final CastRepository castRepository;
+  private final LocationRepository locationRepository;
 
   @Override
   @Transactional
@@ -24,23 +27,22 @@ public class CastRegisterServiceImpl implements CastRegisterService {
     var receptionTime = this.getReceptionTime();
     return Optional.of(input)
         .map(new CastRegisterServiceInputConverter())
-//        .map(this::beforeRegistration)
-//        .orElseThrow(RuntimeException::new)
-        .map(entity -> this.castRepository.register(entity, receptionTime))
+        .map(this::beforeRegistration)
         .orElseThrow(RuntimeException::new)
+        .flatMap(entity -> this.castRepository.register(entity, receptionTime))
         .flatMap(this.castRepository::findByCode)
         .map(new CastServiceOutputConverter());
   }
 
-//  private Mono<CastEntity> beforeRegistration(CastEntity entity) {
-//    var locationCode = entity.locationCode();
-//    var castCatCode = entity.castCatCode();
-//    return this.storeRepository.findBy(locationCode)
-//        .doOnError(Mono::error)
-//        .thenReturn(castCatCode)
-//        .flatMap(this.castRepository::findByCode)
-//        .doOnError(Mono::error)
-//        .thenReturn(entity);
-//  }
+  private Mono<CastEntity> beforeRegistration(CastEntity entity) {
+    var locationCode = entity.locationCode();
+    var castCatCode = entity.castCatCode();
+    return this.locationRepository.findByCode(locationCode)
+        .doOnError(Mono::error)
+        .thenReturn(castCatCode)
+        .flatMap(this.castRepository::findByCode)
+        .doOnError(Mono::error)
+        .thenReturn(entity);
+  }
 
 }

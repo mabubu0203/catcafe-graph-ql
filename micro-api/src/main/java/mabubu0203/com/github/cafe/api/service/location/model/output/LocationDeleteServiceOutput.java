@@ -10,4 +10,6 @@ import mabubu0203.com.github.cafe.common.service.model.ServiceOutput;
 @Value
 public class LocationDeleteServiceOutput implements ServiceOutput {
 
+  String locationCode;
+
 }

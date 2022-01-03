@@ -43,7 +43,7 @@ public class LocationRepositoryImpl implements LocationRepository {
   }
 
   @Override
-  public Mono<LocationCode> resister(LocationEntity entity, LocalDateTime receptionTime) {
+  public Mono<LocationCode> register(LocationEntity entity, LocalDateTime receptionTime) {
     return Optional.of(entity)
         .map(this::attach)
         .map(dto -> dto.createdBy(0))

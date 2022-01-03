@@ -10,4 +10,7 @@ import mabubu0203.com.github.cafe.common.service.model.ServiceInput;
 @Value
 public class LocationDeleteServiceInput implements ServiceInput {
 
+  String locationCode;
+  Integer version;
+
 }

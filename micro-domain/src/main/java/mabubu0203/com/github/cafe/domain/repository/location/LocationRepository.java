@@ -32,7 +32,7 @@ public interface LocationRepository {
    * @param receptionTime
    * @return
    */
-  Mono<LocationCode> resister(LocationEntity location, LocalDateTime receptionTime);
+  Mono<LocationCode> register(LocationEntity location, LocalDateTime receptionTime);
 
   /**
    * 所在地/店舗を1件更新する
