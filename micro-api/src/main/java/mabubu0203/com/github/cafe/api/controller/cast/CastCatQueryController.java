@@ -1,5 +1,6 @@
 package mabubu0203.com.github.cafe.api.controller.cast;
 
+import com.netflix.dgs.codegen.types.Cast;
 import com.netflix.dgs.codegen.types.CastCat;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +11,7 @@ import mabubu0203.com.github.cafe.api.controller.cast.helper.response.CastCatRes
 import mabubu0203.com.github.cafe.api.service.cast.CastCatSearchService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -20,10 +22,12 @@ public class CastCatQueryController {
 
   private final CastCatSearchService castCatSearchService;
 
-  public Mono<CastCat> castCatFind(
-      @Argument("code") String code
-  ) {
-    return Optional.of(new CastCatFindRequestMapper(code).get())
+  @SchemaMapping
+  public Mono<CastCat> castCat(Cast cast) {
+    return Optional.of(cast)
+        .map(Cast::getCastCat)
+        .map(CastCat::getCode)
+        .map(code -> new CastCatFindRequestMapper(code).get())
         .map(this.castCatSearchService::action)
         .orElse(Flux.empty())
         .last()
