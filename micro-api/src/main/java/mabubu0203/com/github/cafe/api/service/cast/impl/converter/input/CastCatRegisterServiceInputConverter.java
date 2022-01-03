@@ -5,6 +5,7 @@ import mabubu0203.com.github.cafe.common.service.converter.ServiceInputConverter
 import mabubu0203.com.github.cafe.domain.entity.cast.CastCatEntity;
 import mabubu0203.com.github.cafe.domain.value.HttpUrl;
 import mabubu0203.com.github.cafe.domain.value.Memo;
+import mabubu0203.com.github.cafe.domain.value.Version;
 import mabubu0203.com.github.cafe.domain.value.cast.CatSex;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 
@@ -17,6 +18,7 @@ public class CastCatRegisterServiceInputConverter
     var sex = CatSex.getByLabel(input.sex());
     var image = new HttpUrl(input.image());
     var memo = new Memo(input.memo());
+    var version = Version.empty();
     return CastCatEntity.builder()
         .castCatCode(castCatCode)
         .name(input.name())
@@ -31,7 +33,7 @@ public class CastCatRegisterServiceInputConverter
 //        .brothers()
 //        .sisters()
         .memo(memo)
-        .version(null)
+        .version(version)
         .build();
   }
 }

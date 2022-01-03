@@ -17,7 +17,7 @@ public class CastServiceOutputConverter
         .firstAttendanceDate(cast.firstAttendanceDate())
         .lastAttendanceDate(cast.lastAttendanceDate())
         .memo(cast.getMemoValue())
-        .version(cast.version())
+        .version(cast.getVersionValue())
         .build();
   }
 

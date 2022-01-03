@@ -20,7 +20,7 @@ public class CastCatServiceOutputConverter
         .dislike(castCat.dislike())
         .prohibition(castCat.prohibition())
         .memo(castCat.getMemoValue())
-        .version(castCat.version())
+        .version(castCat.getVersionValue())
         .build();
   }
 
