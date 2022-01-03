@@ -2,7 +2,6 @@ package mabubu0203.com.github.cafe.api.controller.location;
 
 import com.netflix.dgs.codegen.types.Location;
 import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.controller.location.helper.request.LocationSearchRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.location.helper.response.LocationResponseMapper;
@@ -22,9 +21,8 @@ public class LocationQueryController {
   public Flux<Location> locationSearch(
       @Argument("codes") List<String> codes
   ) {
-    return Optional.of(new LocationSearchRequestMapper(codes).get())
-        .map(this.locationSearchService::action)
-        .orElse(Flux.empty())
+    return Flux.just(new LocationSearchRequestMapper(codes).get())
+        .flatMap(this.locationSearchService::action)
         .map(new LocationResponseMapper());
   }
 

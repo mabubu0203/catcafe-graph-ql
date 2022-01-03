@@ -44,12 +44,11 @@ public class LocationRepositoryImpl implements LocationRepository {
 
   @Override
   public Mono<LocationCode> register(LocationEntity entity, LocalDateTime receptionTime) {
-    return Optional.of(entity)
+    return Mono.just(entity)
         .map(this::attach)
         .map(dto -> dto.createdBy(0))
-        .map(dto -> this.source.insert(dto, receptionTime))
-        .orElseThrow(RuntimeException::new)
-        .mapNotNull(LocationTable::code)
+        .flatMap(dto -> this.source.insert(dto, receptionTime))
+        .map(LocationTable::code)
         .map(LocationCode::new);
   }
 
@@ -59,7 +58,7 @@ public class LocationRepositoryImpl implements LocationRepository {
         .map(dto -> this.attach(dto, entity))
         .map(dto -> dto.updatedBy(0))
         .flatMap(dto -> this.source.update(dto, receptionTime))
-        .mapNotNull(LocationTable::code)
+        .map(LocationTable::code)
         .map(LocationCode::new);
   }
 
@@ -68,7 +67,7 @@ public class LocationRepositoryImpl implements LocationRepository {
     return this.findDto(entity.locationCode())
         .map(dto -> dto.version(entity.getVersionValue()))
         .flatMap(dto -> this.source.logicalDelete(dto, receptionTime))
-        .mapNotNull(LocationTable::code)
+        .map(LocationTable::code)
         .map(LocationCode::new);
   }
 
