@@ -32,7 +32,7 @@ public interface NoticeRepository {
    * @param receptionTime
    * @return
    */
-  Mono<NoticeCode> resister(NoticeEntity notice, LocalDateTime receptionTime);
+  Mono<NoticeCode> register(NoticeEntity notice, LocalDateTime receptionTime);
 
   /**
    * お知らせを1件更新する

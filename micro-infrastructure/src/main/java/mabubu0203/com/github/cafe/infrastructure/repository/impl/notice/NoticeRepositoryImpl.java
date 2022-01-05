@@ -38,7 +38,7 @@ public class NoticeRepositoryImpl implements NoticeRepository {
   }
 
   @Override
-  public Mono<NoticeCode> resister(NoticeEntity entity, LocalDateTime receptionTime) {
+  public Mono<NoticeCode> register(NoticeEntity entity, LocalDateTime receptionTime) {
     return Mono.just(entity)
         .map(this::attach)
         .map(dto -> dto.createdBy(0))
