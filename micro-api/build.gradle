@@ -1,5 +1,6 @@
 description = getProject().name
 
+apply plugin: "com.github.node-gradle.node"
 apply plugin: "com.netflix.dgs.codegen"
 
 dependencies {
@@ -54,3 +55,14 @@ bootJar {
     enabled = true
     launchScript()
 }
+
+node {
+    version = "17.3.0"
+    npmVersion = "8.3.0"
+    download = true
+    workDir = file("${project.projectDir}/.gradle/nodejs")
+    npmWorkDir = file("${project.projectDir}/.gradle/npm")
+    nodeModulesDir = file("${project.projectDir}/src/main/spectaql")
+}
+
+task spectaqlRun(dependsOn: ['npm_run_spectaql-run'])

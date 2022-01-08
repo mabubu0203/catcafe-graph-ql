@@ -1,25 +1,3 @@
-extend type Mutation {
-  # [所在地/店舗]-[登録]
-  locationCreate(
-    input: LocationCommand!
-  ): Location
-  # [所在地/店舗]-[更新]
-  locationUpdate(
-    # locationCode
-    code: ID!,
-    input: LocationCommand!,
-    # バージョンフィールド
-    version: Int
-  ): Location
-  # [所在地/店舗]-[削除]
-  locationDelete(
-    # locationCode
-    code: ID!,
-    # バージョンフィールド
-    version: Int
-  ): ID
-}
-
 # Mutation用
 
 # [所在地/店舗]-[登録/更新]
@@ -70,14 +48,6 @@ input LocationHoursCommand {
   closingTime: DateTime
   # 店舗営業時間(補足)
   supplement: String
-}
-
-extend type Query {
-  # [所在地/店舗]-[取得]
-  locationSearch(
-    # locationCode
-    codes: [ID]!
-  ): [Location]!
 }
 
 # Query用

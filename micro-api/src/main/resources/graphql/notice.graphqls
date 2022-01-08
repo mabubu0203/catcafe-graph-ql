@@ -1,10 +1,3 @@
-extend type Mutation {
-  # [お知らせ]-[登録]
-  noticeCreate(
-    input: NoticeCommand!
-  ): Notice
-}
-
 # Mutation用
 
 # [お知らせ]-[登録/更新]
@@ -18,16 +11,6 @@ input NoticeCommand {
   publicationStartDateTime: DateTime
   # 掲載終了日時
   publicationEndDateTime: DateTime
-}
-
-extend type Query {
-  # [お知らせ]-[取得]
-  noticeSearch(
-    # noticeCode
-    codes: [ID]!
-    # locationCode
-    locationCodes: [ID]!
-  ): [Notice]!
 }
 
 # Query用
