@@ -1,10 +1,13 @@
+"日付"
 scalar Date
+"日時"
 scalar DateTime
 
+"モデルはこのインターフェースを実装しています。"
 interface HasCommon {
-  # コード
+  "コードは一意の値になります。"
   code: ID!
-  # バージョンフィールド
+  "バージョンフィールドは更新/削除の楽観排他用に使用します。"
   version: Int!
 }
 
@@ -14,92 +17,99 @@ schema {
 }
 
 type Query {
-  # [所在地/店舗]-[取得]
+  "[所在地/店舗]-[取得]"
   locationSearch(
-    # locationCode
+    "LocationCode"
     codes: [ID]!
   ): [Location]!
-  # [お知らせ]-[取得]
+  "[お知らせ]-[取得]"
   noticeSearch(
-    # noticeCode
+    "NoticeCode"
     codes: [ID]!
-    # locationCode
+    "LocationCode"
     locationCodes: [ID]!
   ): [Notice]!
-  # [キャスト]-[取得]
+  "[キャスト]-[取得]"
   castSearch(
-    # castCode
+    "CastCode"
     codes: [ID]!
-    # locationCode
+    "LocationCode"
     locationCodes: [ID]!
   ): [Cast]!
-  # [キャスト(猫)]-[取得]
+  "[キャスト(猫)]-[取得]"
   castCatSearch(
-    # castCatCode
+    "CastCatCode"
     codes: [ID]!
   ): [CastCat]!
 }
 
 type Mutation {
-  # [所在地/店舗]-[登録]
+  "[所在地/店舗]-[登録]"
   locationCreate(
+    "[所在地/店舗]-[登録/更新]"
     input: LocationCommand!
   ): Location
-  # [所在地/店舗]-[更新]
+  "[所在地/店舗]-[更新]"
   locationUpdate(
-    # locationCode
+    "LocationCode"
     code: ID!,
+    "[所在地/店舗]-[登録/更新]"
     input: LocationCommand!,
-    # バージョンフィールド
+    "バージョンフィールド"
     version: Int
   ): Location
-  # [所在地/店舗]-[削除]
+  "[所在地/店舗]-[削除]"
   locationDelete(
-    # locationCode
+    "LocationCode"
     code: ID!,
-    # バージョンフィールド
+    "バージョンフィールド"
     version: Int
   ): ID
-  # [お知らせ]-[登録]
+  "[お知らせ]-[登録]"
   noticeCreate(
+    "[お知らせ]-[登録/更新]"
     input: NoticeCommand!
   ): Notice
-  # [キャスト]-[登録]
+  "[キャスト]-[登録]"
   castCreate(
+    "[キャスト]-[登録/更新]"
     input: CastCommand!
   ): Cast
-  # [キャスト]-[更新]
+  "[キャスト]-[更新]"
   castUpdate(
-    # castCode
+    "CastCode"
     code: ID!,
+    "[キャスト]-[登録/更新]"
     input: CastCommand!,
-    # バージョンフィールド
+    "バージョンフィールド"
     version: Int
   ): Cast
-  # [キャスト]-[削除]
+  "[キャスト]-[削除]"
   castDelete(
-    # castCode
+    "CastCode"
     code: ID!,
-    # バージョンフィールド
+    "バージョンフィールド"
     version: Int
   ): ID
-  # [キャスト(猫)]-[登録]
+  "[キャスト(猫)]-[登録]"
   castCatCreate(
+    "[キャスト(猫)]-[登録/更新]"
     input: CastCatCommand!
   ): CastCat
-  # [キャスト(猫)]-[更新]
+  "[キャスト(猫)]-[更新]"
   castCatUpdate(
-    # castCatCode
+    "CastCatCode"
     code: ID!,
+    "[キャスト(猫)]-[登録/更新]"
     input: CastCatCommand!,
-    # バージョンフィールド
+    "バージョンフィールド"
     version: Int
   ): CastCat
-  # [キャスト(猫)]-[削除]
+  "[キャスト(猫)]-[削除]"
   castCatDelete(
-    # castCatCode
+    "CastCatCode"
     code: ID!,
-    # バージョンフィールド
+    "バージョンフィールド"
     version: Int
   ): ID
 }
