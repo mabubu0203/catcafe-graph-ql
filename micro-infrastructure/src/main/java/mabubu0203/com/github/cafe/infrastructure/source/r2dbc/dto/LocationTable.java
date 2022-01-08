@@ -157,6 +157,7 @@ public class LocationTable extends BaseTable<Integer> {
     var version = new Version(super.version());
     return LocationEntity.builder()
         .locationCode(locationCode)
+        .name(this.name)
         .phoneNumber(phoneNumber)
         .mailAddress(mailAddress)
         .postalCode(postalCode)

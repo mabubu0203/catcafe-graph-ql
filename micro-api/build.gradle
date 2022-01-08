@@ -17,9 +17,6 @@ dependencies {
     // GraphQL
     implementation 'com.graphql-java:graphql-java-extended-scalars:17.0'
 
-    // springdoc-openapi-ui
-    implementation("org.springdoc:springdoc-openapi-webflux-ui:${springDocVersion}")
-
     // mysql
     runtimeOnly 'dev.miku:r2dbc-mysql'
     runtimeOnly 'mysql:mysql-connector-java'
