@@ -8,10 +8,98 @@ interface HasCommon {
   version: Int!
 }
 
-# Root
-type Query {
+schema {
+  query: Query
+  mutation: Mutation
 }
 
-# Root
+type Query {
+  # [所在地/店舗]-[取得]
+  locationSearch(
+    # locationCode
+    codes: [ID]!
+  ): [Location]!
+  # [お知らせ]-[取得]
+  noticeSearch(
+    # noticeCode
+    codes: [ID]!
+    # locationCode
+    locationCodes: [ID]!
+  ): [Notice]!
+  # [キャスト]-[取得]
+  castSearch(
+    # castCode
+    codes: [ID]!
+    # locationCode
+    locationCodes: [ID]!
+  ): [Cast]!
+  # [キャスト(猫)]-[取得]
+  castCatSearch(
+    # castCatCode
+    codes: [ID]!
+  ): [CastCat]!
+}
+
 type Mutation {
+  # [所在地/店舗]-[登録]
+  locationCreate(
+    input: LocationCommand!
+  ): Location
+  # [所在地/店舗]-[更新]
+  locationUpdate(
+    # locationCode
+    code: ID!,
+    input: LocationCommand!,
+    # バージョンフィールド
+    version: Int
+  ): Location
+  # [所在地/店舗]-[削除]
+  locationDelete(
+    # locationCode
+    code: ID!,
+    # バージョンフィールド
+    version: Int
+  ): ID
+  # [お知らせ]-[登録]
+  noticeCreate(
+    input: NoticeCommand!
+  ): Notice
+  # [キャスト]-[登録]
+  castCreate(
+    input: CastCommand!
+  ): Cast
+  # [キャスト]-[更新]
+  castUpdate(
+    # castCode
+    code: ID!,
+    input: CastCommand!,
+    # バージョンフィールド
+    version: Int
+  ): Cast
+  # [キャスト]-[削除]
+  castDelete(
+    # castCode
+    code: ID!,
+    # バージョンフィールド
+    version: Int
+  ): ID
+  # [キャスト(猫)]-[登録]
+  castCatCreate(
+    input: CastCatCommand!
+  ): CastCat
+  # [キャスト(猫)]-[更新]
+  castCatUpdate(
+    # castCatCode
+    code: ID!,
+    input: CastCatCommand!,
+    # バージョンフィールド
+    version: Int
+  ): CastCat
+  # [キャスト(猫)]-[削除]
+  castCatDelete(
+    # castCatCode
+    code: ID!,
+    # バージョンフィールド
+    version: Int
+  ): ID
 }

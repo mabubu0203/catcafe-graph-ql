@@ -1,0 +1,8 @@
+introspection:
+  schemaFile:
+    - ../resources/graphql/schema.graphqls
+    - ../resources/graphql/cast.graphqls
+    - ../resources/graphql/location.graphqls
+    - ../resources/graphql/notice.graphqls
+servers:
+  - url: http://localhost:9001/graphql

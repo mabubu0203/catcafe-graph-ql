@@ -26,10 +26,11 @@ buildscript {
 plugins {
 	id 'org.springframework.boot' version "${SpringBootVersion}"
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'com.github.node-gradle.node' version '3.1.1' apply false
     id 'com.netflix.dgs.codegen' version '5.1.16' apply false
 	id 'com.palantir.git-version' version '0.12.3'
     id 'com.gorylenko.gradle-git-properties' version '2.3.2'
-	id 'se.bjurr.gitchangelog.git-changelog-gradle-plugin' version '1.71.4'
+	id 'se.bjurr.gitchangelog.git-changelog-gradle-plugin' version '1.71.5'
 }
 
 description = "root"
