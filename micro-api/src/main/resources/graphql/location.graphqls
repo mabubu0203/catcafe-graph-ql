@@ -3,7 +3,7 @@
 "[所在地/店舗]-[登録/更新]"
 input LocationCommand {
   "店舗名"
-  name: String
+  name: String!
   "`[所在地/店舗]-[店舗連絡先]-[登録/更新]`"
   contact: LocationContactCommand!
   "`[所在地/店舗]-[店舗住所]-[登録/更新]`"
@@ -63,7 +63,7 @@ type Location implements HasCommon {
   "LocationCode"
   code: ID!
   "店舗名"
-  name: String
+  name: String!
   "`[所在地/店舗]-[店舗連絡先]-[詳細]`"
   contact: LocationContact!
   "`[所在地/店舗]-[店舗住所]-[詳細]`"

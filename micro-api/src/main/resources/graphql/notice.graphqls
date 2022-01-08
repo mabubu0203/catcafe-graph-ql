@@ -5,7 +5,7 @@ input NoticeCommand {
   "LocationCode"
   locationCode: ID
   "お知らせ概要"
-  summary: String
+  summary: String!
   "お知らせ詳細"
   detail: String
   "掲載開始日時"
@@ -23,7 +23,7 @@ type Notice implements HasCommon {
   "`[所在地/店舗]-[詳細]`"
   location: Location
   "お知らせ概要"
-  summary: String
+  summary: String!
   "お知らせ詳細"
   detail: String
   "掲載開始日時"
