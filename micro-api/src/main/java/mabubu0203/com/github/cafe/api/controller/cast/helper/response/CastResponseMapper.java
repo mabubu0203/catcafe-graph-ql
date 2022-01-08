@@ -12,6 +12,7 @@ public class CastResponseMapper
 
   @Override
   public Cast apply(CastServiceOutput output) {
+    // Locationは LocationQueryController.location(Cast cast) で生成する
     var location = new Location.Builder()
         .code(output.locationCode())
         .build();

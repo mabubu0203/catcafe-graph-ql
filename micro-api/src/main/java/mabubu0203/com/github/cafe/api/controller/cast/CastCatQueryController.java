@@ -21,7 +21,7 @@ public class CastCatQueryController {
 
   private final CastCatSearchService castCatSearchService;
 
-  @SchemaMapping
+  @SchemaMapping(field = "castCat", typeName = "Cast")
   public Mono<CastCat> castCat(Cast cast) {
     return Flux.just(cast)
         .map(Cast::getCastCat)

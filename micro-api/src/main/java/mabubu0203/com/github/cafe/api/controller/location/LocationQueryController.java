@@ -2,6 +2,7 @@ package mabubu0203.com.github.cafe.api.controller.location;
 
 import com.netflix.dgs.codegen.types.Cast;
 import com.netflix.dgs.codegen.types.Location;
+import com.netflix.dgs.codegen.types.Notice;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.controller.location.helper.request.LocationFindRequestMapper;
@@ -21,7 +22,27 @@ public class LocationQueryController {
 
   private final LocationSearchService locationSearchService;
 
-  @SchemaMapping(field = "location")
+  @SchemaMapping(field = "location", typeName = "Notice")
+  public Mono<Location> location(Notice notice) {
+    return Flux.just(notice)
+        .map(Notice::getLocation)
+        .cast(Location.class)
+        .map(Location::getCode)
+        .map(code -> new LocationFindRequestMapper(code).get())
+        .flatMap(this.locationSearchService::action)
+        .last()
+        .map(new LocationResponseMapper());
+  }
+
+//  @BatchMapping
+//  public Flux<Location> location(List<Notice> notices) {
+//    List<String> ids = notices.stream().map(Notice::getCode).toList();
+//    return Flux.just(new LocationSearchRequestMapper(ids).get())
+//        .flatMap(this.locationSearchService::action)
+//        .map(new LocationResponseMapper());
+//  }
+
+  @SchemaMapping(field = "location", typeName = "Cast")
   public Mono<Location> location(Cast cast) {
     return Flux.just(cast)
         .map(Cast::getLocation)

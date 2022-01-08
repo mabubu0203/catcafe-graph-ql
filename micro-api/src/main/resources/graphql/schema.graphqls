@@ -272,8 +272,7 @@ type LocationHours {
 type Notice implements HasCommon {
   # noticeCode
   code: ID!
-  # locationCode -> location
-  locationCode: ID
+  location: Location
   # お知らせ概要
   summary: String
   # お知らせ詳細
