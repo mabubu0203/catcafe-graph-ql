@@ -5,4 +5,4 @@ introspection:
     - ../resources/graphql/location.graphqls
     - ../resources/graphql/notice.graphqls
 servers:
-  - url: https://example.com/graphql
+  - url: http://localhost:9001/graphql

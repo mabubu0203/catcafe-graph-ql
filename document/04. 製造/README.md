@@ -34,6 +34,12 @@ IntelliJ IDEAを使用します。
 1. Dockerより起動
    `$ docker run --name micro-api --network mac_app-net --rm -p 9001:9001 -it micro-api:523ceba.dirty`
 
+### SpectaQL生成
+
+1. GradleタスクよりspectaqlRun(`:micro-api -> Tasks -> other -> spectaqlRun`)
+   `$ ./gradlew :micro-api:spectaqlRun`
+   `open ./micro-api/build/spectaql/index.html`
+
 ### Endpoints
 
 - [Api][]
