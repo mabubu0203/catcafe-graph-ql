@@ -1,9 +1,9 @@
 package mabubu0203.com.github.cafe.api.controller.cast.helper.request;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.service.cast.model.input.CastSearchServiceInput;
 import mabubu0203.com.github.cafe.common.controller.helper.request.ReadRequestMapper;
-import java.util.List;
 
 @RequiredArgsConstructor
 public class CastSearchRequestMapper

@@ -34,14 +34,6 @@ public class LocationQueryController {
         .map(new LocationResponseMapper());
   }
 
-//  @BatchMapping
-//  public Flux<Location> location(List<Notice> notices) {
-//    List<String> ids = notices.stream().map(Notice::getCode).toList();
-//    return Flux.just(new LocationSearchRequestMapper(ids).get())
-//        .flatMap(this.locationSearchService::action)
-//        .map(new LocationResponseMapper());
-//  }
-
   @SchemaMapping(field = "location", typeName = "Cast")
   public Mono<Location> location(Cast cast) {
     return Flux.just(cast)
