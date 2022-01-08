@@ -39,6 +39,17 @@ management:
   health:
     readinessstate:
       enabled: true
+springdoc:
+  api-docs:
+    resolve-schema-properties: true
+  model-and-view-allowed: true
+  swagger-ui:
+    displayOperationId: true
+    displayRequestDuration: true
+    path: /swagger-ui.html
+    show-common-extensions: true
+    show-extensions: true
+  show-actuator: true
 ---
 spring:
   config:

@@ -3,17 +3,31 @@ description = getProject().name
 apply plugin: "com.netflix.dgs.codegen"
 
 dependencies {
+    // SpringBoot projects
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-graphql'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // lombok
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+
     // GraphQL
     implementation 'com.graphql-java:graphql-java-extended-scalars:17.0'
 
+    // springdoc-openapi-ui
+    implementation("org.springdoc:springdoc-openapi-webflux-ui:${springDocVersion}")
+
     // mysql
-    runtimeOnly("dev.miku:r2dbc-mysql")
-    runtimeOnly("mysql:mysql-connector-java")
+    runtimeOnly 'dev.miku:r2dbc-mysql'
+    runtimeOnly 'mysql:mysql-connector-java'
 
     // Netty
-    runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.72.Final:osx-aarch_64")
+    developmentOnly 'io.netty:netty-resolver-dns-native-macos:4.1.72.Final:osx-aarch_64'
 
-    developmentOnly("io.projectreactor:reactor-tools")
+    developmentOnly 'io.projectreactor:reactor-tools'
 }
 
 test {
