@@ -14,5 +14,6 @@ public class NoticeServiceOutput implements ServiceOutput {
   String locationCode;
   String summary;
   String detail;
+  Integer version;
 
 }

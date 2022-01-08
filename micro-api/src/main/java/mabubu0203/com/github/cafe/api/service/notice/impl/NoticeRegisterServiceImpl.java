@@ -36,11 +36,11 @@ public class NoticeRegisterServiceImpl implements NoticeRegisterService {
     var locationCode = entity.locationCode();
     if (locationCode.isEmpty()) {
       return Mono.just(entity);
-    } else {
-      return this.locationRepository.findByCode(locationCode)
-          .doOnError(Mono::error)
-          .thenReturn(entity);
     }
+    return this.locationRepository.findByCode(locationCode)
+        .doOnError(Mono::error)
+        .thenReturn(entity);
+
   }
 
 }

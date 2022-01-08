@@ -22,6 +22,13 @@ extend type Query {
     # locationCode
     codes: [ID]!
   ): [Location]!
+  # [お知らせ]-[取得]
+  noticeSearch(
+    # noticeCode
+    codes: [ID]!
+    # locationCode
+    locationCodes: [ID]!
+  ): [Notice]!
   # [キャスト]-[取得]
   castSearch(
     # castCode
@@ -56,6 +63,10 @@ extend type Mutation {
     # バージョンフィールド
     version: Int
   ): ID
+  # [お知らせ]-[登録]
+  noticeCreate(
+    input: NoticeCommand!
+  ): Notice
   # [キャスト]-[登録]
   castCreate(
     input: CastCommand!
@@ -95,6 +106,8 @@ extend type Mutation {
     version: Int
   ): ID
 }
+
+# Mutation用
 
 # [所在地/店舗]-[登録/更新]
 input LocationCommand {
@@ -146,6 +159,19 @@ input LocationHoursCommand {
   supplement: String
 }
 
+# [お知らせ]-[登録/更新]
+input NoticeCommand {
+  locationCode: ID
+  # お知らせ概要
+  summary: String
+  # お知らせ詳細
+  detail: String
+  # 掲載開始日時
+  publicationStartDateTime: DateTime
+  # 掲載終了日時
+  publicationEndDateTime: DateTime
+}
+
 # [キャスト]-[登録/更新]
 input CastCommand {
   locationCode: ID!
@@ -183,6 +209,8 @@ input CastCatCommand  {
   # キャストメモ
   memo: String
 }
+
+# Query用
 
 # [所在地/店舗]-[詳細]
 type Location implements HasCommon {
@@ -238,6 +266,24 @@ type LocationHours {
   closingTime: DateTime
   # 店舗営業時間(補足)
   supplement: String
+}
+
+# [お知らせ]-[詳細]
+type Notice implements HasCommon {
+  # noticeCode
+  code: ID!
+  # locationCode -> location
+  locationCode: ID
+  # お知らせ概要
+  summary: String
+  # お知らせ詳細
+  detail: String
+  # 掲載開始日時
+  publicationStartDateTime: DateTime
+  # 掲載終了日時
+  publicationEndDateTime: DateTime
+  # バージョンフィールド
+  version: Int!
 }
 
 # [キャスト]-[詳細]

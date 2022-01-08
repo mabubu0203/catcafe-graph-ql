@@ -8,8 +8,14 @@ public class NoticeServiceOutputConverter
     implements ServiceOutputConverter<NoticeEntity, NoticeServiceOutput> {
 
   @Override
-  public NoticeServiceOutput apply(NoticeEntity noticeEntity) {
-    return null;
+  public NoticeServiceOutput apply(NoticeEntity notice) {
+    return NoticeServiceOutput.builder()
+        .noticeCode(notice.getNoticeCodeValue())
+        .locationCode(notice.getLocationCodeValue())
+        .summary(notice.summary())
+        .detail(notice.detail())
+        .version(notice.getVersionValue())
+        .build();
   }
 
 }

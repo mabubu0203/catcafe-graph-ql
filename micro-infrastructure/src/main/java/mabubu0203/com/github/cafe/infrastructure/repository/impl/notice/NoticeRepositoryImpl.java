@@ -24,11 +24,20 @@ public class NoticeRepositoryImpl implements NoticeRepository {
 
   @Override
   public Flux<NoticeEntity> search(NoticeSearchConditions searchConditions) {
-    Predicate<NoticeTable> noticeIdInclude = notice -> {
+
+    Predicate<NoticeTable> isExists = BaseTable::isExists;
+    Predicate<NoticeTable> noticeCodeInclude = notice -> {
       var noticeCodes = searchConditions.noticeCodes();
       return noticeCodes.size() == 0 || noticeCodes.contains(notice.code());
     };
-    return Flux.empty();
+    Predicate<NoticeTable> locationCodeInclude = notice -> {
+      var locationCodes = searchConditions.locationCodes();
+      return locationCodes.size() == 0 || locationCodes.contains(notice.locationCode());
+    };
+
+    return this.source.findAll()
+        .filter(isExists.and(noticeCodeInclude).and(locationCodeInclude))
+        .map(NoticeTable::toEntity);
   }
 
   @Override
