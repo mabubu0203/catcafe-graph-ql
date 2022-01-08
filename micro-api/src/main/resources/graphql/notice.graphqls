@@ -1,33 +1,33 @@
 # Mutation用
 
-# [お知らせ]-[登録/更新]
+"[お知らせ]-[登録/更新]"
 input NoticeCommand {
   locationCode: ID
-  # お知らせ概要
+  "お知らせ概要"
   summary: String
-  # お知らせ詳細
+  "お知らせ詳細"
   detail: String
-  # 掲載開始日時
+  "掲載開始日時"
   publicationStartDateTime: DateTime
-  # 掲載終了日時
+  "掲載終了日時"
   publicationEndDateTime: DateTime
 }
 
 # Query用
 
-# [お知らせ]-[詳細]
+"[お知らせ]-[詳細]"
 type Notice implements HasCommon {
-  # noticeCode
+  "noticeCode"
   code: ID!
   location: Location
-  # お知らせ概要
+  "お知らせ概要"
   summary: String
-  # お知らせ詳細
+  "お知らせ詳細"
   detail: String
-  # 掲載開始日時
+  "掲載開始日時"
   publicationStartDateTime: DateTime
-  # 掲載終了日時
+  "掲載終了日時"
   publicationEndDateTime: DateTime
-  # バージョンフィールド
+  "バージョンフィールド"
   version: Int!
 }
