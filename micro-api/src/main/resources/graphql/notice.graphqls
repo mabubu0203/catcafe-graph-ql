@@ -1,0 +1,50 @@
+extend type Mutation {
+  # [お知らせ]-[登録]
+  noticeCreate(
+    input: NoticeCommand!
+  ): Notice
+}
+
+# Mutation用
+
+# [お知らせ]-[登録/更新]
+input NoticeCommand {
+  locationCode: ID
+  # お知らせ概要
+  summary: String
+  # お知らせ詳細
+  detail: String
+  # 掲載開始日時
+  publicationStartDateTime: DateTime
+  # 掲載終了日時
+  publicationEndDateTime: DateTime
+}
+
+extend type Query {
+  # [お知らせ]-[取得]
+  noticeSearch(
+    # noticeCode
+    codes: [ID]!
+    # locationCode
+    locationCodes: [ID]!
+  ): [Notice]!
+}
+
+# Query用
+
+# [お知らせ]-[詳細]
+type Notice implements HasCommon {
+  # noticeCode
+  code: ID!
+  location: Location
+  # お知らせ概要
+  summary: String
+  # お知らせ詳細
+  detail: String
+  # 掲載開始日時
+  publicationStartDateTime: DateTime
+  # 掲載終了日時
+  publicationEndDateTime: DateTime
+  # バージョンフィールド
+  version: Int!
+}

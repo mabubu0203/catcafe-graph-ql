@@ -1,0 +1,158 @@
+extend type Mutation {
+  # [キャスト]-[登録]
+  castCreate(
+    input: CastCommand!
+  ): Cast
+  # [キャスト]-[更新]
+  castUpdate(
+    # castCode
+    code: ID!,
+    input: CastCommand!,
+    # バージョンフィールド
+    version: Int
+  ): Cast
+  # [キャスト]-[削除]
+  castDelete(
+    # castCode
+    code: ID!,
+    # バージョンフィールド
+    version: Int
+  ): ID
+  # [キャスト(猫)]-[登録]
+  castCatCreate(
+    input: CastCatCommand!
+  ): CastCat
+  # [キャスト(猫)]-[更新]
+  castCatUpdate(
+    # castCatCode
+    code: ID!,
+    input: CastCatCommand!,
+    # バージョンフィールド
+    version: Int
+  ): CastCat
+  # [キャスト(猫)]-[削除]
+  castCatDelete(
+    # castCatCode
+    code: ID!,
+    # バージョンフィールド
+    version: Int
+  ): ID
+}
+
+# Mutation用
+
+# [キャスト]-[登録/更新]
+input CastCommand {
+  locationCode: ID!
+  castCatCode: ID!
+  employmentStatus: EmploymentStatus
+  # 初出勤日
+  firstAttendanceDate: Date
+  # 最終出勤日
+  lastAttendanceDate: Date
+  # 店舗メモ
+  memo: String
+}
+
+# [キャスト(猫)]-[登録/更新]
+input CastCatCommand  {
+  # 名前
+  name: String
+  # 画像
+  image: String
+  # 種類
+  type: String
+  sex: CatSex
+  # 誕生日
+  birthdayDate: Date
+  # 好きなこと
+  favorite: String
+  # 嫌いなこと
+  dislike: String
+  # 禁止事項
+  prohibition: String
+  # 兄弟
+  brothers: [ID]!
+  # 姉妹
+  sisters: [ID]!
+  # キャストメモ
+  memo: String
+}
+
+extend type Query {
+  # [キャスト]-[取得]
+  castSearch(
+    # castCode
+    codes: [ID]!
+    # locationCode
+    locationCodes: [ID]!
+  ): [Cast]!
+  # [キャスト(猫)]-[取得]
+  castCatSearch(
+    # castCatCode
+    codes: [ID]!
+  ): [CastCat]!
+}
+
+# Query用
+
+# [キャスト]-[詳細]
+type Cast implements HasCommon {
+  # castCode
+  code: ID!
+  location: Location
+  castCat: CastCat
+  # 雇用形態
+  employmentStatus: EmploymentStatus
+  # 初出勤日
+  firstAttendanceDate: Date
+  # 最終出勤日
+  lastAttendanceDate: Date
+  # 店舗メモ
+  memo: String
+  # バージョンフィールド
+  version: Int!
+}
+
+# [キャスト(猫)]-[詳細]
+type CastCat implements HasCommon {
+  # castCatCode
+  code: ID!
+  # 名前
+  name: String
+  # 画像
+  image: String
+  # 種類
+  type: String
+  # キャスト(猫)性別
+  sex: CatSex
+  # 誕生日
+  birthdayDate: Date
+  # 好きなこと
+  favorite: String
+  # 嫌いなこと
+  dislike: String
+  # 禁止事項
+  prohibition: String
+  # 兄弟
+  brothers: [ID]!
+  # 姉妹
+  sisters: [ID]!
+  # キャストメモ
+  memo: String
+  # バージョンフィールド
+  version: Int!
+}
+
+# 雇用形態
+enum EmploymentStatus {
+  main
+  sub
+}
+
+# キャスト(猫)性別
+enum CatSex {
+  unknown
+  male
+  female
+}
