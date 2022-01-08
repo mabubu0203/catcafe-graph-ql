@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS cast
 (
   id                    INT UNSIGNED AUTO_INCREMENT  NOT NULL COMMENT 'キャストID',
-  code                  CHAR(36)                     NOT NULL COMMENT 'キャストコード',
+  code                  CHAR(36) UNIQUE              NOT NULL COMMENT 'キャストコード',
   location_code         CHAR(36)                     NOT NULL COMMENT '所在地コード',
   cast_cat_code         CHAR(36)                     NOT NULL COMMENT 'キャスト(猫)コード',
   employment_status     ENUM ('main', 'sub')         NOT NULL DEFAULT 'main' COMMENT '雇用ステータス:main,sub',
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS cast
 CREATE TABLE IF NOT EXISTS cast_cat
 (
   id                INT UNSIGNED AUTO_INCREMENT        NOT NULL COMMENT 'キャスト(猫)ID',
-  code              CHAR(36)                           NOT NULL COMMENT 'キャスト(猫)コード',
+  code              CHAR(36) UNIQUE                    NOT NULL COMMENT 'キャスト(猫)コード',
   name              VARCHAR(256)                       NOT NULL COMMENT 'キャスト(猫)名',
   image_url         VARCHAR(256)                                DEFAULT NULL COMMENT '画像URL',
   type              VARCHAR(256) COMMENT '猫種',

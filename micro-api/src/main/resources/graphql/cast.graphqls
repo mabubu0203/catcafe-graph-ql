@@ -7,7 +7,7 @@ input CastCommand {
   "CastCatCode"
   castCatCode: ID!
   "雇用形態"
-  employmentStatus: EmploymentStatus
+  employmentStatus: EmploymentStatus!
   "初出勤日"
   firstAttendanceDate: Date
   "最終出勤日"
@@ -19,13 +19,13 @@ input CastCommand {
 "[キャスト(猫)]-[登録/更新]"
 input CastCatCommand  {
   "名前"
-  name: String
+  name: String!
   "画像"
   image: String
   "種類"
   type: String
   "キャスト(猫)性別"
-  sex: CatSex
+  sex: CatSex!
   "誕生日"
   birthdayDate: Date
   "好きなこと"
@@ -49,11 +49,11 @@ type Cast implements HasCommon {
   "CastCode"
   code: ID!
   "`[所在地/店舗]-[詳細]`"
-  location: Location
+  location: Location!
   "`[キャスト(猫)]-[詳細]`"
-  castCat: CastCat
+  castCat: CastCat!
   "雇用形態"
-  employmentStatus: EmploymentStatus
+  employmentStatus: EmploymentStatus!
   "初出勤日"
   firstAttendanceDate: Date
   "最終出勤日"
@@ -69,13 +69,13 @@ type CastCat implements HasCommon {
   "CastCatCode"
   code: ID!
   "名前"
-  name: String
+  name: String!
   "画像"
   image: String
   "種類"
   type: String
   "キャスト(猫)性別"
-  sex: CatSex
+  sex: CatSex!
   "誕生日"
   birthdayDate: Date
   "好きなこと"

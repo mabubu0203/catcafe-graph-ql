@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS notice
 (
   id                          INT UNSIGNED AUTO_INCREMENT  NOT NULL COMMENT 'お知らせID',
-  code                        CHAR(36)                     NOT NULL COMMENT 'お知らせコード',
+  code                        CHAR(36) UNIQUE              NOT NULL COMMENT 'お知らせコード',
   location_code               VARCHAR(256) COMMENT '所在地コード',
   summary                     VARCHAR(256)                 NOT NULL COMMENT 'お知らせ概要',
   detail                      VARCHAR(1024) COMMENT 'お知らせ詳細',
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS notice
 CREATE TABLE IF NOT EXISTS provide_service
 (
   id                INT UNSIGNED AUTO_INCREMENT  NOT NULL COMMENT '提供サービスID',
-  code              CHAR(36)                     NOT NULL COMMENT '提供サービスコード',
+  code              CHAR(36) UNIQUE              NOT NULL COMMENT '提供サービスコード',
   location_code     CHAR(36)                     NOT NULL COMMENT '所在地コード',
   name              VARCHAR(256)                 NOT NULL COMMENT '提供サービス名',
   price             DECIMAL(10, 3)               NOT NULL COMMENT '価格(税抜き)',
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS provide_service
 CREATE TABLE IF NOT EXISTS frequently_asked_question
 (
   id                INT UNSIGNED AUTO_INCREMENT  NOT NULL COMMENT 'FAQID',
-  code              CHAR(36)                     NOT NULL COMMENT 'FAQコード',
+  code              CHAR(36) UNIQUE              NOT NULL COMMENT 'FAQコード',
   location_code     CHAR(36) COMMENT '所在地コード',
   category          VARCHAR(256)                 NOT NULL COMMENT 'お問い合わせカテゴリー',
   question_summary  VARCHAR(256)                 NOT NULL COMMENT '質問概要',
