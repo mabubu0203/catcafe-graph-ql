@@ -4,17 +4,21 @@
 input LocationCommand {
   "店舗名"
   name: String
+  "`[所在地/店舗]-[店舗連絡先]-[登録/更新]`"
   contact: LocationContactCommand!
+  "`[所在地/店舗]-[店舗住所]-[登録/更新]`"
   address: LocationAddressCommand!
   "店舗開店日"
   openDate: Date
   "店舗閉店日"
   closeDate: Date
+  "`[所在地/店舗]-[店舗営業時間]-[登録/更新]`"
   hours: LocationHoursCommand!
-  # 店舗メモ
+  "店舗メモ"
   memo: String
 }
 
+"[所在地/店舗]-[店舗連絡先]-[登録/更新]"
 input LocationContactCommand {
   "店舗連絡先(電話番号)"
   phoneNumber: String
@@ -22,6 +26,7 @@ input LocationContactCommand {
   mailAddress: String
 }
 
+"[所在地/店舗]-[店舗住所]-[登録/更新]"
 input LocationAddressCommand {
   "店舗住所(郵便番号)"
   postalCode: String
@@ -41,6 +46,7 @@ input LocationAddressCommand {
   supplement: String
 }
 
+"[所在地/店舗]-[店舗営業時間]-[登録/更新]"
 input LocationHoursCommand {
   "店舗営業時間(開店時間)"
   openingTime: DateTime
@@ -54,16 +60,19 @@ input LocationHoursCommand {
 
 "[所在地/店舗]-[詳細]"
 type Location implements HasCommon {
-  "locationCode"
+  "LocationCode"
   code: ID!
   "店舗名"
   name: String
+  "`[所在地/店舗]-[店舗連絡先]-[詳細]`"
   contact: LocationContact!
+  "`[所在地/店舗]-[店舗住所]-[詳細]`"
   address: LocationAddress!
   "店舗開店日"
   openDate: Date
   "店舗閉店日"
   closeDate: Date
+  "`[所在地/店舗]-[店舗営業時間]-[詳細]`"
   hours: LocationHours!
   "店舗メモ"
   memo: String
@@ -71,6 +80,7 @@ type Location implements HasCommon {
   version: Int!
 }
 
+"[所在地/店舗]-[店舗連絡先]-[詳細]"
 type LocationContact {
   "店舗連絡先(電話番号)"
   phoneNumber: String
@@ -78,6 +88,7 @@ type LocationContact {
   mailAddress: String
 }
 
+"[所在地/店舗]-[店舗住所]-[詳細]"
 type LocationAddress {
   "店舗住所(郵便番号)"
   postalCode: String
@@ -99,6 +110,7 @@ type LocationAddress {
   supplement: String
 }
 
+"[所在地/店舗]-[店舗営業時間]-[詳細]"
 type LocationHours {
   "店舗営業時間(開店時間)"
   openingTime: DateTime

@@ -2,8 +2,11 @@
 
 "[キャスト]-[登録/更新]"
 input CastCommand {
+  "LocationCode"
   locationCode: ID!
+  "CastCatCode"
   castCatCode: ID!
+  "雇用形態"
   employmentStatus: EmploymentStatus
   "初出勤日"
   firstAttendanceDate: Date
@@ -21,6 +24,7 @@ input CastCatCommand  {
   image: String
   "種類"
   type: String
+  "キャスト(猫)性別"
   sex: CatSex
   "誕生日"
   birthdayDate: Date
@@ -42,9 +46,11 @@ input CastCatCommand  {
 
 "[キャスト]-[詳細]"
 type Cast implements HasCommon {
-  "castCode"
+  "CastCode"
   code: ID!
+  "`[所在地/店舗]-[詳細]`"
   location: Location
+  "`[キャスト(猫)]-[詳細]`"
   castCat: CastCat
   "雇用形態"
   employmentStatus: EmploymentStatus
@@ -60,7 +66,7 @@ type Cast implements HasCommon {
 
 "[キャスト(猫)]-[詳細]"
 type CastCat implements HasCommon {
-  "castCatCode"
+  "CastCatCode"
   code: ID!
   "名前"
   name: String
@@ -98,10 +104,10 @@ enum EmploymentStatus {
 
 "キャスト(猫)性別"
 enum CatSex {
-  ""
+  "不明"
   unknown
-  ""
+  "雄(♂)"
   male
-  ""
+  "雌(♀)"
   female
 }
