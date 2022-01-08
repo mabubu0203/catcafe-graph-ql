@@ -35,9 +35,9 @@ input CastCatCommand  {
   "禁止事項"
   prohibition: String
   "兄弟"
-  brothers: [ID]!
+  brothers: [ID]
   "姉妹"
-  sisters: [ID]!
+  sisters: [ID]
   "キャストメモ"
   memo: String
 }
@@ -85,9 +85,9 @@ type CastCat implements HasCommon {
   "禁止事項"
   prohibition: String
   "兄弟"
-  brothers: [ID]!
+  brothers: [ID]
   "姉妹"
-  sisters: [ID]!
+  sisters: [ID]
   "キャストメモ"
   memo: String
   "バージョンフィールド"
