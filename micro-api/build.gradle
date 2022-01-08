@@ -1,0 +1,68 @@
+description = getProject().name
+
+apply plugin: "com.github.node-gradle.node"
+apply plugin: "com.netflix.dgs.codegen"
+
+dependencies {
+    // SpringBoot projects
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-graphql'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // lombok
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+
+    // GraphQL
+    implementation 'com.graphql-java:graphql-java-extended-scalars:17.0'
+
+    // mysql
+    runtimeOnly 'dev.miku:r2dbc-mysql'
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    // Netty
+    developmentOnly 'io.netty:netty-resolver-dns-native-macos:4.1.72.Final:osx-aarch_64'
+
+    developmentOnly 'io.projectreactor:reactor-tools'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// https://netflix.github.io/dgs/generating-code-from-schema/
+generateJava {
+    schemaPaths = ["${projectDir}/src/main/resources/graphql"]
+    packageName = 'com.netflix.dgs.codegen'
+    generateInterfaces = true
+    shortProjectionNames = true
+}
+
+springBoot {
+    buildInfo()
+}
+
+jar {
+    archiveBaseName = getProject().name
+    enabled = true
+}
+
+bootJar {
+    archiveBaseName = getProject().name
+    archiveVersion = "${CafeVersion}"
+    enabled = true
+    launchScript()
+}
+
+node {
+    version = "17.3.0"
+    npmVersion = "8.3.0"
+    download = true
+    workDir = file("${project.projectDir}/.gradle/nodejs")
+    npmWorkDir = file("${project.projectDir}/.gradle/npm")
+    nodeModulesDir = file("${project.projectDir}/src/main/spectaql")
+}
+
+task spectaqlRun(dependsOn: ['npm_run_spectaql-run'])

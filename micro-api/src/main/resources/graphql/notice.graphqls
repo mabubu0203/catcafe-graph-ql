@@ -1,0 +1,35 @@
+# Mutation用
+
+"[お知らせ]-[登録/更新]"
+input NoticeCommand {
+  "LocationCode"
+  locationCode: ID
+  "お知らせ概要"
+  summary: String!
+  "お知らせ詳細"
+  detail: String
+  "掲載開始日時"
+  publicationStartDateTime: DateTime
+  "掲載終了日時"
+  publicationEndDateTime: DateTime
+}
+
+# Query用
+
+"[お知らせ]-[詳細]"
+type Notice implements HasCommon {
+  "NoticeCode"
+  code: ID!
+  "`[所在地/店舗]-[詳細]`"
+  location: Location
+  "お知らせ概要"
+  summary: String!
+  "お知らせ詳細"
+  detail: String
+  "掲載開始日時"
+  publicationStartDateTime: DateTime
+  "掲載終了日時"
+  publicationEndDateTime: DateTime
+  "バージョンフィールド"
+  version: Int!
+}

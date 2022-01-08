@@ -1,0 +1,113 @@
+# Mutation用
+
+"[キャスト]-[登録/更新]"
+input CastCommand {
+  "LocationCode"
+  locationCode: ID!
+  "CastCatCode"
+  castCatCode: ID!
+  "雇用形態"
+  employmentStatus: EmploymentStatus!
+  "初出勤日"
+  firstAttendanceDate: Date
+  "最終出勤日"
+  lastAttendanceDate: Date
+  "店舗メモ"
+  memo: String
+}
+
+"[キャスト(猫)]-[登録/更新]"
+input CastCatCommand  {
+  "名前"
+  name: String!
+  "画像"
+  image: String
+  "種類"
+  type: String
+  "キャスト(猫)性別"
+  sex: CatSex!
+  "誕生日"
+  birthdayDate: Date
+  "好きなこと"
+  favorite: String
+  "嫌いなこと"
+  dislike: String
+  "禁止事項"
+  prohibition: String
+  "兄弟"
+  brothers: [ID]
+  "姉妹"
+  sisters: [ID]
+  "キャストメモ"
+  memo: String
+}
+
+# Query用
+
+"[キャスト]-[詳細]"
+type Cast implements HasCommon {
+  "CastCode"
+  code: ID!
+  "`[所在地/店舗]-[詳細]`"
+  location: Location!
+  "`[キャスト(猫)]-[詳細]`"
+  castCat: CastCat!
+  "雇用形態"
+  employmentStatus: EmploymentStatus!
+  "初出勤日"
+  firstAttendanceDate: Date
+  "最終出勤日"
+  lastAttendanceDate: Date
+  "店舗メモ"
+  memo: String
+  "バージョンフィールド"
+  version: Int!
+}
+
+"[キャスト(猫)]-[詳細]"
+type CastCat implements HasCommon {
+  "CastCatCode"
+  code: ID!
+  "名前"
+  name: String!
+  "画像"
+  image: String
+  "種類"
+  type: String
+  "キャスト(猫)性別"
+  sex: CatSex!
+  "誕生日"
+  birthdayDate: Date
+  "好きなこと"
+  favorite: String
+  "嫌いなこと"
+  dislike: String
+  "禁止事項"
+  prohibition: String
+  "兄弟"
+  brothers: [ID]
+  "姉妹"
+  sisters: [ID]
+  "キャストメモ"
+  memo: String
+  "バージョンフィールド"
+  version: Int!
+}
+
+"雇用形態"
+enum EmploymentStatus {
+  ""
+  main
+  ""
+  sub
+}
+
+"キャスト(猫)性別"
+enum CatSex {
+  "不明"
+  unknown
+  "雄(♂)"
+  male
+  "雌(♀)"
+  female
+}

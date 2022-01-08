@@ -1,0 +1,21 @@
+description = getProject().name
+
+dependencies {
+    // lombok
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    archiveBaseName = getProject().name
+    archiveVersion = "${CafeVersion}"
+    enabled = true
+}
+
+bootJar {
+    enabled = false
+}

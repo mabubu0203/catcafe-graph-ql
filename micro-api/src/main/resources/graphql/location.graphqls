@@ -1,0 +1,121 @@
+# Mutation用
+
+"[所在地/店舗]-[登録/更新]"
+input LocationCommand {
+  "店舗名"
+  name: String!
+  "`[所在地/店舗]-[店舗連絡先]-[登録/更新]`"
+  contact: LocationContactCommand!
+  "`[所在地/店舗]-[店舗住所]-[登録/更新]`"
+  address: LocationAddressCommand!
+  "店舗開店日"
+  openDate: Date
+  "店舗閉店日"
+  closeDate: Date
+  "`[所在地/店舗]-[店舗営業時間]-[登録/更新]`"
+  hours: LocationHoursCommand!
+  "店舗メモ"
+  memo: String
+}
+
+"[所在地/店舗]-[店舗連絡先]-[登録/更新]"
+input LocationContactCommand {
+  "店舗連絡先(電話番号)"
+  phoneNumber: String
+  "店舗連絡先(メールアドレス)"
+  mailAddress: String
+}
+
+"[所在地/店舗]-[店舗住所]-[登録/更新]"
+input LocationAddressCommand {
+  "店舗住所(郵便番号)"
+  postalCode: String
+  "店舗住所(都道府県コード)"
+  prefectureCode: Int
+  "店舗住所(都道府県)"
+  address1: String
+  "店舗住所(市区町村)"
+  address2: String
+  "店舗住所(町域)"
+  address3: String
+  "店舗住所(番地)"
+  streetAddress: String
+  "店舗住所(建物名)"
+  buildingName: String
+  "店舗住所(補足)"
+  supplement: String
+}
+
+"[所在地/店舗]-[店舗営業時間]-[登録/更新]"
+input LocationHoursCommand {
+  "店舗営業時間(開店時間)"
+  openingTime: DateTime
+  "店舗営業時間(閉店時間)"
+  closingTime: DateTime
+  "店舗営業時間(補足)"
+  supplement: String
+}
+
+# Query用
+
+"[所在地/店舗]-[詳細]"
+type Location implements HasCommon {
+  "LocationCode"
+  code: ID!
+  "店舗名"
+  name: String!
+  "`[所在地/店舗]-[店舗連絡先]-[詳細]`"
+  contact: LocationContact!
+  "`[所在地/店舗]-[店舗住所]-[詳細]`"
+  address: LocationAddress!
+  "店舗開店日"
+  openDate: Date
+  "店舗閉店日"
+  closeDate: Date
+  "`[所在地/店舗]-[店舗営業時間]-[詳細]`"
+  hours: LocationHours!
+  "店舗メモ"
+  memo: String
+  "バージョンフィールド"
+  version: Int!
+}
+
+"[所在地/店舗]-[店舗連絡先]-[詳細]"
+type LocationContact {
+  "店舗連絡先(電話番号)"
+  phoneNumber: String
+  "店舗連絡先(メールアドレス)"
+  mailAddress: String
+}
+
+"[所在地/店舗]-[店舗住所]-[詳細]"
+type LocationAddress {
+  "店舗住所(郵便番号)"
+  postalCode: String
+  "店舗住所(都道府県コード)"
+  prefectureCode: Int
+  "店舗住所(都道府県)"
+  prefectureLabel: String
+  "店舗住所(都道府県)"
+  address1: String
+  "店舗住所(市区町村)"
+  address2: String
+  "店舗住所(町域)"
+  address3: String
+  "店舗住所(番地)"
+  streetAddress: String
+  "店舗住所(建物名)"
+  buildingName: String
+  "店舗住所(補足)"
+  supplement: String
+}
+
+"[所在地/店舗]-[店舗営業時間]-[詳細]"
+type LocationHours {
+  "店舗営業時間(開店時間)"
+  openingTime: DateTime
+  "店舗営業時間(閉店時間)"
+  closingTime: DateTime
+  "店舗営業時間(補足)"
+  supplement: String
+}
