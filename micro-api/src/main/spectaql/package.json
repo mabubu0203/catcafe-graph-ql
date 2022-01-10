@@ -9,6 +9,6 @@
     "webpack": "5.65.0"
   },
   "scripts": {
-    "spectaql-run": "spectaql config.yml -t ../../../../doc"
+    "spectaql-run": "spectaql config.yml -t ../../../../docs"
   }
 }
