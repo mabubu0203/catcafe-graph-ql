@@ -10,7 +10,8 @@ import mabubu0203.com.github.cafe.domain.entity.location.LocationEntity;
 import mabubu0203.com.github.cafe.domain.entity.location.LocationSearchConditions;
 import mabubu0203.com.github.cafe.domain.repository.location.LocationRepository;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
-import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.LocationSource;
+import mabubu0203.com.github.cafe.infrastructure.source.elastic.LocationDocumentSource;
+import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.LocationTableSource;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.LocationTable;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
@@ -20,7 +21,8 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class LocationRepositoryImpl implements LocationRepository {
 
-  private final LocationSource source;
+  private final LocationDocumentSource locationDocumentSource;
+  private final LocationTableSource locationTableSource;
 
   @Override
   public Flux<LocationEntity> search(LocationSearchConditions searchConditions) {
@@ -31,7 +33,7 @@ public class LocationRepositoryImpl implements LocationRepository {
       return locationCodes.size() == 0 || locationCodes.contains(location.code());
     };
 
-    return this.source.findAll()
+    return this.locationTableSource.findAll()
         .filter(isExists.and(locationCodeInclude))
         .map(LocationTable::toEntity);
   }
@@ -47,7 +49,7 @@ public class LocationRepositoryImpl implements LocationRepository {
     return Mono.just(entity)
         .map(this::attach)
         .map(dto -> dto.createdBy(0))
-        .flatMap(dto -> this.source.insert(dto, receptionTime))
+        .flatMap(dto -> this.locationTableSource.insert(dto, receptionTime))
         .map(LocationTable::code)
         .map(LocationCode::new);
   }
@@ -57,7 +59,7 @@ public class LocationRepositoryImpl implements LocationRepository {
     return this.findDto(entity.locationCode())
         .map(dto -> this.attach(dto, entity))
         .map(dto -> dto.updatedBy(0))
-        .flatMap(dto -> this.source.update(dto, receptionTime))
+        .flatMap(dto -> this.locationTableSource.update(dto, receptionTime))
         .map(LocationTable::code)
         .map(LocationCode::new);
   }
@@ -66,13 +68,13 @@ public class LocationRepositoryImpl implements LocationRepository {
   public Mono<LocationCode> logicalDelete(LocationEntity entity, LocalDateTime receptionTime) {
     return this.findDto(entity.locationCode())
         .map(dto -> dto.version(entity.getVersionValue()))
-        .flatMap(dto -> this.source.logicalDelete(dto, receptionTime))
+        .flatMap(dto -> this.locationTableSource.logicalDelete(dto, receptionTime))
         .map(LocationTable::code)
         .map(LocationCode::new);
   }
 
   private Mono<LocationTable> findDto(LocationCode locationCode) {
-    return this.source.findByCode(locationCode.value())
+    return this.locationTableSource.findByCode(locationCode.value())
         .filter(BaseTable::isExists)
         // 404で返却するためのエラーを検討
         .switchIfEmpty(Mono.error(new ResourceNotFoundException("所在地/店舗が存在しません")));

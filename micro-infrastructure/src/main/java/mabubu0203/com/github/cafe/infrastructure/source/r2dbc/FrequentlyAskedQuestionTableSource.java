@@ -5,7 +5,7 @@ import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.FrequentlyAske
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FrequentlyAskedQuestionSource extends
+public interface FrequentlyAskedQuestionTableSource extends
     TableSource<FrequentlyAskedQuestionTable, Integer> {
 
 }

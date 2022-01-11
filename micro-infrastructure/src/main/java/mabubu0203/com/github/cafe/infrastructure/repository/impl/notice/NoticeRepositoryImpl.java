@@ -10,7 +10,7 @@ import mabubu0203.com.github.cafe.domain.entity.notice.NoticeEntity;
 import mabubu0203.com.github.cafe.domain.entity.notice.NoticeSearchConditions;
 import mabubu0203.com.github.cafe.domain.repository.notice.NoticeRepository;
 import mabubu0203.com.github.cafe.domain.value.code.NoticeCode;
-import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.NoticeSource;
+import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.NoticeTableSource;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.NoticeTable;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
@@ -20,7 +20,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class NoticeRepositoryImpl implements NoticeRepository {
 
-  private final NoticeSource source;
+  private final NoticeTableSource noticeTableSource;
 
   @Override
   public Flux<NoticeEntity> search(NoticeSearchConditions searchConditions) {
@@ -35,7 +35,7 @@ public class NoticeRepositoryImpl implements NoticeRepository {
       return locationCodes.size() == 0 || locationCodes.contains(notice.locationCode());
     };
 
-    return this.source.findAll()
+    return this.noticeTableSource.findAll()
         .filter(isExists.and(noticeCodeInclude).and(locationCodeInclude))
         .map(NoticeTable::toEntity);
   }
@@ -51,7 +51,7 @@ public class NoticeRepositoryImpl implements NoticeRepository {
     return Mono.just(entity)
         .map(this::attach)
         .map(dto -> dto.createdBy(0))
-        .flatMap(dto -> this.source.insert(dto, receptionTime))
+        .flatMap(dto -> this.noticeTableSource.insert(dto, receptionTime))
         .map(NoticeTable::code)
         .map(NoticeCode::new);
   }
@@ -61,7 +61,7 @@ public class NoticeRepositoryImpl implements NoticeRepository {
     return this.findDto(entity.noticeCode())
         .map(dto -> this.attach(dto, entity))
         .map(dto -> dto.updatedBy(0))
-        .flatMap(dto -> this.source.update(dto, receptionTime))
+        .flatMap(dto -> this.noticeTableSource.update(dto, receptionTime))
         .map(NoticeTable::code)
         .map(NoticeCode::new);
   }
@@ -70,13 +70,13 @@ public class NoticeRepositoryImpl implements NoticeRepository {
   public Mono<NoticeCode> logicalDelete(NoticeEntity entity, LocalDateTime receptionTime) {
     return this.findDto(entity.noticeCode())
         .map(dto -> dto.version(entity.getVersionValue()))
-        .flatMap(dto -> this.source.logicalDelete(dto, receptionTime))
+        .flatMap(dto -> this.noticeTableSource.logicalDelete(dto, receptionTime))
         .map(NoticeTable::code)
         .map(NoticeCode::new);
   }
 
   private Mono<NoticeTable> findDto(NoticeCode noticeCode) {
-    return this.source.findByCode(noticeCode.value())
+    return this.noticeTableSource.findByCode(noticeCode.value())
         .filter(BaseTable::isExists)
         // 404で返却するためのエラーを検討
         .switchIfEmpty(Mono.error(new ResourceNotFoundException("お知らせが存在しません")));
