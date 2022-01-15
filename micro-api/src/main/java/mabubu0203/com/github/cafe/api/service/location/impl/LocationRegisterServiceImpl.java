@@ -18,7 +18,7 @@ public class LocationRegisterServiceImpl implements LocationRegisterService {
   private final LocationRepository locationRepository;
 
   @Override
-//  @Transactional
+  @Transactional
   public Mono<LocationServiceOutput> action(LocationRegisterServiceInput input) {
     var receptionTime = this.getReceptionTime();
     return Mono.just(input)

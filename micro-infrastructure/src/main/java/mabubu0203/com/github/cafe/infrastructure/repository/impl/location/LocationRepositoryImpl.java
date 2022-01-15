@@ -35,40 +35,25 @@ public class LocationRepositoryImpl implements LocationRepository {
       return locationCodes.size() == 0 || locationCodes.contains(location.code());
     };
 
-    return this.locationDocumentSource.findAll()
-        .map(LocationDocument::toEntity);
-
-//    return this.locationTableSource.findAll()
-//        .filter(isExists.and(locationCodeInclude))
-//        .map(LocationTable::toEntity);
+    return this.locationTableSource.findAll()
+        .filter(isExists.and(locationCodeInclude))
+        .map(LocationTable::toEntity);
   }
 
   @Override
   public Mono<LocationEntity> findByCode(LocationCode locationCode) {
-
-    return this.locationDocumentSource.findByCode(locationCode.value())
-        .map(LocationDocument::toEntity);
-//
-//
-//    return this.findDto(locationCode)
-//        .map(LocationTable::toEntity);
+    return this.findDto(locationCode)
+        .map(LocationTable::toEntity);
   }
 
   @Override
   public Mono<LocationCode> register(LocationEntity entity, LocalDateTime receptionTime) {
-    // TODO
     return Mono.just(entity)
-        .map(e -> new LocationDocument().attach(e))
-        .flatMap(dto -> this.locationDocumentSource.insert(dto, Instant.now()))
-        .map(LocationDocument::code)
+        .map(this::attach)
+        .map(dto -> dto.createdBy(0))
+        .flatMap(dto -> this.locationTableSource.insert(dto, receptionTime))
+        .map(LocationTable::code)
         .map(LocationCode::new);
-
-//    return Mono.just(entity)
-//        .map(this::attach)
-//        .map(dto -> dto.createdBy(0))
-//        .flatMap(dto -> this.locationTableSource.insert(dto, receptionTime))
-//        .map(LocationTable::code)
-//        .map(LocationCode::new);
   }
 
   @Override
@@ -88,6 +73,20 @@ public class LocationRepositoryImpl implements LocationRepository {
         .flatMap(dto -> this.locationTableSource.logicalDelete(dto, receptionTime))
         .map(LocationTable::code)
         .map(LocationCode::new);
+  }
+
+  @Override
+  public Integer replacement(Instant receptionTime) {
+    Predicate<LocationTable> isExists = BaseTable::isExists;
+    // 直す
+    var count = this.locationTableSource.findAll()
+        .filter(isExists)
+        .map(LocationTable::toEntity)
+        .map(new LocationDocument()::attach)
+        .toStream()
+        .map(dto -> this.locationDocumentSource.insert(dto, receptionTime).block())
+        .count();
+    return Integer.valueOf((int) count);
   }
 
   private Mono<LocationTable> findDto(LocationCode locationCode) {
