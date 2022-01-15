@@ -83,14 +83,16 @@ public class LocationRepositoryImpl implements LocationRepository {
 
   @Override
   public Long replacement(Instant receptionTime) {
-    var now = LocalDate.now();
-    var newIndexName = now.toString();
-    var oldIndexName = now.minusDays(1L).toString();
+    var today = LocalDate.now();
+    var newIndexName = LocationDocument.INDEX_NAME
+        .replace("{yyyy-MM-dd}", today.toString());
+    var oldIndexName = LocationDocument.INDEX_NAME
+        .replace("{yyyy-MM-dd}", today.minusDays(1L).toString());
 
     // index作成
     var indexOperations = this.elasticsearchOperations.indexOps(LocationDocument.class);
 
-    indexOperations.create();
+    indexOperations.create().block();
 
     Predicate<LocationTable> isExists = BaseTable::isExists;
     // 直す
@@ -102,21 +104,27 @@ public class LocationRepositoryImpl implements LocationRepository {
         .map(dto -> this.locationDocumentSource.insert(dto, receptionTime).block())
         .count();
 
-    // aliasの張り替え
     indexOperations.alias(
-        new AliasActions().add(
-            new AliasAction.Add(
-                AliasActionParameters.builder()
-                    .withIndices(newIndexName)
-                    .withAliases("location")
-                    .build())));
-    // aliasの張り替え
-    indexOperations.alias(
-        new AliasActions().add(
-            new AliasAction.RemoveIndex(
-                AliasActionParameters.builder()
-                    .withIndices(oldIndexName)
-                    .build())));
+        new AliasActions()
+            .add(
+                // Aliasに新しいindexを追加する
+                new AliasAction.Add(
+                    AliasActionParameters.builder()
+                        .withIndices(newIndexName)
+                        .withAliases(LocationDocument.ALIAS)
+                        .build()
+                )
+            )
+//            .add(
+//                // Aliasから古いindexを削除する
+//                new AliasAction.Remove(
+//                    AliasActionParameters.builder()
+//                        .withIndices(oldIndexName)
+//                        .withAliases(LocationDocument.ALIAS)
+//                        .build()
+//                )
+//            )
+    ).block();
 
     return count;
   }

@@ -32,6 +32,9 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Document(indexName = "location-#{T(java.time.LocalDate).now().toString()}", createIndex = false)
 public class LocationDocument extends BaseDocument<String> {
 
+  public static final String ALIAS = "location";
+  public static final String INDEX_NAME = "location-{yyyy-MM-dd}";
+
   @Id
   private String id;
 
