@@ -17,7 +17,8 @@ public class LocationTaskController {
   @Scheduled(fixedDelay = 10000)
   public void replacement() {
     log.info("バッチ開始");
-    this.replacementService.replacement();
+    var count = this.replacementService.replacement();
+    log.info("バッチ数: " + count);
     log.info("バッチ終了");
   }
 

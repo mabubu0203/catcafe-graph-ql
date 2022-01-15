@@ -1,7 +1,6 @@
 package mabubu0203.com.github.cafe.infrastructure.source.elastic.dto;
 
 import java.time.Instant;
-import java.time.LocalTime;
 import java.util.Objects;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,6 +18,7 @@ import mabubu0203.com.github.cafe.domain.value.Version;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -28,9 +28,9 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
-@Document(indexName = "location")
+@TypeAlias("location")
+@Document(indexName = "location-#{T(java.time.LocalDate).now().toString()}", createIndex = false)
 public class LocationDocument extends BaseDocument<String> {
-
 
   @Id
   private String id;
@@ -78,7 +78,7 @@ public class LocationDocument extends BaseDocument<String> {
 
   @Field(name = "opening_time",
       type = FieldType.Date, format = DateFormat.basic_date_time)
-  private LocalTime openingTime;
+  private Instant openingTime;
 
   @Field(name = "closing_time",
       type = FieldType.Date, format = DateFormat.basic_date_time)

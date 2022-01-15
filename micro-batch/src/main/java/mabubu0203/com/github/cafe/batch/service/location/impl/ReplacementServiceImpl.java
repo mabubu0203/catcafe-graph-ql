@@ -13,8 +13,8 @@ public class ReplacementServiceImpl implements ReplacementService {
   private final LocationRepository locationRepository;
 
   @Override
-  public void replacement() {
-    this.locationRepository.replacement(Instant.now());
+  public Long replacement() {
+    return this.locationRepository.replacement(Instant.now());
   }
 
 }

@@ -15,18 +15,20 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Data
 public abstract class BaseDocument<ID> implements Persistable<ID> {
 
-  @Field(type = FieldType.Text)
+  @Field(name = "code", type = FieldType.Text)
   private String code;
 
   @CreatedDate
-  @Field(type = FieldType.Date, format = DateFormat.basic_date_time)
+  @Field(name = "created_date",
+      type = FieldType.Date, format = DateFormat.basic_date)
   private Instant createdDate;
 
-  @Field(type = FieldType.Integer)
+  @Field(name = "version", type = FieldType.Integer)
   private Integer version;
 
   @LastModifiedDate
-  @Field(type = FieldType.Date, format = DateFormat.basic_date_time)
+  @Field(name = "last_modified_date",
+      type = FieldType.Date, format = DateFormat.basic_date)
   private Instant lastModifiedDate;
 
   @Transient

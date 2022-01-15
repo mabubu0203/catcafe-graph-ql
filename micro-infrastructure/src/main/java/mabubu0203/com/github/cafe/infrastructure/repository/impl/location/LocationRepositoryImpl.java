@@ -1,6 +1,7 @@
 package mabubu0203.com.github.cafe.infrastructure.repository.impl.location;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -15,6 +16,10 @@ import mabubu0203.com.github.cafe.infrastructure.source.elastic.LocationDocument
 import mabubu0203.com.github.cafe.infrastructure.source.elastic.dto.LocationDocument;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.LocationTableSource;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.LocationTable;
+import org.springframework.data.elasticsearch.core.ReactiveElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.index.AliasAction;
+import org.springframework.data.elasticsearch.core.index.AliasActionParameters;
+import org.springframework.data.elasticsearch.core.index.AliasActions;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -25,6 +30,7 @@ public class LocationRepositoryImpl implements LocationRepository {
 
   private final LocationDocumentSource locationDocumentSource;
   private final LocationTableSource locationTableSource;
+  private final ReactiveElasticsearchOperations elasticsearchOperations;
 
   @Override
   public Flux<LocationEntity> search(LocationSearchConditions searchConditions) {
@@ -76,7 +82,16 @@ public class LocationRepositoryImpl implements LocationRepository {
   }
 
   @Override
-  public Integer replacement(Instant receptionTime) {
+  public Long replacement(Instant receptionTime) {
+    var now = LocalDate.now();
+    var newIndexName = now.toString();
+    var oldIndexName = now.minusDays(1L).toString();
+
+    // index作成
+    var indexOperations = this.elasticsearchOperations.indexOps(LocationDocument.class);
+
+    indexOperations.create();
+
     Predicate<LocationTable> isExists = BaseTable::isExists;
     // 直す
     var count = this.locationTableSource.findAll()
@@ -86,7 +101,24 @@ public class LocationRepositoryImpl implements LocationRepository {
         .toStream()
         .map(dto -> this.locationDocumentSource.insert(dto, receptionTime).block())
         .count();
-    return Integer.valueOf((int) count);
+
+    // aliasの張り替え
+    indexOperations.alias(
+        new AliasActions().add(
+            new AliasAction.Add(
+                AliasActionParameters.builder()
+                    .withIndices(newIndexName)
+                    .withAliases("location")
+                    .build())));
+    // aliasの張り替え
+    indexOperations.alias(
+        new AliasActions().add(
+            new AliasAction.RemoveIndex(
+                AliasActionParameters.builder()
+                    .withIndices(oldIndexName)
+                    .build())));
+
+    return count;
   }
 
   private Mono<LocationTable> findDto(LocationCode locationCode) {
