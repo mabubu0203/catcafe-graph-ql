@@ -49,6 +49,9 @@ spring:
       port: 35219
     restart:
       poll-interval: 1000
+  elasticsearch:
+    uris:
+      - http://localhost:9200
   r2dbc:
     url: r2dbcs:mysql://localhost:3306/cafe?useSSL=false&autoReconnect=true&reWriteBatchedInserts=true
     username: root

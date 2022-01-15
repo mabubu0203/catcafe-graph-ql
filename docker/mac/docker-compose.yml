@@ -20,7 +20,7 @@ services:
       - "./docker-elastic/data/:/usr/share/elasticsearch/data"
     restart: always
     networks:
-      - app-net
+      - elastic
 
   kibana:
     build: ./docker-kibana
@@ -31,7 +31,7 @@ services:
       - elasticsearch
     restart: always
     networks:
-      - app-net
+      - elastic
 
   mysql:
     build: ./docker-mysql
@@ -92,4 +92,6 @@ services:
 
 networks:
   app-net:
+    driver: bridge
+  elastic:
     driver: bridge

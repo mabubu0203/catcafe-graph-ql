@@ -1,5 +1,6 @@
 package mabubu0203.com.github.cafe.infrastructure.repository.impl.location;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -11,6 +12,7 @@ import mabubu0203.com.github.cafe.domain.entity.location.LocationSearchCondition
 import mabubu0203.com.github.cafe.domain.repository.location.LocationRepository;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
 import mabubu0203.com.github.cafe.infrastructure.source.elastic.LocationDocumentSource;
+import mabubu0203.com.github.cafe.infrastructure.source.elastic.dto.LocationDocument;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.LocationTableSource;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.LocationTable;
 import org.springframework.stereotype.Repository;
@@ -33,25 +35,40 @@ public class LocationRepositoryImpl implements LocationRepository {
       return locationCodes.size() == 0 || locationCodes.contains(location.code());
     };
 
-    return this.locationTableSource.findAll()
-        .filter(isExists.and(locationCodeInclude))
-        .map(LocationTable::toEntity);
+    return this.locationDocumentSource.findAll()
+        .map(LocationDocument::toEntity);
+
+//    return this.locationTableSource.findAll()
+//        .filter(isExists.and(locationCodeInclude))
+//        .map(LocationTable::toEntity);
   }
 
   @Override
   public Mono<LocationEntity> findByCode(LocationCode locationCode) {
-    return this.findDto(locationCode)
-        .map(LocationTable::toEntity);
+
+    return this.locationDocumentSource.findByCode(locationCode.value())
+        .map(LocationDocument::toEntity);
+//
+//
+//    return this.findDto(locationCode)
+//        .map(LocationTable::toEntity);
   }
 
   @Override
   public Mono<LocationCode> register(LocationEntity entity, LocalDateTime receptionTime) {
+    // TODO
     return Mono.just(entity)
-        .map(this::attach)
-        .map(dto -> dto.createdBy(0))
-        .flatMap(dto -> this.locationTableSource.insert(dto, receptionTime))
-        .map(LocationTable::code)
+        .map(e -> new LocationDocument().attach(e))
+        .flatMap(dto -> this.locationDocumentSource.insert(dto, Instant.now()))
+        .map(LocationDocument::code)
         .map(LocationCode::new);
+
+//    return Mono.just(entity)
+//        .map(this::attach)
+//        .map(dto -> dto.createdBy(0))
+//        .flatMap(dto -> this.locationTableSource.insert(dto, receptionTime))
+//        .map(LocationTable::code)
+//        .map(LocationCode::new);
   }
 
   @Override

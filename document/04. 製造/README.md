@@ -44,6 +44,7 @@ IntelliJ IDEAを使用します。
 
 - [Api][]
 - [GraphiQL][]
+- [Kibana][]
 - [phpMyAdmin][]
 - [Redisinsight][]
 
@@ -61,6 +62,8 @@ IntelliJ IDEAを使用します。
 [Api]: http://localhost:9001/                               "Api"
 
 [GraphiQL]: http://localhost:9001/graphiql?path=/graphql    "GraphiQL"
+
+[Kibana]: http://localhost:5601/app/home                    "Kibana"
 
 [phpMyAdmin]: http://localhost:8021/                        "phpMyAdmin"
 
