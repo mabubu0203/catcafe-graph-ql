@@ -19,7 +19,6 @@ import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.annotation.TypeAlias;
-import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
@@ -71,24 +70,19 @@ public class LocationDocument extends BaseDocument<String> {
   @Field(name = "address_supplement", type = FieldType.Text)
   private String addressSupplement;
 
-  @Field(name = "open_date",
-      type = FieldType.Date, format = DateFormat.basic_date)
+  @Field(name = "open_date", type = FieldType.Date)
   private Instant openDate;
 
-  @Field(name = "close_date",
-      type = FieldType.Date, format = DateFormat.basic_date)
+  @Field(name = "close_date", type = FieldType.Date)
   private Instant closeDate;
 
-  @Field(name = "opening_time",
-      type = FieldType.Date, format = DateFormat.basic_date_time)
+  @Field(name = "opening_time", type = FieldType.Date)
   private Instant openingTime;
 
-  @Field(name = "closing_time",
-      type = FieldType.Date, format = DateFormat.basic_date_time)
+  @Field(name = "closing_time", type = FieldType.Date)
   private Instant closingTime;
 
-  @Field(name = "hours_supplement",
-      type = FieldType.Text)
+  @Field(name = "hours_supplement", type = FieldType.Text)
   private String hoursSupplement;
 
   @Field(name = "memo", type = FieldType.Text)

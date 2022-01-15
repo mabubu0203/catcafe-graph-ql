@@ -34,28 +34,26 @@ public class LocationRepositoryImpl implements LocationRepository {
 
   @Override
   public Flux<LocationEntity> search(LocationSearchConditions searchConditions) {
-    Predicate<LocationTable> isExists = BaseTable::isExists;
-
-    Predicate<LocationTable> locationCodeInclude = location -> {
+    Predicate<LocationDocument> locationCodeInclude = location -> {
       var locationCodes = searchConditions.locationCodes();
       return locationCodes.size() == 0 || locationCodes.contains(location.code());
     };
 
-    return this.locationTableSource.findAll()
-        .filter(isExists.and(locationCodeInclude))
-        .map(LocationTable::toEntity);
+    return this.locationDocumentSource.findAll()
+        .filter(locationCodeInclude)
+        .map(LocationDocument::toEntity);
   }
 
   @Override
   public Mono<LocationEntity> findByCode(LocationCode locationCode) {
-    return this.findDto(locationCode)
+    return this.findTable(locationCode)
         .map(LocationTable::toEntity);
   }
 
   @Override
   public Mono<LocationCode> register(LocationEntity entity, LocalDateTime receptionTime) {
     return Mono.just(entity)
-        .map(this::attach)
+        .map(dto -> this.attach(null, entity))
         .map(dto -> dto.createdBy(0))
         .flatMap(dto -> this.locationTableSource.insert(dto, receptionTime))
         .map(LocationTable::code)
@@ -64,7 +62,7 @@ public class LocationRepositoryImpl implements LocationRepository {
 
   @Override
   public Mono<LocationCode> modify(LocationEntity entity, LocalDateTime receptionTime) {
-    return this.findDto(entity.locationCode())
+    return this.findTable(entity.locationCode())
         .map(dto -> this.attach(dto, entity))
         .map(dto -> dto.updatedBy(0))
         .flatMap(dto -> this.locationTableSource.update(dto, receptionTime))
@@ -74,7 +72,7 @@ public class LocationRepositoryImpl implements LocationRepository {
 
   @Override
   public Mono<LocationCode> logicalDelete(LocationEntity entity, LocalDateTime receptionTime) {
-    return this.findDto(entity.locationCode())
+    return this.findTable(entity.locationCode())
         .map(dto -> dto.version(entity.getVersionValue()))
         .flatMap(dto -> this.locationTableSource.logicalDelete(dto, receptionTime))
         .map(LocationTable::code)
@@ -94,27 +92,26 @@ public class LocationRepositoryImpl implements LocationRepository {
 
     indexOperations.create().block();
 
-    Predicate<LocationTable> isExists = BaseTable::isExists;
     // 直す
     var count = this.locationTableSource.findAll()
-        .filter(isExists)
+        .filter(BaseTable::isExists)
         .map(LocationTable::toEntity)
         .map(new LocationDocument()::attach)
-        .toStream()
-        .map(dto -> this.locationDocumentSource.insert(dto, receptionTime).block())
-        .count();
+        .flatMap(dto -> this.locationDocumentSource.insert(dto, receptionTime))
+        .count()
+        .block();
 
     indexOperations.alias(
-        new AliasActions()
-            .add(
-                // Aliasに新しいindexを追加する
-                new AliasAction.Add(
-                    AliasActionParameters.builder()
-                        .withIndices(newIndexName)
-                        .withAliases(LocationDocument.ALIAS)
-                        .build()
+            new AliasActions()
+                .add(
+                    // Aliasに新しいindexを追加する
+                    new AliasAction.Add(
+                        AliasActionParameters.builder()
+                            .withIndices(newIndexName)
+                            .withAliases(LocationDocument.ALIAS)
+                            .build()
+                    )
                 )
-            )
 //            .add(
 //                // Aliasから古いindexを削除する
 //                new AliasAction.Remove(
@@ -124,20 +121,17 @@ public class LocationRepositoryImpl implements LocationRepository {
 //                        .build()
 //                )
 //            )
-    ).block();
+        )
+        .block();
 
     return count;
   }
 
-  private Mono<LocationTable> findDto(LocationCode locationCode) {
+  private Mono<LocationTable> findTable(LocationCode locationCode) {
     return this.locationTableSource.findByCode(locationCode.value())
         .filter(BaseTable::isExists)
         // 404で返却するためのエラーを検討
         .switchIfEmpty(Mono.error(new ResourceNotFoundException("所在地/店舗が存在しません")));
-  }
-
-  private LocationTable attach(LocationEntity entity) {
-    return this.attach(null, entity);
   }
 
   private LocationTable attach(LocationTable dto, LocationEntity entity) {

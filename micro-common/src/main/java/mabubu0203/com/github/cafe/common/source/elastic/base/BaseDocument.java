@@ -7,7 +7,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.domain.Persistable;
-import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
@@ -19,16 +18,14 @@ public abstract class BaseDocument<ID> implements Persistable<ID> {
   private String code;
 
   @CreatedDate
-  @Field(name = "created_date",
-      type = FieldType.Date, format = DateFormat.basic_date)
+  @Field(name = "created_date", type = FieldType.Date)
   private Instant createdDate;
 
   @Field(name = "version", type = FieldType.Integer)
   private Integer version;
 
   @LastModifiedDate
-  @Field(name = "last_modified_date",
-      type = FieldType.Date, format = DateFormat.basic_date)
+  @Field(name = "last_modified_date", type = FieldType.Date)
   private Instant lastModifiedDate;
 
   @Transient
