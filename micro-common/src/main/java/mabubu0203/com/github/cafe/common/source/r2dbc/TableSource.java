@@ -7,7 +7,8 @@ import org.springframework.data.repository.NoRepositoryBean;
 import reactor.core.publisher.Mono;
 
 @NoRepositoryBean
-public interface TableSource<D extends BaseTable, ID> extends R2dbcRepository<D, ID> {
+public interface TableSource<D extends BaseTable, ID>
+    extends R2dbcRepository<D, ID> {
 
   Mono<D> findByCode(String code);
 

@@ -13,8 +13,8 @@ import mabubu0203.com.github.cafe.domain.entity.cast.CastSearchConditions;
 import mabubu0203.com.github.cafe.domain.repository.cast.CastRepository;
 import mabubu0203.com.github.cafe.domain.value.code.CastCatCode;
 import mabubu0203.com.github.cafe.domain.value.code.CastCode;
-import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.CastCatSource;
-import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.CastSource;
+import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.CastCatTableSource;
+import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.CastTableSource;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.CastCatTable;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.CastTable;
 import org.springframework.stereotype.Repository;
@@ -25,8 +25,8 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class CastRepositoryImpl implements CastRepository {
 
-  private final CastSource castSource;
-  private final CastCatSource castCatSource;
+  private final CastTableSource castTableSource;
+  private final CastCatTableSource castCatTableSource;
 
   @Override
   public Flux<CastEntity> search(CastSearchConditions searchConditions) {
@@ -41,7 +41,7 @@ public class CastRepositoryImpl implements CastRepository {
       return locationCodes.size() == 0 || locationCodes.contains(cast.locationCode());
     };
 
-    return this.castSource.findAll()
+    return this.castTableSource.findAll()
         .filter(isExists.and(castCodeInclude).and(locationCodeInclude))
         .map(CastTable::toEntity);
   }
@@ -55,7 +55,7 @@ public class CastRepositoryImpl implements CastRepository {
       return castCatCodes.size() == 0 || castCatCodes.contains(castCat.code());
     };
 
-    return this.castCatSource.findAll()
+    return this.castCatTableSource.findAll()
         .filter(isExists.and(castCatCodeInclude))
         .map(CastCatTable::toEntity);
   }
@@ -77,7 +77,7 @@ public class CastRepositoryImpl implements CastRepository {
     return Mono.just(entity)
         .map(this::attach)
         .map(dto -> dto.createdBy(0))
-        .flatMap(dto -> this.castSource.insert(dto, receptionTime))
+        .flatMap(dto -> this.castTableSource.insert(dto, receptionTime))
         .map(CastTable::code)
         .map(CastCode::new);
   }
@@ -87,7 +87,7 @@ public class CastRepositoryImpl implements CastRepository {
     return Mono.just(entity)
         .map(this::attach)
         .map(dto -> dto.createdBy(0))
-        .flatMap(dto -> this.castCatSource.insert(dto, receptionTime))
+        .flatMap(dto -> this.castCatTableSource.insert(dto, receptionTime))
         .map(CastCatTable::code)
         .map(CastCatCode::new);
   }
@@ -97,7 +97,7 @@ public class CastRepositoryImpl implements CastRepository {
     return this.findDto(entity.castCode())
         .map(dto -> this.attach(dto, entity))
         .map(dto -> dto.updatedBy(0))
-        .flatMap(dto -> this.castSource.update(dto, receptionTime))
+        .flatMap(dto -> this.castTableSource.update(dto, receptionTime))
         .map(CastTable::code)
         .map(CastCode::new);
   }
@@ -107,7 +107,7 @@ public class CastRepositoryImpl implements CastRepository {
     return this.findDto(entity.castCatCode())
         .map(dto -> this.attach(dto, entity))
         .map(dto -> dto.updatedBy(0))
-        .flatMap(dto -> this.castCatSource.update(dto, receptionTime))
+        .flatMap(dto -> this.castCatTableSource.update(dto, receptionTime))
         .map(CastCatTable::code)
         .map(CastCatCode::new);
   }
@@ -116,7 +116,7 @@ public class CastRepositoryImpl implements CastRepository {
   public Mono<CastCode> logicalDelete(CastEntity entity, LocalDateTime receptionTime) {
     return this.findDto(entity.castCode())
         .map(dto -> dto.version(entity.getVersionValue()))
-        .flatMap(dto -> this.castSource.logicalDelete(dto, receptionTime))
+        .flatMap(dto -> this.castTableSource.logicalDelete(dto, receptionTime))
         .map(CastTable::code)
         .map(CastCode::new);
   }
@@ -125,20 +125,20 @@ public class CastRepositoryImpl implements CastRepository {
   public Mono<CastCatCode> logicalDelete(CastCatEntity entity, LocalDateTime receptionTime) {
     return this.findDto(entity.castCatCode())
         .map(dto -> dto.version(entity.getVersionValue()))
-        .flatMap(dto -> this.castCatSource.logicalDelete(dto, receptionTime))
+        .flatMap(dto -> this.castCatTableSource.logicalDelete(dto, receptionTime))
         .map(CastCatTable::code)
         .map(CastCatCode::new);
   }
 
   private Mono<CastTable> findDto(CastCode castCode) {
-    return this.castSource.findByCode(castCode.value())
+    return this.castTableSource.findByCode(castCode.value())
         .filter(BaseTable::isExists)
         // 404で返却するためのエラーを検討
         .switchIfEmpty(Mono.error(new ResourceNotFoundException("キャストが存在しません")));
   }
 
   private Mono<CastCatTable> findDto(CastCatCode castCatCode) {
-    return this.castCatSource.findByCode(castCatCode.value())
+    return this.castCatTableSource.findByCode(castCatCode.value())
         .filter(BaseTable::isExists)
         // 404で返却するためのエラーを検討
         .switchIfEmpty(Mono.error(new ResourceNotFoundException("キャスト(猫)が存在しません")));

@@ -19,13 +19,14 @@ IntelliJ IDEAを使用します。
 
 1. 当プロジェクトをIntelliJ IDEAにGradleProjectとしてclone
 1. ProjectSDK はJDK17を指定
-1. docker-composeよりMysql/Redisを起動
+1. docker-composeより `Elasticsearch/Mysql/Redis` を起動
    `$ docker-compose -f ./docker/mac/docker-compose.yml up -d --build`
 
 ### 起動方法(IDEA)
 
 1. アプリケーションをbootRun
     * GradleタスクよりbootRun(`:micro-api -> Tasks -> application -> bootRun`)
+    * GradleタスクよりbootRun(`:micro-batch -> Tasks -> application -> bootRun`)
 
 ### 起動方法(Docker)
 
@@ -44,6 +45,7 @@ IntelliJ IDEAを使用します。
 
 - [Api][]
 - [GraphiQL][]
+- [Kibana][]
 - [phpMyAdmin][]
 - [Redisinsight][]
 
@@ -61,6 +63,8 @@ IntelliJ IDEAを使用します。
 [Api]: http://localhost:9001/                               "Api"
 
 [GraphiQL]: http://localhost:9001/graphiql?path=/graphql    "GraphiQL"
+
+[Kibana]: http://localhost:5601/app/home                    "Kibana"
 
 [phpMyAdmin]: http://localhost:8021/                        "phpMyAdmin"
 

@@ -12,18 +12,10 @@ spring:
 ---
 spring:
   application:
-    name: micro-api
+    name: micro-batch
   config:
     activate:
       on-profile: common
-  graphql:
-    graphiql:
-      enabled: true
-    schema:
-      printer:
-        enabled: true
-    websocket:
-      path: "/graphql"
   main:
     allow-bean-definition-overriding: true
     web-application-type: reactive
@@ -63,9 +55,9 @@ spring:
 server:
   http2:
     enabled: true
-  port: 9001
+  port: 9002
   servlet:
-    application-display-name: micro-api
+    application-display-name: micro-batch
 logging:
   level:
     root: INFO
@@ -73,7 +65,7 @@ logging:
       clients: TRACE
     web: DEBUG
   file:
-    name: micro-api.log
+    name: micro-batch.log
 ---
 spring:
   config:
@@ -88,7 +80,7 @@ server:
     enabled: true
   port: 9001
   servlet:
-    application-display-name: micro-api
+    application-display-name: micro-batch
 logging:
   level:
     root: INFO
@@ -96,4 +88,4 @@ logging:
       clients: TRACE
     web: INFO
   file:
-    name: micro-api.log
+    name: micro-batch.log

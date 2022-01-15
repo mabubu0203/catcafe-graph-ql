@@ -5,6 +5,6 @@ import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.ProvideService
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProvideServiceSource extends TableSource<ProvideServiceTable, Integer> {
+public interface ProvideServiceTableSource extends TableSource<ProvideServiceTable, Integer> {
 
 }

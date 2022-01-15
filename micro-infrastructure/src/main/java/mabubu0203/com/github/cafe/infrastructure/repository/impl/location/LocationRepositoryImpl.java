@@ -1,5 +1,7 @@
 package mabubu0203.com.github.cafe.infrastructure.repository.impl.location;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -10,8 +12,14 @@ import mabubu0203.com.github.cafe.domain.entity.location.LocationEntity;
 import mabubu0203.com.github.cafe.domain.entity.location.LocationSearchConditions;
 import mabubu0203.com.github.cafe.domain.repository.location.LocationRepository;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
-import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.LocationSource;
+import mabubu0203.com.github.cafe.infrastructure.source.elastic.LocationDocumentSource;
+import mabubu0203.com.github.cafe.infrastructure.source.elastic.dto.LocationDocument;
+import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.LocationTableSource;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.LocationTable;
+import org.springframework.data.elasticsearch.core.ReactiveElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.index.AliasAction;
+import org.springframework.data.elasticsearch.core.index.AliasActionParameters;
+import org.springframework.data.elasticsearch.core.index.AliasActions;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -20,66 +28,110 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class LocationRepositoryImpl implements LocationRepository {
 
-  private final LocationSource source;
+  private final LocationDocumentSource locationDocumentSource;
+  private final LocationTableSource locationTableSource;
+  private final ReactiveElasticsearchOperations elasticsearchOperations;
 
   @Override
   public Flux<LocationEntity> search(LocationSearchConditions searchConditions) {
-    Predicate<LocationTable> isExists = BaseTable::isExists;
-
-    Predicate<LocationTable> locationCodeInclude = location -> {
+    Predicate<LocationDocument> locationCodeInclude = location -> {
       var locationCodes = searchConditions.locationCodes();
       return locationCodes.size() == 0 || locationCodes.contains(location.code());
     };
 
-    return this.source.findAll()
-        .filter(isExists.and(locationCodeInclude))
-        .map(LocationTable::toEntity);
+    return this.locationDocumentSource.findAll()
+        .filter(locationCodeInclude)
+        .map(LocationDocument::toEntity);
   }
 
   @Override
   public Mono<LocationEntity> findByCode(LocationCode locationCode) {
-    return this.findDto(locationCode)
+    return this.findTable(locationCode)
         .map(LocationTable::toEntity);
   }
 
   @Override
   public Mono<LocationCode> register(LocationEntity entity, LocalDateTime receptionTime) {
     return Mono.just(entity)
-        .map(this::attach)
+        .map(dto -> this.attach(null, entity))
         .map(dto -> dto.createdBy(0))
-        .flatMap(dto -> this.source.insert(dto, receptionTime))
+        .flatMap(dto -> this.locationTableSource.insert(dto, receptionTime))
         .map(LocationTable::code)
         .map(LocationCode::new);
   }
 
   @Override
   public Mono<LocationCode> modify(LocationEntity entity, LocalDateTime receptionTime) {
-    return this.findDto(entity.locationCode())
+    return this.findTable(entity.locationCode())
         .map(dto -> this.attach(dto, entity))
         .map(dto -> dto.updatedBy(0))
-        .flatMap(dto -> this.source.update(dto, receptionTime))
+        .flatMap(dto -> this.locationTableSource.update(dto, receptionTime))
         .map(LocationTable::code)
         .map(LocationCode::new);
   }
 
   @Override
   public Mono<LocationCode> logicalDelete(LocationEntity entity, LocalDateTime receptionTime) {
-    return this.findDto(entity.locationCode())
+    return this.findTable(entity.locationCode())
         .map(dto -> dto.version(entity.getVersionValue()))
-        .flatMap(dto -> this.source.logicalDelete(dto, receptionTime))
+        .flatMap(dto -> this.locationTableSource.logicalDelete(dto, receptionTime))
         .map(LocationTable::code)
         .map(LocationCode::new);
   }
 
-  private Mono<LocationTable> findDto(LocationCode locationCode) {
-    return this.source.findByCode(locationCode.value())
+  @Override
+  public Long replacement(Instant receptionTime) {
+    var today = LocalDate.now();
+    var newIndexName = LocationDocument.INDEX_NAME
+        .replace("{yyyy-MM-dd}", today.toString());
+    var oldIndexName = LocationDocument.INDEX_NAME
+        .replace("{yyyy-MM-dd}", today.minusDays(1L).toString());
+
+    // index作成
+    var indexOperations = this.elasticsearchOperations.indexOps(LocationDocument.class);
+
+    indexOperations.create().block();
+
+    // 直す
+    var count = this.locationTableSource.findAll()
+        .filter(BaseTable::isExists)
+        .map(LocationTable::toEntity)
+        .map(new LocationDocument()::attach)
+        .flatMap(dto -> this.locationDocumentSource.insert(dto, receptionTime))
+        .count()
+        .block();
+
+    indexOperations.alias(
+            new AliasActions()
+                .add(
+                    // Aliasに新しいindexを追加する
+                    new AliasAction.Add(
+                        AliasActionParameters.builder()
+                            .withIndices(newIndexName)
+                            .withAliases(LocationDocument.ALIAS)
+                            .build()
+                    )
+                )
+//            .add(
+//                // Aliasから古いindexを削除する
+//                new AliasAction.Remove(
+//                    AliasActionParameters.builder()
+//                        .withIndices(oldIndexName)
+//                        .withAliases(LocationDocument.ALIAS)
+//                        .build()
+//                )
+//            )
+        )
+        .block();
+
+    return count;
+  }
+
+  private Mono<LocationTable> findTable(LocationCode locationCode) {
+    return this.locationTableSource.findByCode(locationCode.value())
         .filter(BaseTable::isExists)
         // 404で返却するためのエラーを検討
         .switchIfEmpty(Mono.error(new ResourceNotFoundException("所在地/店舗が存在しません")));
-  }
-
-  private LocationTable attach(LocationEntity entity) {
-    return this.attach(null, entity);
   }
 
   private LocationTable attach(LocationTable dto, LocationEntity entity) {

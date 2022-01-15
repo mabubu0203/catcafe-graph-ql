@@ -1,13 +1,12 @@
-package mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto;
+package mabubu0203.com.github.cafe.infrastructure.source.elastic.dto;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.Instant;
 import java.util.Objects;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import mabubu0203.com.github.cafe.common.source.r2dbc.base.BaseTable;
+import mabubu0203.com.github.cafe.common.source.elastic.base.BaseDocument;
 import mabubu0203.com.github.cafe.domain.entity.location.LocationEntity;
 import mabubu0203.com.github.cafe.domain.value.MailAddress;
 import mabubu0203.com.github.cafe.domain.value.Memo;
@@ -19,73 +18,78 @@ import mabubu0203.com.github.cafe.domain.value.Version;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Accessors(fluent = true)
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
-@Table(value = "location")
-public class LocationTable extends BaseTable<Integer> {
+@TypeAlias("location")
+@Document(indexName = "location-#{T(java.time.LocalDate).now().toString()}", createIndex = false)
+public class LocationDocument extends BaseDocument<String> {
+
+  public static final String ALIAS = "location";
+  public static final String INDEX_NAME = "location-{yyyy-MM-dd}";
 
   @Id
-  @Column(value = "id")
-  private Integer id;
+  private String id;
 
-  @Column(value = "name")
+  @Field(name = "name", type = FieldType.Text)
   private String name;
 
-  @Column(value = "phone_number")
+  @Field(name = "phone_number", type = FieldType.Text)
   private String phoneNumber;
 
-  @Column(value = "mail_address")
+  @Field(name = "mail_address", type = FieldType.Text)
   private String mailAddress;
 
-  @Column(value = "postal_code")
+  @Field(name = "postal_code", type = FieldType.Text)
   private String postalCode;
 
-  @Column(value = "prefecture_code")
+  @Field(name = "prefecture_code", type = FieldType.Integer)
   private Integer prefectureCode;
 
-  @Column(value = "address_1")
+  @Field(name = "address_1", type = FieldType.Text)
   private String address1;
 
-  @Column(value = "address_2")
+  @Field(name = "address_2", type = FieldType.Text)
   private String address2;
 
-  @Column(value = "address_3")
+  @Field(name = "address_3", type = FieldType.Text)
   private String address3;
 
-  @Column(value = "street_address")
+  @Field(name = "street_address", type = FieldType.Text)
   private String streetAddress;
 
-  @Column(value = "building_name")
+  @Field(name = "building_name", type = FieldType.Text)
   private String buildingName;
 
-  @Column(value = "address_supplement")
+  @Field(name = "address_supplement", type = FieldType.Text)
   private String addressSupplement;
 
-  @Column(value = "open_date")
-  private LocalDate openDate;
+  @Field(name = "open_date", type = FieldType.Date)
+  private Instant openDate;
 
-  @Column(value = "close_date")
-  private LocalDate closeDate;
+  @Field(name = "close_date", type = FieldType.Date)
+  private Instant closeDate;
 
-  @Column(value = "opening_time")
-  private LocalTime openingTime;
+  @Field(name = "opening_time", type = FieldType.Date)
+  private Instant openingTime;
 
-  @Column(value = "closing_time")
-  private LocalTime closingTime;
+  @Field(name = "closing_time", type = FieldType.Date)
+  private Instant closingTime;
 
-  @Column(value = "hours_supplement")
+  @Field(name = "hours_supplement", type = FieldType.Text)
   private String hoursSupplement;
 
-  @Column(value = "memo")
+  @Field(name = "memo", type = FieldType.Text)
   private String memo;
 
   @Override
-  public Integer getId() {
+  public String getId() {
     return this.id;
   }
 
@@ -97,33 +101,19 @@ public class LocationTable extends BaseTable<Integer> {
 
   @Override
   @Transient
-  public LocationTable code(String code) {
+  public LocationDocument code(String code) {
     super.code(code);
     return this;
   }
 
   @Override
   @Transient
-  public LocationTable createdBy(Integer createdBy) {
-    super.createdBy(createdBy);
-    return this;
-  }
-
-  @Override
-  @Transient
-  public LocationTable version(Integer version) {
+  public LocationDocument version(Integer version) {
     super.version(version);
     return this;
   }
 
-  @Override
-  @Transient
-  public LocationTable updatedBy(Integer updatedBy) {
-    super.updatedBy(updatedBy);
-    return this;
-  }
-
-  public LocationTable attach(LocationEntity entity) {
+  public LocationDocument attach(LocationEntity entity) {
     return code(entity.getLocationCodeValue())
         .name(entity.name())
         .phoneNumber(entity.getPhoneNumberValue())
@@ -136,10 +126,10 @@ public class LocationTable extends BaseTable<Integer> {
         .streetAddress(entity.streetAddress())
         .buildingName(entity.buildingName())
         .addressSupplement(entity.getAddressSupplementValue())
-        .openDate(entity.openDate())
-        .closeDate(entity.closeDate())
-        .openingTime(entity.openingTime())
-        .closingTime(entity.closingTime())
+//        .openDate(entity.openDate())
+//        .closeDate(entity.closeDate())
+//        .openingTime(entity.openingTime())
+//        .closingTime(entity.closingTime())
         .hoursSupplement(entity.getHoursSupplementValue())
         .memo(entity.getMemoValue())
         .version(entity.getVersionValue());
@@ -168,10 +158,10 @@ public class LocationTable extends BaseTable<Integer> {
         .streetAddress(this.streetAddress)
         .buildingName(this.buildingName)
         .addressSupplement(addressSupplement)
-        .openDate(this.openDate)
-        .closeDate(this.closeDate)
-        .openingTime(this.openingTime)
-        .closingTime(this.closingTime)
+//        .openDate(this.openDate)
+//        .closeDate(this.closeDate)
+//        .openingTime(this.openingTime)
+//        .closingTime(this.closingTime)
         .hoursSupplement(hoursSupplement)
         .memo(locationMemo)
         .version(version)

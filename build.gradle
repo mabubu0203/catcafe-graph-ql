@@ -65,6 +65,13 @@ project(":micro-api") {
     }
 }
 
+project(":micro-batch") {
+    dependencies {
+        implementation(project(":micro-common"))
+        implementation(project(":micro-infrastructure"))
+    }
+}
+
 project(":micro-common") {
 }
 
