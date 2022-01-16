@@ -1,8 +1,8 @@
 package mabubu0203.com.github.cafe.infrastructure.source.r2dbc.callback;
 
 import lombok.RequiredArgsConstructor;
+import mabubu0203.com.github.cafe.domain.check.message.streams.publisher.LocationEventPublisher;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
-import mabubu0203.com.github.cafe.infrastructure.message.stream.publisher.LocationEventPublisher;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.LocationTable;
 import org.reactivestreams.Publisher;
 import org.springframework.data.r2dbc.mapping.OutboundRow;

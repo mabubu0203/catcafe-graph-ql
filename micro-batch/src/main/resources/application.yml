@@ -66,6 +66,12 @@ logging:
     web: DEBUG
   file:
     name: micro-batch.log
+message:
+  streams:
+    location:
+      group-name: location-group
+      stream-key: location-events
+
 ---
 spring:
   config:

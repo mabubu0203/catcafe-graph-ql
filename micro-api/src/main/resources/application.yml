@@ -75,10 +75,11 @@ logging:
     web: DEBUG
   file:
     name: micro-api.log
-stream:
-  key: purchase-events
-publish:
-  rate: 1000
+message:
+  streams:
+    location:
+      group-name: location-group
+      stream-key: location-events
 ---
 spring:
   config:
