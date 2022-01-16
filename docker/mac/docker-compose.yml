@@ -79,6 +79,17 @@ services:
     networks:
       - app-net
 
+  rediscommander:
+    build: ./docker-rediscommander
+    container_name: docker-rediscommander
+    ports:
+      - "8081:8081"
+    hostname: redis-commander
+    networks:
+      - app-net
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+
   redisinsight:
     build: ./docker-redisinsight
     container_name: docker-redisinsight

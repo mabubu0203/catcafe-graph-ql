@@ -58,8 +58,9 @@ spring:
     password: root
   redis:
     database: 2
-    host: localhost
+    host: 127.0.0.1
     port: 6379
+
 server:
   http2:
     enabled: true
@@ -74,6 +75,10 @@ logging:
     web: DEBUG
   file:
     name: micro-api.log
+stream:
+  key: purchase-events
+publish:
+  rate: 1000
 ---
 spring:
   config:

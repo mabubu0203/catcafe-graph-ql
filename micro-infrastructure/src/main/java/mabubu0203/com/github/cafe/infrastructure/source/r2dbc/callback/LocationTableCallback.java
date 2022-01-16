@@ -1,6 +1,8 @@
 package mabubu0203.com.github.cafe.infrastructure.source.r2dbc.callback;
 
-import lombok.extern.java.Log;
+import lombok.RequiredArgsConstructor;
+import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
+import mabubu0203.com.github.cafe.infrastructure.message.stream.publisher.LocationEventPublisher;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.LocationTable;
 import org.reactivestreams.Publisher;
 import org.springframework.data.r2dbc.mapping.OutboundRow;
@@ -9,9 +11,11 @@ import org.springframework.data.relational.core.sql.SqlIdentifier;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-@Log
+@RequiredArgsConstructor
 @Component
 public class LocationTableCallback implements AfterSaveCallback<LocationTable> {
+
+  private final LocationEventPublisher eventPublisher;
 
   @Override
   public Publisher<LocationTable> onAfterSave(
@@ -19,7 +23,8 @@ public class LocationTableCallback implements AfterSaveCallback<LocationTable> {
       OutboundRow outboundRow,
       SqlIdentifier table
   ) {
-    log.info("onAfterSave");
+    var locationCode = new LocationCode(dto.code());
+    this.eventPublisher.publishEvent(locationCode);
     return Mono.just(dto);
   }
 
