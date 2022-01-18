@@ -57,11 +57,19 @@ public interface LocationRepository {
    * キャッシュを洗い替える
    *
    * @param receptionTime
+   * @return
+   */
+  Mono<Void> replacement(LocationCode locationCode , Instant receptionTime);
+
+  /**
+   * キャッシュを洗い替える
+   *
+   * @param receptionTime
    * @return 洗い替え件数
    */
   // A(01/10),B(01/11),C(01/12) とあった時、01/12 の00:00に全て洗い替える
   // RBの値をすべて検索して-0112のサフィックスでインデックスを生成する
   // -0112のインデックスにエイリアスを張り替える(B->C)へ
-  Long replacement(Instant receptionTime);
+  Long allReplacement(Instant receptionTime);
 
 }

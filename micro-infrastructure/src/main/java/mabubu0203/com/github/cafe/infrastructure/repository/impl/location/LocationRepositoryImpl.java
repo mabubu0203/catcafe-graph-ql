@@ -80,7 +80,16 @@ public class LocationRepositoryImpl implements LocationRepository {
   }
 
   @Override
-  public Long replacement(Instant receptionTime) {
+  public Mono<Void> replacement(LocationCode locationCode, Instant receptionTime) {
+    return this.findTable(locationCode)
+        .map(LocationTable::toEntity)
+        .map(new LocationDocument()::attach)
+        .flatMap(dto -> this.locationDocumentSource.insert(dto, receptionTime))
+        .then();
+  }
+
+  @Override
+  public Long allReplacement(Instant receptionTime) {
     var today = LocalDate.now();
     var newIndexName = LocationDocument.INDEX_NAME
         .replace("{yyyy-MM-dd}", today.toString());
