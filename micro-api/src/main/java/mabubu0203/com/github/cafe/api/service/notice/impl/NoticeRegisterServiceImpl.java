@@ -32,6 +32,11 @@ public class NoticeRegisterServiceImpl implements NoticeRegisterService {
         .map(new NoticeServiceOutputConverter());
   }
 
+  @Override
+  public Mono<NoticeServiceOutput> onAfterSave(NoticeServiceOutput output) {
+    return null;
+  }
+
   private Mono<NoticeEntity> beforeRegistration(NoticeEntity entity) {
     var locationCode = entity.locationCode();
     if (locationCode.isEmpty()) {

@@ -14,7 +14,7 @@ public class ReplacementServiceImpl implements ReplacementService {
 
   @Override
   public Long replacement() {
-    return this.locationRepository.replacement(Instant.now());
+    return this.locationRepository.allReplacement(Instant.now());
   }
 
 }

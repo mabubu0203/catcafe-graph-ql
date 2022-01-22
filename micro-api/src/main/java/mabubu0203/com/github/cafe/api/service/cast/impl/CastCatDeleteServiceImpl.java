@@ -27,4 +27,9 @@ public class CastCatDeleteServiceImpl implements CastCatDeleteService {
         .map(new CastCatDeleteServiceOutputConverter());
   }
 
+  @Override
+  public Mono<CastCatDeleteServiceOutput> onAfterSave(CastCatDeleteServiceOutput output) {
+    return null;
+  }
+
 }

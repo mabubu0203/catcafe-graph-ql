@@ -32,6 +32,11 @@ public class CastModifyServiceImpl implements CastModifyService {
         .map(new CastServiceOutputConverter());
   }
 
+  @Override
+  public Mono<CastServiceOutput> onAfterSave(CastServiceOutput output) {
+    return null;
+  }
+
   private Mono<CastEntity> beforeRegistration(CastEntity entity) {
     var locationCode = entity.locationCode();
     var castCatCode = entity.castCatCode();

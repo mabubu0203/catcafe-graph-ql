@@ -68,6 +68,8 @@ IntelliJ IDEAを使用します。
 
 [phpMyAdmin]: http://localhost:8021/                        "phpMyAdmin"
 
+[RedisCommand]: http://localhost:8081/                      "RedisCommand"
+
 [Redisinsight]: http://localhost:8001/                      "Redisinsight"
 
 ## リクエストサンプル

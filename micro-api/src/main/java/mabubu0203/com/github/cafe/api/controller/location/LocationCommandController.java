@@ -30,6 +30,7 @@ public class LocationCommandController {
     return Mono.just(input)
         .map(new LocationCreateRequestMapper())
         .flatMap(this.locationRegisterService::action)
+        .flatMap(this.locationRegisterService::onAfterSave)
         .map(new LocationResponseMapper());
   }
 

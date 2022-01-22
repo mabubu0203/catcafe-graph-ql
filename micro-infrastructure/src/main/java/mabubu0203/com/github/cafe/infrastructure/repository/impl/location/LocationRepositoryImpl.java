@@ -6,8 +6,10 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import mabubu0203.com.github.cafe.common.exception.ResourceNotFoundException;
 import mabubu0203.com.github.cafe.common.source.r2dbc.base.BaseTable;
+import mabubu0203.com.github.cafe.domain.check.message.streams.publisher.LocationEventPublisher;
 import mabubu0203.com.github.cafe.domain.entity.location.LocationEntity;
 import mabubu0203.com.github.cafe.domain.entity.location.LocationSearchConditions;
 import mabubu0203.com.github.cafe.domain.repository.location.LocationRepository;
@@ -24,11 +26,13 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Log
 @Repository
 @RequiredArgsConstructor
 public class LocationRepositoryImpl implements LocationRepository {
 
   private final LocationDocumentSource locationDocumentSource;
+  private final LocationEventPublisher locationEventPublisher;
   private final LocationTableSource locationTableSource;
   private final ReactiveElasticsearchOperations elasticsearchOperations;
 
@@ -80,7 +84,45 @@ public class LocationRepositoryImpl implements LocationRepository {
   }
 
   @Override
-  public Long replacement(Instant receptionTime) {
+  public Mono<String> publishEvent(LocationCode locationCode) {
+    return this.locationEventPublisher.publish(locationCode);
+  }
+
+  @Override
+  public Mono<Void> replacement(LocationCode locationCode, Instant receptionTime) {
+    log.info(locationCode.value());
+
+    var code = locationCode.value();
+
+    return this.locationDocumentSource.findByCode(code)
+        .flatMap(document ->
+            // 更新
+            this.findTable(locationCode)
+                .flatMap(table ->
+                    // 更新
+                    Mono.just(table)
+                        .map(LocationTable::toEntity)
+                        .map(document::attach)
+                        .flatMap(dto -> this.locationDocumentSource.update(dto, receptionTime))
+                )
+                .switchIfEmpty(
+                    // 削除
+                    this.locationDocumentSource.deleteByCode(code)
+                        .thenReturn(null)
+                )
+        )
+        .switchIfEmpty(
+            // 登録
+            this.findTable(locationCode)
+                .map(LocationTable::toEntity)
+                .map(new LocationDocument()::attach)
+                .flatMap(dto -> this.locationDocumentSource.insert(dto, receptionTime))
+        )
+        .then();
+  }
+
+  @Override
+  public Long allReplacement(Instant receptionTime) {
     var today = LocalDate.now();
     var newIndexName = LocationDocument.INDEX_NAME
         .replace("{yyyy-MM-dd}", today.toString());

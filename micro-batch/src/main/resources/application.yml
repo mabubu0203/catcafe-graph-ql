@@ -66,15 +66,17 @@ logging:
     web: DEBUG
   file:
     name: micro-batch.log
+message:
+  streams:
+    location:
+      group-name: location-group
+      stream-key: location-event
+
 ---
 spring:
   config:
     activate:
       on-profile: docker
-  redis:
-    database: 3
-    host: redis
-    port: 6379
 server:
   http2:
     enabled: true
