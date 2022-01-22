@@ -9,6 +9,8 @@ public interface WriteApplicationService<I extends ServiceInput, O extends Servi
 
   Mono<O> action(I input);
 
+  Mono<O> onAfterSave(O output);
+
   default LocalDateTime getReceptionTime() {
     return LocalDateTime.now();
   }

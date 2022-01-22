@@ -9,6 +9,7 @@ import org.springframework.data.redis.connection.stream.RecordId;
 import org.springframework.data.redis.connection.stream.StreamRecords;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
@@ -20,15 +21,16 @@ public class LocationEventPublisherImpl implements LocationEventPublisher {
   private String streamKey;
 
   @Override
-  public void publishEvent(LocationCode locationCode) {
+  public Mono<String> publish(LocationCode locationCode) {
     ObjectRecord<String, LocationCode> record = StreamRecords.newRecord()
         .in(this.streamKey)
         .ofObject(locationCode)
         .withId(RecordId.autoGenerate());
-    this.redisTemplate
+    return this.redisTemplate
         .opsForStream()
         .add(record)
-        .subscribe();
+        .map(RecordId::getValue);
+//        .subscribe();
   }
 
 }

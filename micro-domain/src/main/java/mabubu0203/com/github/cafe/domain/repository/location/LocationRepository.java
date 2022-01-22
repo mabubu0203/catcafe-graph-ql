@@ -54,6 +54,14 @@ public interface LocationRepository {
   Mono<LocationCode> logicalDelete(LocationEntity location, LocalDateTime receptionTime);
 
   /**
+   * 所在地/店舗を1件操作したイベントを伝播する
+   *
+   * @param locationCode
+   * @return
+   */
+  Mono<String> publishEvent(LocationCode locationCode);
+
+  /**
    * キャッシュを洗い替える
    *
    * @param receptionTime

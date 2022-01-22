@@ -6,8 +6,10 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import mabubu0203.com.github.cafe.common.exception.ResourceNotFoundException;
 import mabubu0203.com.github.cafe.common.source.r2dbc.base.BaseTable;
+import mabubu0203.com.github.cafe.domain.check.message.streams.publisher.LocationEventPublisher;
 import mabubu0203.com.github.cafe.domain.entity.location.LocationEntity;
 import mabubu0203.com.github.cafe.domain.entity.location.LocationSearchConditions;
 import mabubu0203.com.github.cafe.domain.repository.location.LocationRepository;
@@ -24,11 +26,13 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Log
 @Repository
 @RequiredArgsConstructor
 public class LocationRepositoryImpl implements LocationRepository {
 
   private final LocationDocumentSource locationDocumentSource;
+  private final LocationEventPublisher locationEventPublisher;
   private final LocationTableSource locationTableSource;
   private final ReactiveElasticsearchOperations elasticsearchOperations;
 
@@ -80,7 +84,13 @@ public class LocationRepositoryImpl implements LocationRepository {
   }
 
   @Override
+  public Mono<String> publishEvent(LocationCode locationCode) {
+    return this.locationEventPublisher.publish(locationCode);
+  }
+
+  @Override
   public Mono<Void> replacement(LocationCode locationCode, Instant receptionTime) {
+    log.info(locationCode.value());
     return this.findTable(locationCode)
         .map(LocationTable::toEntity)
         .map(new LocationDocument()::attach)

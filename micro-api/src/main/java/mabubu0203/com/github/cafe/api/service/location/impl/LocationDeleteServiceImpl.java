@@ -27,4 +27,9 @@ public class LocationDeleteServiceImpl implements LocationDeleteService {
         .map(new LocationDeleteServiceOutputConverter());
   }
 
+  @Override
+  public Mono<LocationDeleteServiceOutput> onAfterSave(LocationDeleteServiceOutput output) {
+    return null;
+  }
+
 }

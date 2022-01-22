@@ -7,6 +7,7 @@ import mabubu0203.com.github.cafe.api.service.location.impl.converter.output.Loc
 import mabubu0203.com.github.cafe.api.service.location.model.input.LocationRegisterServiceInput;
 import mabubu0203.com.github.cafe.api.service.location.model.output.LocationServiceOutput;
 import mabubu0203.com.github.cafe.domain.repository.location.LocationRepository;
+import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
@@ -26,6 +27,15 @@ public class LocationRegisterServiceImpl implements LocationRegisterService {
         .flatMap(entity -> this.locationRepository.register(entity, receptionTime))
         .flatMap(this.locationRepository::findByCode)
         .map(new LocationServiceOutputConverter());
+  }
+
+  @Override
+  public Mono<LocationServiceOutput> onAfterSave(LocationServiceOutput output) {
+    return Mono.just(output)
+        .map(LocationServiceOutput::locationCode)
+        .map(LocationCode::new)
+        .flatMap(this.locationRepository::publishEvent)
+        .thenReturn(output);
   }
 
 }

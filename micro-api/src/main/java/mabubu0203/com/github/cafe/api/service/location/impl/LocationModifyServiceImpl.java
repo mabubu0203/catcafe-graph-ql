@@ -21,4 +21,9 @@ public class LocationModifyServiceImpl implements LocationModifyService {
     return null;
   }
 
+  @Override
+  public Mono<LocationServiceOutput> onAfterSave(LocationServiceOutput output) {
+    return null;
+  }
+
 }
