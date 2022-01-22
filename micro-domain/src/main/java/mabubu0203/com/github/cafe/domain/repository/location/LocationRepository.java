@@ -62,8 +62,9 @@ public interface LocationRepository {
   Mono<String> publishEvent(LocationCode locationCode);
 
   /**
-   * キャッシュを洗い替える
+   * キャッシュを1件洗い替える
    *
+   * @param locationCode
    * @param receptionTime
    * @return
    */
@@ -76,7 +77,7 @@ public interface LocationRepository {
    * @return 洗い替え件数
    */
   // A(01/10),B(01/11),C(01/12) とあった時、01/12 の00:00に全て洗い替える
-  // RBの値をすべて検索して-0112のサフィックスでインデックスを生成する
+  // RDBの値をすべて検索して-0112のサフィックスでインデックスを生成する
   // -0112のインデックスにエイリアスを張り替える(B->C)へ
   Long allReplacement(Instant receptionTime);
 

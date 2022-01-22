@@ -17,8 +17,10 @@ public class LocationEventConsumer
 
   @Override
   public void onMessage(ObjectRecord<String, LocationCode> record) {
+    var locationCode = record.getValue();
     var now = Instant.now();
-    this.locationRepository.replacement(record.getValue(), now).subscribe();
+    this.locationRepository.replacement(locationCode, now)
+        .subscribe();
   }
 
 }

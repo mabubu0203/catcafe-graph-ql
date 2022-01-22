@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.domain.check.message.streams.publisher.LocationEventPublisher;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.connection.stream.RecordId;
 import org.springframework.data.redis.connection.stream.StreamRecords;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
@@ -22,7 +21,7 @@ public class LocationEventPublisherImpl implements LocationEventPublisher {
 
   @Override
   public Mono<String> publish(LocationCode locationCode) {
-    ObjectRecord<String, LocationCode> record = StreamRecords.newRecord()
+    var record = StreamRecords.newRecord()
         .in(this.streamKey)
         .ofObject(locationCode)
         .withId(RecordId.autoGenerate());
@@ -30,7 +29,6 @@ public class LocationEventPublisherImpl implements LocationEventPublisher {
         .opsForStream()
         .add(record)
         .map(RecordId::getValue);
-//        .subscribe();
   }
 
 }
