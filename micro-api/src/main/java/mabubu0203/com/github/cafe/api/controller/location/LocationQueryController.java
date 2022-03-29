@@ -24,24 +24,26 @@ public class LocationQueryController {
 
   @SchemaMapping(field = "location", typeName = "Notice")
   public Mono<Location> location(Notice notice) {
-    return Flux.just(notice)
+    return Mono.just(notice)
         .map(Notice::getLocation)
         .cast(Location.class)
         .map(Location::getCode)
-        .map(code -> new LocationFindRequestMapper(code).get())
-        .flatMap(this.locationSearchService::action)
+        .mapNotNull(LocationFindRequestMapper::new)
+        .mapNotNull(LocationFindRequestMapper::get)
+        .flatMapMany(this.locationSearchService::action)
         .last()
         .map(new LocationResponseMapper());
   }
 
   @SchemaMapping(field = "location", typeName = "Cast")
   public Mono<Location> location(Cast cast) {
-    return Flux.just(cast)
+    return Mono.just(cast)
         .map(Cast::getLocation)
         .cast(Location.class)
         .map(Location::getCode)
-        .map(code -> new LocationFindRequestMapper(code).get())
-        .flatMap(this.locationSearchService::action)
+        .mapNotNull(LocationFindRequestMapper::new)
+        .mapNotNull(LocationFindRequestMapper::get)
+        .flatMapMany(this.locationSearchService::action)
         .last()
         .map(new LocationResponseMapper());
   }
@@ -50,8 +52,10 @@ public class LocationQueryController {
   public Flux<Location> locationSearch(
       @Argument("codes") List<String> codes
   ) {
-    return Flux.just(new LocationSearchRequestMapper(codes).get())
-        .flatMap(this.locationSearchService::action)
+    return Mono.just(codes)
+        .map(LocationSearchRequestMapper::new)
+        .map(LocationSearchRequestMapper::get)
+        .flatMapMany(this.locationSearchService::action)
         .map(new LocationResponseMapper());
   }
 
