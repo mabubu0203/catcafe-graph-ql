@@ -23,12 +23,13 @@ public class CastCatQueryController {
 
   @SchemaMapping(field = "castCat", typeName = "Cast")
   public Mono<CastCat> castCat(Cast cast) {
-    return Flux.just(cast)
+    return Mono.just(cast)
         .map(Cast::getCastCat)
         .cast(CastCat.class)
         .map(CastCat::getCode)
-        .map(code -> new CastCatFindRequestMapper(code).get())
-        .flatMap(this.castCatSearchService::action)
+        .mapNotNull(CastCatFindRequestMapper::new)
+        .mapNotNull(CastCatFindRequestMapper::get)
+        .flatMapMany(this.castCatSearchService::action)
         .last()
         .map(new CastCatResponseMapper());
   }
@@ -37,8 +38,10 @@ public class CastCatQueryController {
   public Flux<CastCat> castCatSearch(
       @Argument("codes") List<String> codes
   ) {
-    return Flux.just(new CastCatSearchRequestMapper(codes).get())
-        .flatMap(this.castCatSearchService::action)
+    return Mono.just(codes)
+        .map(CastCatSearchRequestMapper::new)
+        .mapNotNull(CastCatSearchRequestMapper::get)
+        .flatMapMany(this.castCatSearchService::action)
         .map(new CastCatResponseMapper());
   }
 
