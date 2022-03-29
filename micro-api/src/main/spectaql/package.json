@@ -5,8 +5,8 @@
   "repository": {},
   "license": "",
   "dependencies": {
-    "spectaql": "^0.11.0",
-    "webpack": "5.65.0"
+    "spectaql": "^0.15.0",
+    "webpack": "5.70.0"
   },
   "scripts": {
     "spectaql-run": "spectaql config.yml -t ../../../../docs"
