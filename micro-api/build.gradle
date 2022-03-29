@@ -57,8 +57,8 @@ bootJar {
 }
 
 node {
-    version = "17.3.0"
-    npmVersion = "8.3.0"
+    version = "17.8.0"
+    npmVersion = "8.5.5"
     download = true
     workDir = file("${project.projectDir}/.gradle/nodejs")
     npmWorkDir = file("${project.projectDir}/.gradle/npm")

@@ -39,7 +39,7 @@ IntelliJ IDEAを使用します。
 
 1. GradleタスクよりspectaqlRun(`:micro-api -> Tasks -> other -> spectaqlRun`)
    `$ ./gradlew :micro-api:spectaqlRun`
-   `open ./doc/index.html`
+   `open ./docs/index.html`
 
 ### Endpoints
 
