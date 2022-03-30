@@ -81,10 +81,80 @@ mutation {
       memo
       version
     }
+    summary,
+    detail,
     publicationStartDateTime
     publicationEndDateTime
     version
   }
+}
+```
+
+</details>
+
+## noticeUpdate
+
+<details>
+<summary>詳細を開く</summary>
+
+```graphql
+mutation {
+    noticeUpdate(
+        code: ""
+        input: {locationCode: "", summary: "", detail: "", publicationStartDateTime: null, publicationEndDateTime: null}
+        version: 0
+    ) {
+        code
+        location {
+            code
+            name
+            contact {
+                phoneNumber
+                mailAddress
+            }
+            address {
+                postalCode
+                prefectureCode
+                prefectureLabel
+                address1
+                address2
+                address3
+                streetAddress
+                buildingName
+                supplement
+            }
+            openDate
+            closeDate
+            hours {
+                openingTime
+                closingTime
+                supplement
+            }
+            memo
+            version
+        }
+        summary
+        detail
+        publicationStartDateTime
+        publicationEndDateTime
+        version
+    }
+}
+```
+
+</details>
+
+## noticeDelete
+
+<details>
+<summary>詳細を開く</summary>
+
+```graphql
+mutation {
+    noticeDelete(
+        code: ""
+        version: 0
+    ) 
 }
 ```
 

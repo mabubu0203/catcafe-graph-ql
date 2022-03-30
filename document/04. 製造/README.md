@@ -20,7 +20,7 @@ IntelliJ IDEAを使用します。
 1. 当プロジェクトをIntelliJ IDEAにGradleProjectとしてclone
 1. ProjectSDK はJDK17を指定
 1. docker-composeより `Elasticsearch/Mysql/Redis` を起動
-   `$ docker-compose -f ./docker/mac/docker-compose.yml up -d --build`
+    * `$ docker-compose -f ./docker/mac/docker-compose.yml up -d --build`
 
 ### 起動方法(IDEA)
 
@@ -28,49 +28,31 @@ IntelliJ IDEAを使用します。
     * GradleタスクよりbootRun(`:micro-api -> Tasks -> application -> bootRun`)
     * GradleタスクよりbootRun(`:micro-batch -> Tasks -> application -> bootRun`)
 
-### 起動方法(Docker)
-
-1. GradleタスクよりjibDockerBuild(`:micro-api -> Tasks -> jib -> jibDockerBuild`)
-   `$ ./gradlew :micro-api:jibDockerBuild`
-1. Dockerより起動
-   `$ docker run --name micro-api --network mac_app-net --rm -p 9001:9001 -it micro-api:523ceba.dirty`
-
 ### SpectaQL生成
 
 1. GradleタスクよりspectaqlRun(`:micro-api -> Tasks -> other -> spectaqlRun`)
-   `$ ./gradlew :micro-api:spectaqlRun`
-   `open ./docs/index.html`
+    * `$ ./gradlew :micro-api:spectaqlRun`
+    * `open ./docs/index.html`
 
 ### Endpoints
 
-- [Api][]
-- [GraphiQL][]
-- [Kibana][]
-- [phpMyAdmin][]
-- [Redisinsight][]
+- [Api](http://localhost:9001/)
+- [GraphiQL](http://localhost:9001/graphiql?path=/graphql)
+- [Kibana](http://localhost:5601/app/home)
+- [phpMyAdmin](http://localhost:8021/)
+- [Redisinsight](http://localhost:8001/)
+- [RedisCommand](http://localhost:8081/)
 
 ## 停止方法
 
 1. アプリケーションの停止
     * bootRunの停止
     * Dockerより停止
-      `$ docker stop micro-api`
+      * `$ docker stop micro-api`
 1. docker-composeより停止
-   `$ docker-compose -f ./docker/mac/docker-compose.yml stop`
+    * `$ docker-compose -f ./docker/mac/docker-compose.yml stop`
 1. docker-composeよりコンテナ破棄
-   `$ docker-compose -f ./docker/mac/docker-compose.yml down -v`
-
-[Api]: http://localhost:9001/                               "Api"
-
-[GraphiQL]: http://localhost:9001/graphiql?path=/graphql    "GraphiQL"
-
-[Kibana]: http://localhost:5601/app/home                    "Kibana"
-
-[phpMyAdmin]: http://localhost:8021/                        "phpMyAdmin"
-
-[RedisCommand]: http://localhost:8081/                      "RedisCommand"
-
-[Redisinsight]: http://localhost:8001/                      "Redisinsight"
+    * `$ docker-compose -f ./docker/mac/docker-compose.yml down -v`
 
 ## リクエストサンプル
 

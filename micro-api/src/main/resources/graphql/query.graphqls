@@ -1,0 +1,26 @@
+type Query {
+  "[所在地/店舗]-[取得]"
+  locationSearch(
+    "LocationCode"
+    codes: [ID]!
+  ): [Location]!
+  "[お知らせ]-[取得]"
+  noticeSearch(
+    "NoticeCode"
+    codes: [ID]!
+    "LocationCode"
+    locationCodes: [ID]!
+  ): [Notice]!
+  "[キャスト]-[取得]"
+  castSearch(
+    "CastCode"
+    codes: [ID]!
+    "LocationCode"
+    locationCodes: [ID]!
+  ): [Cast]!
+  "[キャスト(猫)]-[取得]"
+  castCatSearch(
+    "CastCatCode"
+    codes: [ID]!
+  ): [CastCat]!
+}
