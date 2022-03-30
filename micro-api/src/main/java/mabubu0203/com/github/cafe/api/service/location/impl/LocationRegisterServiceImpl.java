@@ -8,6 +8,7 @@ import mabubu0203.com.github.cafe.api.service.location.model.input.LocationRegis
 import mabubu0203.com.github.cafe.api.service.location.model.output.LocationServiceOutput;
 import mabubu0203.com.github.cafe.domain.repository.location.LocationRepository;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
@@ -19,6 +20,7 @@ public class LocationRegisterServiceImpl implements LocationRegisterService {
   private final LocationRepository locationRepository;
 
   @Override
+//  @PreAuthorize("hasAuthority('USER')")
   @Transactional
   public Mono<LocationServiceOutput> action(LocationRegisterServiceInput input) {
     var receptionTime = this.getReceptionTime();
