@@ -27,11 +27,6 @@ spring:
   main:
     allow-bean-definition-overriding: true
     web-application-type: reactive
-  security:
-    user:
-      name: "user"
-      password: "password"
-      roles: "USER"
   webflux:
     hiddenmethod:
       filter:
