@@ -12,7 +12,10 @@ public class NoticeDeleteRequestMapper
 
   @Override
   public NoticeDeleteServiceInput apply(String noticeCode) {
-    return null;
+    return NoticeDeleteServiceInput.builder()
+        .noticeCode(noticeCode)
+        .version(this.version)
+        .build();
   }
 
 }

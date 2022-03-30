@@ -13,8 +13,14 @@ public class NoticeUpdateRequestMapper
   private final Integer version;
 
   @Override
-  public NoticeModifyServiceInput apply(NoticeCommand noticeCommand) {
-    return null;
+  public NoticeModifyServiceInput apply(NoticeCommand request) {
+    return NoticeModifyServiceInput.builder()
+        .noticeCode(this.noticeCode)
+        .locationCode(request.getLocationCode())
+        .summary(request.getSummary())
+        .detail(request.getDetail())
+        .version(this.version)
+        .build();
   }
 
 }

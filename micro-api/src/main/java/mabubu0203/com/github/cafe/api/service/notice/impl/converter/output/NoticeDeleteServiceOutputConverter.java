@@ -9,7 +9,9 @@ public class NoticeDeleteServiceOutputConverter
 
   @Override
   public NoticeDeleteServiceOutput apply(NoticeCode noticeCode) {
-    return null;
+    return NoticeDeleteServiceOutput.builder()
+        .noticeCode(noticeCode.value())
+        .build();
   }
 
 }
