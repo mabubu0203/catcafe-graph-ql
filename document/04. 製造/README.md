@@ -21,6 +21,10 @@ IntelliJ IDEAを使用します。
 1. ProjectSDK はJDK17を指定
 1. docker-composeより `Elasticsearch/Mysql/Redis` を起動
     * `$ docker-compose -f ./docker/mac/docker-compose.yml up -d --build`
+1. Redis-CLIより、Redis Streamに設定追加
+    * `$ SELECT 2` #2番に切り替え
+    * `$ XADD location-event * dummy-key dummy-value`
+    * `$ XGROUP CREATE location-event location-group $`
 
 ### 起動方法(IDEA)
 
