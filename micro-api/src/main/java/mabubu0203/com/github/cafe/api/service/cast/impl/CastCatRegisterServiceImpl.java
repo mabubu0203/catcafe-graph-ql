@@ -28,4 +28,9 @@ public class CastCatRegisterServiceImpl implements CastCatRegisterService {
         .map(new CastCatServiceOutputConverter());
   }
 
+  @Override
+  public Mono<CastCatServiceOutput> onAfterSave(CastCatServiceOutput output) {
+    return null;
+  }
+
 }

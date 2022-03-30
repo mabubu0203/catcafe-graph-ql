@@ -1,0 +1,3174 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GraphQL API Reference</title>
+    <link rel="stylesheet" href="stylesheets/spectaql.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="javascripts/spectaql.min.js"></script>
+  </head>
+  <body id="spectacle">
+    <div id="page" class="drawer-layout drawer-slide-right-large">
+      <div id="sidebar">
+        <button id="close-button" class="close-button" aria-label="Close menu" type="button" data-drawer-close>
+          <span aria-hidden="true">×</span>
+        </button>
+        <nav id="nav" role="navigation">
+          <h5>Introduction</h5>
+          <a href="#introduction">Welcome</a>
+          <h5>Operations</h5>
+          <section>
+            <a href="#tag-Queries">Queries</a>
+            <ul>
+              <li>
+                <a href="#operation-castcatsearch-Queries"> castCatSearch </a>
+              </li>
+              <li>
+                <a href="#operation-castsearch-Queries"> castSearch </a>
+              </li>
+              <li>
+                <a href="#operation-locationsearch-Queries"> locationSearch </a>
+              </li>
+              <li>
+                <a href="#operation-noticesearch-Queries"> noticeSearch </a>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <a href="#tag-Mutations">Mutations</a>
+            <ul>
+              <li>
+                <a href="#operation-castcatcreate-Mutations"> castCatCreate </a>
+              </li>
+              <li>
+                <a href="#operation-castcatdelete-Mutations"> castCatDelete </a>
+              </li>
+              <li>
+                <a href="#operation-castcatupdate-Mutations"> castCatUpdate </a>
+              </li>
+              <li>
+                <a href="#operation-castcreate-Mutations"> castCreate </a>
+              </li>
+              <li>
+                <a href="#operation-castdelete-Mutations"> castDelete </a>
+              </li>
+              <li>
+                <a href="#operation-castupdate-Mutations"> castUpdate </a>
+              </li>
+              <li>
+                <a href="#operation-locationcreate-Mutations"> locationCreate </a>
+              </li>
+              <li>
+                <a href="#operation-locationdelete-Mutations"> locationDelete </a>
+              </li>
+              <li>
+                <a href="#operation-locationupdate-Mutations"> locationUpdate </a>
+              </li>
+              <li>
+                <a href="#operation-noticecreate-Mutations"> noticeCreate </a>
+              </li>
+              <li>
+                <a href="#operation-noticedelete-Mutations"> noticeDelete </a>
+              </li>
+              <li>
+                <a href="#operation-noticeupdate-Mutations"> noticeUpdate </a>
+              </li>
+            </ul>
+          </section>
+          <h5>Types</h5>
+          <a href="#definition-Boolean"> Boolean </a>
+          <a href="#definition-Cast"> Cast </a>
+          <a href="#definition-CastCat"> CastCat </a>
+          <a href="#definition-CastCatCommand"> CastCatCommand </a>
+          <a href="#definition-CastCommand"> CastCommand </a>
+          <a href="#definition-CatSex"> CatSex </a>
+          <a href="#definition-Date"> Date </a>
+          <a href="#definition-DateTime"> DateTime </a>
+          <a href="#definition-EmploymentStatus"> EmploymentStatus </a>
+          <a href="#definition-HasCommon"> HasCommon </a>
+          <a href="#definition-ID"> ID </a>
+          <a href="#definition-Int"> Int </a>
+          <a href="#definition-Location"> Location </a>
+          <a href="#definition-LocationAddress"> LocationAddress </a>
+          <a href="#definition-LocationAddressCommand"> LocationAddressCommand </a>
+          <a href="#definition-LocationCommand"> LocationCommand </a>
+          <a href="#definition-LocationContact"> LocationContact </a>
+          <a href="#definition-LocationContactCommand"> LocationContactCommand </a>
+          <a href="#definition-LocationHours"> LocationHours </a>
+          <a href="#definition-LocationHoursCommand"> LocationHoursCommand </a>
+          <a href="#definition-Notice"> Notice </a>
+          <a href="#definition-NoticeCommand"> NoticeCommand </a>
+          <a href="#definition-String"> String </a>
+        </nav>
+      </div>
+      <div id="docs" class="row collapse expanded drawer" data-drawer>
+        <button class="floating-menu-icon" type="button" data-drawer-slide="right">
+          <span class="hamburger"></span>
+        </button>
+        <div class="example-box doc-content"></div>
+        <article id="content">
+          <h1 class="doc-title"></h1>
+          <div id="introduction" data-traverse-target="introduction">
+            <div class="doc-row">
+              <div class="doc-copy">
+                <p>undefined</p>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>API Endpoints</h5> <pre><code>Endpoint::
+http://localhost:9001/graphql
+</code></pre> </section>
+              </div>
+            </div>
+          </div>
+          <h1 id="tag-Queries" class="swagger-summary-tag tag-name" data-traverse-target="tag-Queries">Queries</h1>
+          <div id="operation-castcatsearch-Queries" class="operation panel" data-traverse-target="operation-castcatsearch-Queries">
+            <h2 class="operation-name "> <code>castCatSearch</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [キャスト(猫)]-[取得] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns
+                  <a href="#definition-CastCat"><code>[CastCat]!</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>codes</code> -
+                        <a href="#definition-ID"><code>[ID]!</code></a>
+                      </td>
+                      <td> CastCatCode </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">query</span> castCatSearch<span class="hljs-tag">(<span class="hljs-code">$codes</span>: [ID]!)</span> <span class="hljs-tag">{
+  <span class="hljs-symbol">castCatSearch<span class="hljs-tag">(codes: <span class="hljs-code">$codes</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">code</span>
+    <span class="hljs-symbol">name</span>
+    <span class="hljs-symbol">image</span>
+    <span class="hljs-symbol">type</span>
+    <span class="hljs-symbol">sex</span>
+    <span class="hljs-symbol">birthdayDate</span>
+    <span class="hljs-symbol">favorite</span>
+    <span class="hljs-symbol">dislike</span>
+    <span class="hljs-symbol">prohibition</span>
+    <span class="hljs-symbol">brothers</span>
+    <span class="hljs-symbol">sisters</span>
+    <span class="hljs-symbol">memo</span>
+    <span class="hljs-symbol">version</span>
+  }</span></span>
+}</span></span>
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"codes"</span>: [<span class="hljs-string">ID</span>]}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"castCatSearch"</span>: [
+      {
+        <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"image"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"sex"</span>: <span class="hljs-string">CatSex</span>,
+        <span class="hljs-attr">"birthdayDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+        <span class="hljs-attr">"favorite"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"dislike"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"prohibition"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"brothers"</span>: [<span class="hljs-string">ID</span>],
+        <span class="hljs-attr">"sisters"</span>: [<span class="hljs-string">ID</span>],
+        <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+      }
+    ]
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-castsearch-Queries" class="operation panel" data-traverse-target="operation-castsearch-Queries">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Queries">Queries</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>castSearch</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [キャスト]-[取得] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns
+                  <a href="#definition-Cast"><code>[Cast]!</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>codes</code> -
+                        <a href="#definition-ID"><code>[ID]!</code></a>
+                      </td>
+                      <td> CastCode </td>
+                    </tr>
+                    <tr>
+                      <td><code>locationCodes</code> -
+                        <a href="#definition-ID"><code>[ID]!</code></a>
+                      </td>
+                      <td> LocationCode </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">query</span> castSearch<span class="hljs-tag">(<span class="hljs-code">$codes</span>: [ID]!, <span class="hljs-code">$locationCodes</span>: [ID]!)</span> <span class="hljs-tag">{
+  <span class="hljs-symbol">castSearch<span class="hljs-tag">(codes: <span class="hljs-code">$codes</span>, locationCodes: <span class="hljs-code">$locationCodes</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">code</span>
+    <span class="hljs-symbol">location <span class="hljs-tag">{
+      <span class="hljs-type">...LocationFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">castCat <span class="hljs-tag">{
+      <span class="hljs-type">...CastCatFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">employmentStatus</span>
+    <span class="hljs-symbol">firstAttendanceDate</span>
+    <span class="hljs-symbol">lastAttendanceDate</span>
+    <span class="hljs-symbol">memo</span>
+    <span class="hljs-symbol">version</span>
+  }</span></span>
+}</span></span>
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"codes"</span>: [<span class="hljs-string">ID</span>],
+  <span class="hljs-attr">"locationCodes"</span>: [<span class="hljs-string">ID</span>]
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"castSearch"</span>: [
+      {
+        <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+        <span class="hljs-attr">"location"</span>: <span class="hljs-string">Location</span>,
+        <span class="hljs-attr">"castCat"</span>: <span class="hljs-string">CastCat</span>,
+        <span class="hljs-attr">"employmentStatus"</span>: <span class="hljs-string">EmploymentStatus</span>,
+        <span class="hljs-attr">"firstAttendanceDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+        <span class="hljs-attr">"lastAttendanceDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+        <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+      }
+    ]
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-locationsearch-Queries" class="operation panel" data-traverse-target="operation-locationsearch-Queries">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Queries">Queries</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>locationSearch</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [所在地/店舗]-[取得] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns
+                  <a href="#definition-Location"><code>[Location]!</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>codes</code> -
+                        <a href="#definition-ID"><code>[ID]!</code></a>
+                      </td>
+                      <td> LocationCode </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">query</span> locationSearch<span class="hljs-tag">(<span class="hljs-code">$codes</span>: [ID]!)</span> <span class="hljs-tag">{
+  <span class="hljs-symbol">locationSearch<span class="hljs-tag">(codes: <span class="hljs-code">$codes</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">code</span>
+    <span class="hljs-symbol">name</span>
+    <span class="hljs-symbol">contact <span class="hljs-tag">{
+      <span class="hljs-type">...LocationContactFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">address <span class="hljs-tag">{
+      <span class="hljs-type">...LocationAddressFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">openDate</span>
+    <span class="hljs-symbol">closeDate</span>
+    <span class="hljs-symbol">hours <span class="hljs-tag">{
+      <span class="hljs-type">...LocationHoursFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">memo</span>
+    <span class="hljs-symbol">version</span>
+  }</span></span>
+}</span></span>
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"codes"</span>: [<span class="hljs-string">ID</span>]}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"locationSearch"</span>: [
+      {
+        <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"contact"</span>: <span class="hljs-string">LocationContact</span>,
+        <span class="hljs-attr">"address"</span>: <span class="hljs-string">LocationAddress</span>,
+        <span class="hljs-attr">"openDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+        <span class="hljs-attr">"closeDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+        <span class="hljs-attr">"hours"</span>: <span class="hljs-string">LocationHours</span>,
+        <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+      }
+    ]
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-noticesearch-Queries" class="operation panel" data-traverse-target="operation-noticesearch-Queries">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Queries">Queries</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>noticeSearch</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [お知らせ]-[取得] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns
+                  <a href="#definition-Notice"><code>[Notice]!</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>codes</code> -
+                        <a href="#definition-ID"><code>[ID]!</code></a>
+                      </td>
+                      <td> NoticeCode </td>
+                    </tr>
+                    <tr>
+                      <td><code>locationCodes</code> -
+                        <a href="#definition-ID"><code>[ID]!</code></a>
+                      </td>
+                      <td> LocationCode </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">query</span> noticeSearch<span class="hljs-tag">(<span class="hljs-code">$codes</span>: [ID]!, <span class="hljs-code">$locationCodes</span>: [ID]!)</span> <span class="hljs-tag">{
+  <span class="hljs-symbol">noticeSearch<span class="hljs-tag">(codes: <span class="hljs-code">$codes</span>, locationCodes: <span class="hljs-code">$locationCodes</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">code</span>
+    <span class="hljs-symbol">location <span class="hljs-tag">{
+      <span class="hljs-type">...LocationFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">summary</span>
+    <span class="hljs-symbol">detail</span>
+    <span class="hljs-symbol">publicationStartDateTime</span>
+    <span class="hljs-symbol">publicationEndDateTime</span>
+    <span class="hljs-symbol">version</span>
+  }</span></span>
+}</span></span>
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"codes"</span>: [<span class="hljs-string">ID</span>],
+  <span class="hljs-attr">"locationCodes"</span>: [<span class="hljs-string">ID</span>]
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"noticeSearch"</span>: [
+      {
+        <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+        <span class="hljs-attr">"location"</span>: <span class="hljs-string">Location</span>,
+        <span class="hljs-attr">"summary"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"detail"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"publicationStartDateTime"</span>: <span class="hljs-string">DateTime</span>,
+        <span class="hljs-attr">"publicationEndDateTime"</span>: <span class="hljs-string">DateTime</span>,
+        <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
+      }
+    ]
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <h1 id="tag-Mutations" class="swagger-summary-tag tag-name" data-traverse-target="tag-Mutations">Mutations</h1>
+          <div id="operation-castcatcreate-Mutations" class="operation panel" data-traverse-target="operation-castcatcreate-Mutations">
+            <h2 class="operation-name "> <code>castCatCreate</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [キャスト(猫)]-[登録] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns a
+                  <a href="#definition-CastCat"><code>CastCat</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>input</code> -
+                        <a href="#definition-CastCatCommand"><code>CastCatCommand!</code></a>
+                      </td>
+                      <td> [キャスト(猫)]-[登録/更新] </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> castCatCreate<span class="hljs-tag">(<span class="hljs-code">$input</span>:<span class="hljs-type"> CastCatCommand!</span>)</span> <span class="hljs-tag">{
+  <span class="hljs-symbol">castCatCreate<span class="hljs-tag">(input: <span class="hljs-code">$input</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">code</span>
+    <span class="hljs-symbol">name</span>
+    <span class="hljs-symbol">image</span>
+    <span class="hljs-symbol">type</span>
+    <span class="hljs-symbol">sex</span>
+    <span class="hljs-symbol">birthdayDate</span>
+    <span class="hljs-symbol">favorite</span>
+    <span class="hljs-symbol">dislike</span>
+    <span class="hljs-symbol">prohibition</span>
+    <span class="hljs-symbol">brothers</span>
+    <span class="hljs-symbol">sisters</span>
+    <span class="hljs-symbol">memo</span>
+    <span class="hljs-symbol">version</span>
+  }</span></span>
+}</span></span>
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"input"</span>: <span class="hljs-string">CastCatCommand</span>}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"castCatCreate"</span>: {
+      <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"image"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"sex"</span>: <span class="hljs-string">CatSex</span>,
+      <span class="hljs-attr">"birthdayDate"</span>: <span class="hljs-string">"2022-03-30T03:20:52.896Z"</span>,
+      <span class="hljs-attr">"favorite"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"dislike"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"prohibition"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"brothers"</span>: [<span class="hljs-string">ID</span>],
+      <span class="hljs-attr">"sisters"</span>: [<span class="hljs-string">ID</span>],
+      <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+    }
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-castcatdelete-Mutations" class="operation panel" data-traverse-target="operation-castcatdelete-Mutations">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Mutations">Mutations</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>castCatDelete</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [キャスト(猫)]-[削除] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns an
+                  <a href="#definition-ID"><code>ID</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>code</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td> CastCatCode </td>
+                    </tr>
+                    <tr>
+                      <td><code>version</code> -
+                        <a href="#definition-Int"><code>Int</code></a>
+                      </td>
+                      <td> バージョンフィールド </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> castCatDelete<span class="hljs-tag">(<span class="hljs-code">$code</span>: ID!, <span class="hljs-code">$version</span>:<span class="hljs-type"> Int)</span> {
+  castCatDelete(code: <span class="hljs-code">$code</span>, version: <span class="hljs-code">$version</span>)</span></span>
+}
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>, <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"castCatDelete"</span>: <span class="hljs-string">ID</span>}}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-castcatupdate-Mutations" class="operation panel" data-traverse-target="operation-castcatupdate-Mutations">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Mutations">Mutations</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>castCatUpdate</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [キャスト(猫)]-[更新] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns a
+                  <a href="#definition-CastCat"><code>CastCat</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>code</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td> CastCatCode </td>
+                    </tr>
+                    <tr>
+                      <td><code>input</code> -
+                        <a href="#definition-CastCatCommand"><code>CastCatCommand!</code></a>
+                      </td>
+                      <td> [キャスト(猫)]-[登録/更新] </td>
+                    </tr>
+                    <tr>
+                      <td><code>version</code> -
+                        <a href="#definition-Int"><code>Int</code></a>
+                      </td>
+                      <td> バージョンフィールド </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> castCatUpdate<span class="hljs-tag">(<span class="hljs-code">$code</span>: ID!, <span class="hljs-code">$input</span>:<span class="hljs-type"> CastCatCommand!</span>, <span class="hljs-code">$version</span>:<span class="hljs-type"> Int)</span> {
+  castCatUpdate(code: <span class="hljs-code">$code</span>, input: <span class="hljs-code">$input</span>, version: <span class="hljs-code">$version</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">code</span>
+    <span class="hljs-symbol">name</span>
+    <span class="hljs-symbol">image</span>
+    <span class="hljs-symbol">type</span>
+    <span class="hljs-symbol">sex</span>
+    <span class="hljs-symbol">birthdayDate</span>
+    <span class="hljs-symbol">favorite</span>
+    <span class="hljs-symbol">dislike</span>
+    <span class="hljs-symbol">prohibition</span>
+    <span class="hljs-symbol">brothers</span>
+    <span class="hljs-symbol">sisters</span>
+    <span class="hljs-symbol">memo</span>
+    <span class="hljs-symbol">version</span>
+  }</span></span>
+}
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+  <span class="hljs-attr">"input"</span>: <span class="hljs-string">CastCatCommand</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"castCatUpdate"</span>: {
+      <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"image"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"sex"</span>: <span class="hljs-string">CatSex</span>,
+      <span class="hljs-attr">"birthdayDate"</span>: <span class="hljs-string">"2022-03-30T03:20:52.896Z"</span>,
+      <span class="hljs-attr">"favorite"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"dislike"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"prohibition"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"brothers"</span>: [<span class="hljs-string">ID</span>],
+      <span class="hljs-attr">"sisters"</span>: [<span class="hljs-string">ID</span>],
+      <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+    }
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-castcreate-Mutations" class="operation panel" data-traverse-target="operation-castcreate-Mutations">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Mutations">Mutations</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>castCreate</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [キャスト]-[登録] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns a
+                  <a href="#definition-Cast"><code>Cast</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>input</code> -
+                        <a href="#definition-CastCommand"><code>CastCommand!</code></a>
+                      </td>
+                      <td> [キャスト]-[登録/更新] </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> castCreate<span class="hljs-tag">(<span class="hljs-code">$input</span>:<span class="hljs-type"> CastCommand!</span>)</span> <span class="hljs-tag">{
+  <span class="hljs-symbol">castCreate<span class="hljs-tag">(input: <span class="hljs-code">$input</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">code</span>
+    <span class="hljs-symbol">location <span class="hljs-tag">{
+      <span class="hljs-type">...LocationFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">castCat <span class="hljs-tag">{
+      <span class="hljs-type">...CastCatFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">employmentStatus</span>
+    <span class="hljs-symbol">firstAttendanceDate</span>
+    <span class="hljs-symbol">lastAttendanceDate</span>
+    <span class="hljs-symbol">memo</span>
+    <span class="hljs-symbol">version</span>
+  }</span></span>
+}</span></span>
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"input"</span>: <span class="hljs-string">CastCommand</span>}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"castCreate"</span>: {
+      <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+      <span class="hljs-attr">"location"</span>: <span class="hljs-string">Location</span>,
+      <span class="hljs-attr">"castCat"</span>: <span class="hljs-string">CastCat</span>,
+      <span class="hljs-attr">"employmentStatus"</span>: <span class="hljs-string">EmploymentStatus</span>,
+      <span class="hljs-attr">"firstAttendanceDate"</span>: <span class="hljs-string">"2022-03-30T03:20:52.896Z"</span>,
+      <span class="hljs-attr">"lastAttendanceDate"</span>: <span class="hljs-string">"2022-03-30T03:20:52.896Z"</span>,
+      <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+    }
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-castdelete-Mutations" class="operation panel" data-traverse-target="operation-castdelete-Mutations">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Mutations">Mutations</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>castDelete</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [キャスト]-[削除] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns an
+                  <a href="#definition-ID"><code>ID</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>code</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td> CastCode </td>
+                    </tr>
+                    <tr>
+                      <td><code>version</code> -
+                        <a href="#definition-Int"><code>Int</code></a>
+                      </td>
+                      <td> バージョンフィールド </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> castDelete<span class="hljs-tag">(<span class="hljs-code">$code</span>: ID!, <span class="hljs-code">$version</span>:<span class="hljs-type"> Int)</span> {
+  castDelete(code: <span class="hljs-code">$code</span>, version: <span class="hljs-code">$version</span>)</span></span>
+}
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>, <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"castDelete"</span>: <span class="hljs-string">ID</span>}}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-castupdate-Mutations" class="operation panel" data-traverse-target="operation-castupdate-Mutations">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Mutations">Mutations</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>castUpdate</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [キャスト]-[更新] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns a
+                  <a href="#definition-Cast"><code>Cast</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>code</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td> CastCode </td>
+                    </tr>
+                    <tr>
+                      <td><code>input</code> -
+                        <a href="#definition-CastCommand"><code>CastCommand!</code></a>
+                      </td>
+                      <td> [キャスト]-[登録/更新] </td>
+                    </tr>
+                    <tr>
+                      <td><code>version</code> -
+                        <a href="#definition-Int"><code>Int</code></a>
+                      </td>
+                      <td> バージョンフィールド </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> castUpdate<span class="hljs-tag">(<span class="hljs-code">$code</span>: ID!, <span class="hljs-code">$input</span>:<span class="hljs-type"> CastCommand!</span>, <span class="hljs-code">$version</span>:<span class="hljs-type"> Int)</span> {
+  castUpdate(code: <span class="hljs-code">$code</span>, input: <span class="hljs-code">$input</span>, version: <span class="hljs-code">$version</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">code</span>
+    <span class="hljs-symbol">location <span class="hljs-tag">{
+      <span class="hljs-type">...LocationFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">castCat <span class="hljs-tag">{
+      <span class="hljs-type">...CastCatFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">employmentStatus</span>
+    <span class="hljs-symbol">firstAttendanceDate</span>
+    <span class="hljs-symbol">lastAttendanceDate</span>
+    <span class="hljs-symbol">memo</span>
+    <span class="hljs-symbol">version</span>
+  }</span></span>
+}
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+  <span class="hljs-attr">"input"</span>: <span class="hljs-string">CastCommand</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"castUpdate"</span>: {
+      <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+      <span class="hljs-attr">"location"</span>: <span class="hljs-string">Location</span>,
+      <span class="hljs-attr">"castCat"</span>: <span class="hljs-string">CastCat</span>,
+      <span class="hljs-attr">"employmentStatus"</span>: <span class="hljs-string">EmploymentStatus</span>,
+      <span class="hljs-attr">"firstAttendanceDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+      <span class="hljs-attr">"lastAttendanceDate"</span>: <span class="hljs-string">"2022-03-30T03:20:52.896Z"</span>,
+      <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+    }
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-locationcreate-Mutations" class="operation panel" data-traverse-target="operation-locationcreate-Mutations">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Mutations">Mutations</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>locationCreate</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [所在地/店舗]-[登録] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns a
+                  <a href="#definition-Location"><code>Location</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>input</code> -
+                        <a href="#definition-LocationCommand"><code>LocationCommand!</code></a>
+                      </td>
+                      <td> [所在地/店舗]-[登録/更新] </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> locationCreate<span class="hljs-tag">(<span class="hljs-code">$input</span>:<span class="hljs-type"> LocationCommand!</span>)</span> <span class="hljs-tag">{
+  <span class="hljs-symbol">locationCreate<span class="hljs-tag">(input: <span class="hljs-code">$input</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">code</span>
+    <span class="hljs-symbol">name</span>
+    <span class="hljs-symbol">contact <span class="hljs-tag">{
+      <span class="hljs-type">...LocationContactFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">address <span class="hljs-tag">{
+      <span class="hljs-type">...LocationAddressFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">openDate</span>
+    <span class="hljs-symbol">closeDate</span>
+    <span class="hljs-symbol">hours <span class="hljs-tag">{
+      <span class="hljs-type">...LocationHoursFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">memo</span>
+    <span class="hljs-symbol">version</span>
+  }</span></span>
+}</span></span>
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"input"</span>: <span class="hljs-string">LocationCommand</span>}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"locationCreate"</span>: {
+      <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"contact"</span>: <span class="hljs-string">LocationContact</span>,
+      <span class="hljs-attr">"address"</span>: <span class="hljs-string">LocationAddress</span>,
+      <span class="hljs-attr">"openDate"</span>: <span class="hljs-string">"2022-03-30T03:20:52.896Z"</span>,
+      <span class="hljs-attr">"closeDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+      <span class="hljs-attr">"hours"</span>: <span class="hljs-string">LocationHours</span>,
+      <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+    }
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-locationdelete-Mutations" class="operation panel" data-traverse-target="operation-locationdelete-Mutations">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Mutations">Mutations</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>locationDelete</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [所在地/店舗]-[削除] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns an
+                  <a href="#definition-ID"><code>ID</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>code</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td> LocationCode </td>
+                    </tr>
+                    <tr>
+                      <td><code>version</code> -
+                        <a href="#definition-Int"><code>Int</code></a>
+                      </td>
+                      <td> バージョンフィールド </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> locationDelete<span class="hljs-tag">(<span class="hljs-code">$code</span>: ID!, <span class="hljs-code">$version</span>:<span class="hljs-type"> Int)</span> {
+  locationDelete(code: <span class="hljs-code">$code</span>, version: <span class="hljs-code">$version</span>)</span></span>
+}
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>, <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"locationDelete"</span>: <span class="hljs-string">ID</span>}}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-locationupdate-Mutations" class="operation panel" data-traverse-target="operation-locationupdate-Mutations">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Mutations">Mutations</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>locationUpdate</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [所在地/店舗]-[更新] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns a
+                  <a href="#definition-Location"><code>Location</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>code</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td> LocationCode </td>
+                    </tr>
+                    <tr>
+                      <td><code>input</code> -
+                        <a href="#definition-LocationCommand"><code>LocationCommand!</code></a>
+                      </td>
+                      <td> [所在地/店舗]-[登録/更新] </td>
+                    </tr>
+                    <tr>
+                      <td><code>version</code> -
+                        <a href="#definition-Int"><code>Int</code></a>
+                      </td>
+                      <td> バージョンフィールド </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> locationUpdate<span class="hljs-tag">(<span class="hljs-code">$code</span>: ID!, <span class="hljs-code">$input</span>:<span class="hljs-type"> LocationCommand!</span>, <span class="hljs-code">$version</span>:<span class="hljs-type"> Int)</span> {
+  locationUpdate(code: <span class="hljs-code">$code</span>, input: <span class="hljs-code">$input</span>, version: <span class="hljs-code">$version</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">code</span>
+    <span class="hljs-symbol">name</span>
+    <span class="hljs-symbol">contact <span class="hljs-tag">{
+      <span class="hljs-type">...LocationContactFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">address <span class="hljs-tag">{
+      <span class="hljs-type">...LocationAddressFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">openDate</span>
+    <span class="hljs-symbol">closeDate</span>
+    <span class="hljs-symbol">hours <span class="hljs-tag">{
+      <span class="hljs-type">...LocationHoursFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">memo</span>
+    <span class="hljs-symbol">version</span>
+  }</span></span>
+}
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+  <span class="hljs-attr">"input"</span>: <span class="hljs-string">LocationCommand</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"locationUpdate"</span>: {
+      <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"contact"</span>: <span class="hljs-string">LocationContact</span>,
+      <span class="hljs-attr">"address"</span>: <span class="hljs-string">LocationAddress</span>,
+      <span class="hljs-attr">"openDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+      <span class="hljs-attr">"closeDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+      <span class="hljs-attr">"hours"</span>: <span class="hljs-string">LocationHours</span>,
+      <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
+    }
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-noticecreate-Mutations" class="operation panel" data-traverse-target="operation-noticecreate-Mutations">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Mutations">Mutations</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>noticeCreate</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [お知らせ]-[登録] </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns a
+                  <a href="#definition-Notice"><code>Notice</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>input</code> -
+                        <a href="#definition-NoticeCommand"><code>NoticeCommand!</code></a>
+                      </td>
+                      <td> [お知らせ]-[登録/更新] </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> noticeCreate<span class="hljs-tag">(<span class="hljs-code">$input</span>:<span class="hljs-type"> NoticeCommand!</span>)</span> <span class="hljs-tag">{
+  <span class="hljs-symbol">noticeCreate<span class="hljs-tag">(input: <span class="hljs-code">$input</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">code</span>
+    <span class="hljs-symbol">location <span class="hljs-tag">{
+      <span class="hljs-type">...LocationFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">summary</span>
+    <span class="hljs-symbol">detail</span>
+    <span class="hljs-symbol">publicationStartDateTime</span>
+    <span class="hljs-symbol">publicationEndDateTime</span>
+    <span class="hljs-symbol">version</span>
+  }</span></span>
+}</span></span>
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"input"</span>: <span class="hljs-string">NoticeCommand</span>}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"noticeCreate"</span>: {
+      <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+      <span class="hljs-attr">"location"</span>: <span class="hljs-string">Location</span>,
+      <span class="hljs-attr">"summary"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"detail"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"publicationStartDateTime"</span>: <span class="hljs-string">DateTime</span>,
+      <span class="hljs-attr">"publicationEndDateTime"</span>: <span class="hljs-string">DateTime</span>,
+      <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+    }
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-noticedelete-Mutations" class="operation panel" data-traverse-target="operation-noticedelete-Mutations">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Mutations">Mutations</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>noticeDelete</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [お知らせ]-[削除]
+                  <br> お知らせを削除します。
+                  <br> </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns an
+                  <a href="#definition-ID"><code>ID</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>code</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td> NoticeCode </td>
+                    </tr>
+                    <tr>
+                      <td><code>version</code> -
+                        <a href="#definition-Int"><code>Int</code></a>
+                      </td>
+                      <td> バージョンフィールド </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> noticeDelete<span class="hljs-tag">(<span class="hljs-code">$code</span>: ID!, <span class="hljs-code">$version</span>:<span class="hljs-type"> Int)</span> {
+  noticeDelete(code: <span class="hljs-code">$code</span>, version: <span class="hljs-code">$version</span>)</span></span>
+}
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>, <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"noticeDelete"</span>: <span class="hljs-string">ID</span>}}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation-noticeupdate-Mutations" class="operation panel" data-traverse-target="operation-noticeupdate-Mutations">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-Mutations">Mutations</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-name "> <code>noticeUpdate</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> [お知らせ]-[更新]
+                  <br> お知らせを更新します。
+                  <br> </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns a
+                  <a href="#definition-Notice"><code>Notice</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>code</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td> NoticeCode </td>
+                    </tr>
+                    <tr>
+                      <td><code>input</code> -
+                        <a href="#definition-NoticeCommand"><code>NoticeCommand!</code></a>
+                      </td>
+                      <td> [お知らせ]-[登録/更新] </td>
+                    </tr>
+                    <tr>
+                      <td><code>version</code> -
+                        <a href="#definition-Int"><code>Int</code></a>
+                      </td>
+                      <td> バージョンフィールド </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> noticeUpdate<span class="hljs-tag">(<span class="hljs-code">$code</span>: ID!, <span class="hljs-code">$input</span>:<span class="hljs-type"> NoticeCommand!</span>, <span class="hljs-code">$version</span>:<span class="hljs-type"> Int)</span> {
+  noticeUpdate(code: <span class="hljs-code">$code</span>, input: <span class="hljs-code">$input</span>, version: <span class="hljs-code">$version</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">code</span>
+    <span class="hljs-symbol">location <span class="hljs-tag">{
+      <span class="hljs-type">...LocationFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">summary</span>
+    <span class="hljs-symbol">detail</span>
+    <span class="hljs-symbol">publicationStartDateTime</span>
+    <span class="hljs-symbol">publicationEndDateTime</span>
+    <span class="hljs-symbol">version</span>
+  }</span></span>
+}
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+  <span class="hljs-attr">"input"</span>: <span class="hljs-string">NoticeCommand</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"noticeUpdate"</span>: {
+      <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+      <span class="hljs-attr">"location"</span>: <span class="hljs-string">Location</span>,
+      <span class="hljs-attr">"summary"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"detail"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"publicationStartDateTime"</span>: <span class="hljs-string">DateTime</span>,
+      <span class="hljs-attr">"publicationEndDateTime"</span>: <span class="hljs-string">DateTime</span>,
+      <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
+    }
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <span id="tag-types"></span>
+          <h1>Types</h1>
+          <div id="definition-Boolean" class="definition panel" data-traverse-target="definition-Boolean">
+            <h2 class="panel-title">
+              <a name="/definitions/Boolean"></a>
+              <p><code>Boolean</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>The <code>Boolean</code> scalar type represents <code>true</code> or <code>false</code>.</p>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-literal">false</span></span>
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Cast" class="definition panel" data-traverse-target="definition-Cast">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/Cast"></a>
+              <p><code>Cast</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[キャスト]-[詳細]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="code"> <code>code</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td> CastCode </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="location"> <code>location</code> -
+                        <a href="#definition-Location"><code>Location!</code></a>
+                      </td>
+                      <td> <code>[所在地/店舗]-[詳細]</code> </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="castCat"> <code>castCat</code> -
+                        <a href="#definition-CastCat"><code>CastCat!</code></a>
+                      </td>
+                      <td> <code>[キャスト(猫)]-[詳細]</code> </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="employmentStatus"> <code>employmentStatus</code> -
+                        <a href="#definition-EmploymentStatus"><code>EmploymentStatus!</code></a>
+                      </td>
+                      <td> 雇用形態 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="firstAttendanceDate"> <code>firstAttendanceDate</code> -
+                        <a href="#definition-Date"><code>Date</code></a>
+                      </td>
+                      <td> 初出勤日 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="lastAttendanceDate"> <code>lastAttendanceDate</code> -
+                        <a href="#definition-Date"><code>Date</code></a>
+                      </td>
+                      <td> 最終出勤日 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="memo"> <code>memo</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 店舗メモ </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="version"> <code>version</code> -
+                        <a href="#definition-Int"><code>Int!</code></a>
+                      </td>
+                      <td> バージョンフィールド </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+  <span class="hljs-attr">"location"</span>: <span class="hljs-string">Location</span>,
+  <span class="hljs-attr">"castCat"</span>: <span class="hljs-string">CastCat</span>,
+  <span class="hljs-attr">"employmentStatus"</span>: <span class="hljs-string">EmploymentStatus</span>,
+  <span class="hljs-attr">"firstAttendanceDate"</span>: <span class="hljs-string">"2022-03-30T03:20:52.896Z"</span>,
+  <span class="hljs-attr">"lastAttendanceDate"</span>: <span class="hljs-string">"2022-03-30T03:20:52.896Z"</span>,
+  <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-CastCat" class="definition panel" data-traverse-target="definition-CastCat">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/CastCat"></a>
+              <p><code>CastCat</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[キャスト(猫)]-[詳細]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="code"> <code>code</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td> CastCatCode </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="name"> <code>name</code> -
+                        <a href="#definition-String"><code>String!</code></a>
+                      </td>
+                      <td> 名前 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="image"> <code>image</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 画像 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="type"> <code>type</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 種類 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="sex"> <code>sex</code> -
+                        <a href="#definition-CatSex"><code>CatSex!</code></a>
+                      </td>
+                      <td> キャスト(猫)性別 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="birthdayDate"> <code>birthdayDate</code> -
+                        <a href="#definition-Date"><code>Date</code></a>
+                      </td>
+                      <td> 誕生日 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="favorite"> <code>favorite</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 好きなこと </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="dislike"> <code>dislike</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 嫌いなこと </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="prohibition"> <code>prohibition</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 禁止事項 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="brothers"> <code>brothers</code> -
+                        <a href="#definition-ID"><code>[ID]</code></a>
+                      </td>
+                      <td> 兄弟 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="sisters"> <code>sisters</code> -
+                        <a href="#definition-ID"><code>[ID]</code></a>
+                      </td>
+                      <td> 姉妹 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="memo"> <code>memo</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> キャストメモ </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="version"> <code>version</code> -
+                        <a href="#definition-Int"><code>Int!</code></a>
+                      </td>
+                      <td> バージョンフィールド </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"image"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"sex"</span>: <span class="hljs-string">CatSex</span>,
+  <span class="hljs-attr">"birthdayDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+  <span class="hljs-attr">"favorite"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"dislike"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"prohibition"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"brothers"</span>: [<span class="hljs-string">ID</span>],
+  <span class="hljs-attr">"sisters"</span>: [<span class="hljs-string">ID</span>],
+  <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-CastCatCommand" class="definition panel" data-traverse-target="definition-CastCatCommand">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/CastCatCommand"></a>
+              <p><code>CastCatCommand</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[キャスト(猫)]-[登録/更新]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="name"> <code>name</code> -
+                        <a href="#definition-String"><code>String!</code></a>
+                      </td>
+                      <td> 名前 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="image"> <code>image</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 画像 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="type"> <code>type</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 種類 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="sex"> <code>sex</code> -
+                        <a href="#definition-CatSex"><code>CatSex!</code></a>
+                      </td>
+                      <td> キャスト(猫)性別 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="birthdayDate"> <code>birthdayDate</code> -
+                        <a href="#definition-Date"><code>Date</code></a>
+                      </td>
+                      <td> 誕生日 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="favorite"> <code>favorite</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 好きなこと </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="dislike"> <code>dislike</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 嫌いなこと </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="prohibition"> <code>prohibition</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 禁止事項 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="brothers"> <code>brothers</code> -
+                        <a href="#definition-ID"><code>[ID]</code></a>
+                      </td>
+                      <td> 兄弟 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="sisters"> <code>sisters</code> -
+                        <a href="#definition-ID"><code>[ID]</code></a>
+                      </td>
+                      <td> 姉妹 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="memo"> <code>memo</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> キャストメモ </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"image"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"sex"</span>: <span class="hljs-string">CatSex</span>,
+  <span class="hljs-attr">"birthdayDate"</span>: <span class="hljs-string">"2022-03-30T03:20:52.896Z"</span>,
+  <span class="hljs-attr">"favorite"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"dislike"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"prohibition"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"brothers"</span>: [<span class="hljs-string">ID</span>],
+  <span class="hljs-attr">"sisters"</span>: [<span class="hljs-string">ID</span>],
+  <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"xyz789"</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-CastCommand" class="definition panel" data-traverse-target="definition-CastCommand">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/CastCommand"></a>
+              <p><code>CastCommand</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[キャスト]-[登録/更新]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Input Field</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>locationCode</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td>
+                        <p>LocationCode</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>castCatCode</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td>
+                        <p>CastCatCode</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>employmentStatus</code> -
+                        <a href="#definition-EmploymentStatus"><code>EmploymentStatus!</code></a>
+                      </td>
+                      <td>
+                        <p>雇用形態</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>firstAttendanceDate</code> -
+                        <a href="#definition-Date"><code>Date</code></a>
+                      </td>
+                      <td>
+                        <p>初出勤日</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>lastAttendanceDate</code> -
+                        <a href="#definition-Date"><code>Date</code></a>
+                      </td>
+                      <td>
+                        <p>最終出勤日</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>memo</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>店舗メモ</p>
+                      </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"locationCode"</span>: <span class="hljs-string">ID</span>,
+  <span class="hljs-attr">"castCatCode"</span>: <span class="hljs-string">ID</span>,
+  <span class="hljs-attr">"employmentStatus"</span>: <span class="hljs-string">EmploymentStatus</span>,
+  <span class="hljs-attr">"firstAttendanceDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+  <span class="hljs-attr">"lastAttendanceDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+  <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"abc123"</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-CatSex" class="definition panel" data-traverse-target="definition-CatSex">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/CatSex"></a>
+              <p><code>CatSex</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>キャスト(猫)性別</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Enum Value</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p><code>unknown</code></p>
+                      </td>
+                      <td> 不明 </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p><code>male</code></p>
+                      </td>
+                      <td> 雄(♂) </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p><code>female</code></p>
+                      </td>
+                      <td> 雌(♀) </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Date" class="definition panel" data-traverse-target="definition-Date">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/Date"></a>
+              <p><code>Date</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>日付</p>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">2021-09-30T03:20:52.896Z</span>
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-DateTime" class="definition panel" data-traverse-target="definition-DateTime">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/DateTime"></a>
+              <p><code>DateTime</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>日時</p>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">object</span>
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-EmploymentStatus" class="definition panel" data-traverse-target="definition-EmploymentStatus">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/EmploymentStatus"></a>
+              <p><code>EmploymentStatus</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>雇用形態</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Enum Value</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p><code>main</code></p>
+                      </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p><code>sub</code></p>
+                      </td>
+                      <td> </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-HasCommon" class="definition panel" data-traverse-target="definition-HasCommon">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/HasCommon"></a>
+              <p><code>HasCommon</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>モデルはこのインターフェースを実装しています。</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="code"> <code>code</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td> コードは一意の値になります。 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="version"> <code>version</code> -
+                        <a href="#definition-Int"><code>Int!</code></a>
+                      </td>
+                      <td> バージョンフィールドは更新/削除の楽観排他用に使用します。 </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>, <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-ID" class="definition panel" data-traverse-target="definition-ID">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/ID"></a>
+              <p><code>ID</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>The <code>ID</code> scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as <code>&quot;4&quot;</code>) or integer (such as <code>4</code>) input value will be accepted as an ID.</p>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">object</span>
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Int" class="definition panel" data-traverse-target="definition-Int">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/Int"></a>
+              <p><code>Int</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>The <code>Int</code> scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.</p>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">987</span>
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Location" class="definition panel" data-traverse-target="definition-Location">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/Location"></a>
+              <p><code>Location</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[所在地/店舗]-[詳細]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="code"> <code>code</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td> LocationCode </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="name"> <code>name</code> -
+                        <a href="#definition-String"><code>String!</code></a>
+                      </td>
+                      <td> 店舗名 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="contact"> <code>contact</code> -
+                        <a href="#definition-LocationContact"><code>LocationContact!</code></a>
+                      </td>
+                      <td> <code>[所在地/店舗]-[店舗連絡先]-[詳細]</code> </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="address"> <code>address</code> -
+                        <a href="#definition-LocationAddress"><code>LocationAddress!</code></a>
+                      </td>
+                      <td> <code>[所在地/店舗]-[店舗住所]-[詳細]</code> </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="openDate"> <code>openDate</code> -
+                        <a href="#definition-Date"><code>Date</code></a>
+                      </td>
+                      <td> 店舗開店日 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="closeDate"> <code>closeDate</code> -
+                        <a href="#definition-Date"><code>Date</code></a>
+                      </td>
+                      <td> 店舗閉店日 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="hours"> <code>hours</code> -
+                        <a href="#definition-LocationHours"><code>LocationHours!</code></a>
+                      </td>
+                      <td> <code>[所在地/店舗]-[店舗営業時間]-[詳細]</code> </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="memo"> <code>memo</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 店舗メモ </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="version"> <code>version</code> -
+                        <a href="#definition-Int"><code>Int!</code></a>
+                      </td>
+                      <td> バージョンフィールド </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"contact"</span>: <span class="hljs-string">LocationContact</span>,
+  <span class="hljs-attr">"address"</span>: <span class="hljs-string">LocationAddress</span>,
+  <span class="hljs-attr">"openDate"</span>: <span class="hljs-string">"2022-03-30T03:20:52.896Z"</span>,
+  <span class="hljs-attr">"closeDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+  <span class="hljs-attr">"hours"</span>: <span class="hljs-string">LocationHours</span>,
+  <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-LocationAddress" class="definition panel" data-traverse-target="definition-LocationAddress">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/LocationAddress"></a>
+              <p><code>LocationAddress</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[所在地/店舗]-[店舗住所]-[詳細]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="postalCode"> <code>postalCode</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 店舗住所(郵便番号) </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="prefectureCode"> <code>prefectureCode</code> -
+                        <a href="#definition-Int"><code>Int</code></a>
+                      </td>
+                      <td> 店舗住所(都道府県コード) </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="prefectureLabel"> <code>prefectureLabel</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 店舗住所(都道府県) </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="address1"> <code>address1</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 店舗住所(都道府県) </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="address2"> <code>address2</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 店舗住所(市区町村) </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="address3"> <code>address3</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 店舗住所(町域) </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="streetAddress"> <code>streetAddress</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 店舗住所(番地) </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="buildingName"> <code>buildingName</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 店舗住所(建物名) </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="supplement"> <code>supplement</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 店舗住所(補足) </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"postalCode"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"prefectureCode"</span>: <span class="hljs-number">123</span>,
+  <span class="hljs-attr">"prefectureLabel"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"address1"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"address2"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"address3"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"streetAddress"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"buildingName"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"supplement"</span>: <span class="hljs-string">"xyz789"</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-LocationAddressCommand" class="definition panel" data-traverse-target="definition-LocationAddressCommand">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/LocationAddressCommand"></a>
+              <p><code>LocationAddressCommand</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[所在地/店舗]-[店舗住所]-[登録/更新]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Input Field</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>postalCode</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>店舗住所(郵便番号)</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>prefectureCode</code> -
+                        <a href="#definition-Int"><code>Int</code></a>
+                      </td>
+                      <td>
+                        <p>店舗住所(都道府県コード)</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>address1</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>店舗住所(都道府県)</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>address2</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>店舗住所(市区町村)</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>address3</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>店舗住所(町域)</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>streetAddress</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>店舗住所(番地)</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>buildingName</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>店舗住所(建物名)</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>supplement</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>店舗住所(補足)</p>
+                      </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"postalCode"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"prefectureCode"</span>: <span class="hljs-number">123</span>,
+  <span class="hljs-attr">"address1"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"address2"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"address3"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"streetAddress"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"buildingName"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"supplement"</span>: <span class="hljs-string">"xyz789"</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-LocationCommand" class="definition panel" data-traverse-target="definition-LocationCommand">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/LocationCommand"></a>
+              <p><code>LocationCommand</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[所在地/店舗]-[登録/更新]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Input Field</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>name</code> -
+                        <a href="#definition-String"><code>String!</code></a>
+                      </td>
+                      <td>
+                        <p>店舗名</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>contact</code> -
+                        <a href="#definition-LocationContactCommand"><code>LocationContactCommand!</code></a>
+                      </td>
+                      <td>
+                        <p><code>[所在地/店舗]-[店舗連絡先]-[登録/更新]</code></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>address</code> -
+                        <a href="#definition-LocationAddressCommand"><code>LocationAddressCommand!</code></a>
+                      </td>
+                      <td>
+                        <p><code>[所在地/店舗]-[店舗住所]-[登録/更新]</code></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>openDate</code> -
+                        <a href="#definition-Date"><code>Date</code></a>
+                      </td>
+                      <td>
+                        <p>店舗開店日</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>closeDate</code> -
+                        <a href="#definition-Date"><code>Date</code></a>
+                      </td>
+                      <td>
+                        <p>店舗閉店日</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>hours</code> -
+                        <a href="#definition-LocationHoursCommand"><code>LocationHoursCommand!</code></a>
+                      </td>
+                      <td>
+                        <p><code>[所在地/店舗]-[店舗営業時間]-[登録/更新]</code></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>memo</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>店舗メモ</p>
+                      </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"contact"</span>: <span class="hljs-string">LocationContactCommand</span>,
+  <span class="hljs-attr">"address"</span>: <span class="hljs-string">LocationAddressCommand</span>,
+  <span class="hljs-attr">"openDate"</span>: <span class="hljs-string">"2022-03-30T03:20:52.896Z"</span>,
+  <span class="hljs-attr">"closeDate"</span>: <span class="hljs-string">"2021-09-30T03:20:52.896Z"</span>,
+  <span class="hljs-attr">"hours"</span>: <span class="hljs-string">LocationHoursCommand</span>,
+  <span class="hljs-attr">"memo"</span>: <span class="hljs-string">"xyz789"</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-LocationContact" class="definition panel" data-traverse-target="definition-LocationContact">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/LocationContact"></a>
+              <p><code>LocationContact</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[所在地/店舗]-[店舗連絡先]-[詳細]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="phoneNumber"> <code>phoneNumber</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 店舗連絡先(電話番号) </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="mailAddress"> <code>mailAddress</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 店舗連絡先(メールアドレス) </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"phoneNumber"</span>: <span class="hljs-string">"xyz789"</span>, <span class="hljs-attr">"mailAddress"</span>: <span class="hljs-string">"abc123"</span>}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-LocationContactCommand" class="definition panel" data-traverse-target="definition-LocationContactCommand">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/LocationContactCommand"></a>
+              <p><code>LocationContactCommand</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[所在地/店舗]-[店舗連絡先]-[登録/更新]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Input Field</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>phoneNumber</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>店舗連絡先(電話番号)</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>mailAddress</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>店舗連絡先(メールアドレス)</p>
+                      </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"phoneNumber"</span>: <span class="hljs-string">"xyz789"</span>, <span class="hljs-attr">"mailAddress"</span>: <span class="hljs-string">"abc123"</span>}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-LocationHours" class="definition panel" data-traverse-target="definition-LocationHours">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/LocationHours"></a>
+              <p><code>LocationHours</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[所在地/店舗]-[店舗営業時間]-[詳細]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="openingTime"> <code>openingTime</code> -
+                        <a href="#definition-DateTime"><code>DateTime</code></a>
+                      </td>
+                      <td> 店舗営業時間(開店時間) </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="closingTime"> <code>closingTime</code> -
+                        <a href="#definition-DateTime"><code>DateTime</code></a>
+                      </td>
+                      <td> 店舗営業時間(閉店時間) </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="supplement"> <code>supplement</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 店舗営業時間(補足) </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"openingTime"</span>: <span class="hljs-string">DateTime</span>,
+  <span class="hljs-attr">"closingTime"</span>: <span class="hljs-string">DateTime</span>,
+  <span class="hljs-attr">"supplement"</span>: <span class="hljs-string">"xyz789"</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-LocationHoursCommand" class="definition panel" data-traverse-target="definition-LocationHoursCommand">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/LocationHoursCommand"></a>
+              <p><code>LocationHoursCommand</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[所在地/店舗]-[店舗営業時間]-[登録/更新]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Input Field</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>openingTime</code> -
+                        <a href="#definition-DateTime"><code>DateTime</code></a>
+                      </td>
+                      <td>
+                        <p>店舗営業時間(開店時間)</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>closingTime</code> -
+                        <a href="#definition-DateTime"><code>DateTime</code></a>
+                      </td>
+                      <td>
+                        <p>店舗営業時間(閉店時間)</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>supplement</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>店舗営業時間(補足)</p>
+                      </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"openingTime"</span>: <span class="hljs-string">DateTime</span>,
+  <span class="hljs-attr">"closingTime"</span>: <span class="hljs-string">DateTime</span>,
+  <span class="hljs-attr">"supplement"</span>: <span class="hljs-string">"xyz789"</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Notice" class="definition panel" data-traverse-target="definition-Notice">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/Notice"></a>
+              <p><code>Notice</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[お知らせ]-[詳細]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="code"> <code>code</code> -
+                        <a href="#definition-ID"><code>ID!</code></a>
+                      </td>
+                      <td> NoticeCode </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="location"> <code>location</code> -
+                        <a href="#definition-Location"><code>Location</code></a>
+                      </td>
+                      <td> <code>[所在地/店舗]-[詳細]</code> </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="summary"> <code>summary</code> -
+                        <a href="#definition-String"><code>String!</code></a>
+                      </td>
+                      <td> お知らせ概要 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="detail"> <code>detail</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> お知らせ詳細 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="publicationStartDateTime"> <code>publicationStartDateTime</code> -
+                        <a href="#definition-DateTime"><code>DateTime</code></a>
+                      </td>
+                      <td> 掲載開始日時 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="publicationEndDateTime"> <code>publicationEndDateTime</code> -
+                        <a href="#definition-DateTime"><code>DateTime</code></a>
+                      </td>
+                      <td> 掲載終了日時 </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="version"> <code>version</code> -
+                        <a href="#definition-Int"><code>Int!</code></a>
+                      </td>
+                      <td> バージョンフィールド </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"code"</span>: <span class="hljs-string">ID</span>,
+  <span class="hljs-attr">"location"</span>: <span class="hljs-string">Location</span>,
+  <span class="hljs-attr">"summary"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"detail"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"publicationStartDateTime"</span>: <span class="hljs-string">DateTime</span>,
+  <span class="hljs-attr">"publicationEndDateTime"</span>: <span class="hljs-string">DateTime</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-NoticeCommand" class="definition panel" data-traverse-target="definition-NoticeCommand">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/NoticeCommand"></a>
+              <p><code>NoticeCommand</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>[お知らせ]-[登録/更新]</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Input Field</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>locationCode</code> -
+                        <a href="#definition-ID"><code>ID</code></a>
+                      </td>
+                      <td>
+                        <p>LocationCode</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>summary</code> -
+                        <a href="#definition-String"><code>String!</code></a>
+                      </td>
+                      <td>
+                        <p>お知らせ概要</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>detail</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>お知らせ詳細</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>publicationStartDateTime</code> -
+                        <a href="#definition-DateTime"><code>DateTime</code></a>
+                      </td>
+                      <td>
+                        <p>掲載開始日時</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>publicationEndDateTime</code> -
+                        <a href="#definition-DateTime"><code>DateTime</code></a>
+                      </td>
+                      <td>
+                        <p>掲載終了日時</p>
+                      </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"locationCode"</span>: <span class="hljs-string">ID</span>,
+  <span class="hljs-attr">"summary"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"detail"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"publicationStartDateTime"</span>: <span class="hljs-string">DateTime</span>,
+  <span class="hljs-attr">"publicationEndDateTime"</span>: <span class="hljs-string">DateTime</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-String" class="definition panel" data-traverse-target="definition-String">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/String"></a>
+              <p><code>String</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>The <code>String</code> scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.</p>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div class="doc-row no-margin">
+            <div class="doc-copy doc-separator">
+              <a class="powered-by" href="https://github.com/anvilco/spectaql">Documentation by
+                <span>Anvil SpectaQL</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </body>
+</html>

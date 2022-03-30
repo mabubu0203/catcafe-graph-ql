@@ -1,2 +1,3 @@
 /docker-mysql/data/
 /docker-redisinsight/data/
+/docker-elastic/data/

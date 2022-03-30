@@ -1,5 +1,6 @@
 package mabubu0203.com.github.cafe.domain.repository.location;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import mabubu0203.com.github.cafe.domain.entity.location.LocationEntity;
 import mabubu0203.com.github.cafe.domain.entity.location.LocationSearchConditions;
@@ -51,5 +52,33 @@ public interface LocationRepository {
    * @return
    */
   Mono<LocationCode> logicalDelete(LocationEntity location, LocalDateTime receptionTime);
+
+  /**
+   * 所在地/店舗を1件操作したイベントを伝播する
+   *
+   * @param locationCode
+   * @return
+   */
+  Mono<String> publishEvent(LocationCode locationCode);
+
+  /**
+   * キャッシュを1件洗い替える
+   *
+   * @param locationCode
+   * @param receptionTime
+   * @return
+   */
+  Mono<Void> replacement(LocationCode locationCode , Instant receptionTime);
+
+  /**
+   * キャッシュを洗い替える
+   *
+   * @param receptionTime
+   * @return 洗い替え件数
+   */
+  // A(01/10),B(01/11),C(01/12) とあった時、01/12 の00:00に全て洗い替える
+  // RDBの値をすべて検索して-0112のサフィックスでインデックスを生成する
+  // -0112のインデックスにエイリアスを張り替える(B->C)へ
+  Long allReplacement(Instant receptionTime);
 
 }

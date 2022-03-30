@@ -5,6 +5,7 @@ import com.netflix.dgs.codegen.types.LocationCommand;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.controller.location.helper.request.LocationCreateRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.location.helper.request.LocationDeleteRequestMapper;
+import mabubu0203.com.github.cafe.api.controller.location.helper.request.LocationUpdateRequestMapper;
 import mabubu0203.com.github.cafe.api.controller.location.helper.response.LocationDeleteResponseMapper;
 import mabubu0203.com.github.cafe.api.controller.location.helper.response.LocationResponseMapper;
 import mabubu0203.com.github.cafe.api.service.location.LocationDeleteService;
@@ -30,6 +31,7 @@ public class LocationCommandController {
     return Mono.just(input)
         .map(new LocationCreateRequestMapper())
         .flatMap(this.locationRegisterService::action)
+        .flatMap(this.locationRegisterService::onAfterSave)
         .map(new LocationResponseMapper());
   }
 
@@ -39,7 +41,11 @@ public class LocationCommandController {
       @Argument("input") LocationCommand input,
       @Argument("version") Integer version
   ) {
-    return Mono.empty();
+    return Mono.just(input)
+        .map(new LocationUpdateRequestMapper(code, version))
+        .flatMap(this.locationModifyService::action)
+        .flatMap(this.locationRegisterService::onAfterSave)
+        .map(new LocationResponseMapper());
   }
 
   @MutationMapping(name = "locationDelete")
@@ -50,6 +56,7 @@ public class LocationCommandController {
     return Mono.just(code)
         .map(new LocationDeleteRequestMapper(version))
         .flatMap(this.locationDeleteService::action)
+        .flatMap(this.locationDeleteService::onAfterSave)
         .map(new LocationDeleteResponseMapper());
   }
 }

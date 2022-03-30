@@ -1,0 +1,93 @@
+spring:
+  profiles:
+    group:
+      development:
+        - "local"
+        - "common"
+      production:
+        - "docker"
+        - "common"
+    default: "development"
+
+---
+spring:
+  application:
+    name: micro-batch
+  config:
+    activate:
+      on-profile: common
+  main:
+    allow-bean-definition-overriding: true
+    web-application-type: reactive
+  webflux:
+    hiddenmethod:
+      filter:
+        enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readinessstate:
+      enabled: true
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  devtools:
+    livereload:
+      port: 35219
+    restart:
+      poll-interval: 1000
+  elasticsearch:
+    uris:
+      - http://localhost:9200
+  r2dbc:
+    url: r2dbcs:mysql://localhost:3306/cafe?useSSL=false&autoReconnect=true&reWriteBatchedInserts=true
+    username: root
+    password: root
+  redis:
+    database: 2
+    host: localhost
+    port: 6379
+server:
+  http2:
+    enabled: true
+  port: 9002
+  servlet:
+    application-display-name: micro-batch
+logging:
+  level:
+    root: INFO
+    redis:
+      clients: TRACE
+    web: DEBUG
+  file:
+    name: micro-batch.log
+message:
+  streams:
+    location:
+      group-name: location-group
+      stream-key: location-event
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+server:
+  http2:
+    enabled: true
+  port: 9001
+  servlet:
+    application-display-name: micro-batch
+logging:
+  level:
+    root: INFO
+    redis:
+      clients: TRACE
+    web: INFO
+  file:
+    name: micro-batch.log

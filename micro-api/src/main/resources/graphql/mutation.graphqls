@@ -1,0 +1,92 @@
+type Mutation {
+  "[所在地/店舗]-[登録]"
+  locationCreate(
+    "[所在地/店舗]-[登録/更新]"
+    input: LocationCommand!
+  ): Location
+  "[所在地/店舗]-[更新]"
+  locationUpdate(
+    "LocationCode"
+    code: ID!,
+    "[所在地/店舗]-[登録/更新]"
+    input: LocationCommand!,
+    "バージョンフィールド"
+    version: Int!
+  ): Location
+  "[所在地/店舗]-[削除]"
+  locationDelete(
+    "LocationCode"
+    code: ID!,
+    "バージョンフィールド"
+    version: Int!
+  ): ID
+  "[お知らせ]-[登録]"
+  noticeCreate(
+    "[お知らせ]-[登録/更新]"
+    input: NoticeCommand!
+  ): Notice
+  """
+  [お知らせ]-[更新]<br>
+  お知らせを更新します。<br>
+  """
+  noticeUpdate(
+    "NoticeCode"
+    code: ID!,
+    "[お知らせ]-[登録/更新]"
+    input: NoticeCommand!,
+    "バージョンフィールド"
+    version: Int!
+  ): Notice
+  """
+  [お知らせ]-[削除]<br>
+  お知らせを削除します。<br>
+  """
+  noticeDelete(
+    "NoticeCode"
+    code: ID!,
+    "バージョンフィールド"
+    version: Int!
+  ): ID
+  "[キャスト]-[登録]"
+  castCreate(
+    "[キャスト]-[登録/更新]"
+    input: CastCommand!
+  ): Cast
+  "[キャスト]-[更新]"
+  castUpdate(
+    "CastCode"
+    code: ID!,
+    "[キャスト]-[登録/更新]"
+    input: CastCommand!,
+    "バージョンフィールド"
+    version: Int!
+  ): Cast
+  "[キャスト]-[削除]"
+  castDelete(
+    "CastCode"
+    code: ID!,
+    "バージョンフィールド"
+    version: Int!
+  ): ID
+  "[キャスト(猫)]-[登録]"
+  castCatCreate(
+    "[キャスト(猫)]-[登録/更新]"
+    input: CastCatCommand!
+  ): CastCat
+  "[キャスト(猫)]-[更新]"
+  castCatUpdate(
+    "CastCatCode"
+    code: ID!,
+    "[キャスト(猫)]-[登録/更新]"
+    input: CastCatCommand!,
+    "バージョンフィールド"
+    version: Int!
+  ): CastCat
+  "[キャスト(猫)]-[削除]"
+  castCatDelete(
+    "CastCatCode"
+    code: ID!,
+    "バージョンフィールド"
+    version: Int!
+  ): ID
+}

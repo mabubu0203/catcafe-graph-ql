@@ -7,6 +7,7 @@ import mabubu0203.com.github.cafe.api.service.location.impl.converter.output.Loc
 import mabubu0203.com.github.cafe.api.service.location.model.input.LocationDeleteServiceInput;
 import mabubu0203.com.github.cafe.api.service.location.model.output.LocationDeleteServiceOutput;
 import mabubu0203.com.github.cafe.domain.repository.location.LocationRepository;
+import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
@@ -25,6 +26,15 @@ public class LocationDeleteServiceImpl implements LocationDeleteService {
         .map(new LocationDeleteServiceInputConverter())
         .flatMap(entity -> this.locationRepository.logicalDelete(entity, receptionTime))
         .map(new LocationDeleteServiceOutputConverter());
+  }
+
+  @Override
+  public Mono<LocationDeleteServiceOutput> onAfterSave(LocationDeleteServiceOutput output) {
+    return Mono.just(output)
+        .map(LocationDeleteServiceOutput::locationCode)
+        .map(LocationCode::new)
+        .flatMap(this.locationRepository::publishEvent)
+        .thenReturn(output);
   }
 
 }

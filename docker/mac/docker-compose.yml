@@ -2,6 +2,37 @@ version: '3.8'
 
 services:
 
+  elasticsearch:
+    build: ./docker-elastic
+    container_name: docker-elastic
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - cluster.name=docker-cluster
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - "./docker-elastic/data/:/usr/share/elasticsearch/data"
+    restart: always
+    networks:
+      - elastic
+
+  kibana:
+    build: ./docker-kibana
+    container_name: docker-kibana
+    ports:
+      - "5601:5601"
+    links:
+      - elasticsearch
+    restart: always
+    networks:
+      - elastic
+
   mysql:
     build: ./docker-mysql
     container_name: docker-mysql
@@ -48,6 +79,17 @@ services:
     networks:
       - app-net
 
+  rediscommander:
+    build: ./docker-rediscommander
+    container_name: docker-rediscommander
+    ports:
+      - "8081:8081"
+    hostname: redis-commander
+    networks:
+      - app-net
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+
   redisinsight:
     build: ./docker-redisinsight
     container_name: docker-redisinsight
@@ -61,4 +103,6 @@ services:
 
 networks:
   app-net:
+    driver: bridge
+  elastic:
     driver: bridge

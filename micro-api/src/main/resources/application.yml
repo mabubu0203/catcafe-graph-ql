@@ -49,14 +49,18 @@ spring:
       port: 35219
     restart:
       poll-interval: 1000
+  elasticsearch:
+    uris:
+      - http://localhost:9200
   r2dbc:
     url: r2dbcs:mysql://localhost:3306/cafe?useSSL=false&autoReconnect=true&reWriteBatchedInserts=true
     username: root
     password: root
   redis:
     database: 2
-    host: localhost
+    host: 127.0.0.1
     port: 6379
+
 server:
   http2:
     enabled: true
@@ -71,15 +75,16 @@ logging:
     web: DEBUG
   file:
     name: micro-api.log
+message:
+  streams:
+    location:
+      group-name: location-group
+      stream-key: location-event
 ---
 spring:
   config:
     activate:
       on-profile: docker
-  redis:
-    database: 3
-    host: redis
-    port: 6379
 server:
   http2:
     enabled: true
