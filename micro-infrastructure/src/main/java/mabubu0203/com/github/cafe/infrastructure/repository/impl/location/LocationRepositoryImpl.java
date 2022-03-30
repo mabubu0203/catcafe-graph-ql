@@ -90,35 +90,32 @@ public class LocationRepositoryImpl implements LocationRepository {
 
   @Override
   public Mono<Void> replacement(LocationCode locationCode, Instant receptionTime) {
-    log.info(locationCode.value());
-
     var code = locationCode.value();
-
-    return this.locationDocumentSource.findByCode(code)
-        .flatMap(document ->
-            // 更新
-            this.findTable(locationCode)
-                .flatMap(table ->
-                    // 更新
-                    Mono.just(table)
-                        .map(LocationTable::toEntity)
-                        .map(document::attach)
-                        .flatMap(dto -> this.locationDocumentSource.update(dto, receptionTime))
-                )
-                .switchIfEmpty(
-                    // 削除
-                    this.locationDocumentSource.deleteByCode(code)
-                        .thenReturn(null)
-                )
-        )
-        .switchIfEmpty(
-            // 登録
-            this.findTable(locationCode)
-                .map(LocationTable::toEntity)
-                .map(new LocationDocument()::attach)
-                .flatMap(dto -> this.locationDocumentSource.insert(dto, receptionTime))
-        )
-        .then();
+    return
+        this.locationDocumentSource.findByCode(code)
+            .flatMap(document ->
+                this.findTable(locationCode)
+                    .flatMap(table ->
+                        // 更新
+                        Mono.just(table)
+                            .map(LocationTable::toEntity)
+                            .map(document::attach)
+                            .flatMap(dto -> this.locationDocumentSource.update(dto, receptionTime))
+                    )
+                    .onErrorResume(e ->
+                        // 削除
+                        this.locationDocumentSource.deleteByCode(code)
+                            .thenReturn(document)// 使用しない
+                    )
+            )
+            .switchIfEmpty(
+                // 登録
+                this.findTable(locationCode)
+                    .map(LocationTable::toEntity)
+                    .map(new LocationDocument()::attach)
+                    .flatMap(dto -> this.locationDocumentSource.insert(dto, receptionTime))
+            )
+            .then();
   }
 
   @Override
