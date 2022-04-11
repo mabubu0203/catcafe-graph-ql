@@ -22,6 +22,15 @@ public class AuthenticationUserTable extends BaseTable<Integer> {
   @Column(value = "id")
   private Integer id;
 
+  @Column(value = "username")
+  private String username;
+
+  @Column(value = "password")
+  private String password;
+
+  @Column(value = "memo")
+  private String memo;
+
   @Override
   public Integer getId() {
     return this.id;

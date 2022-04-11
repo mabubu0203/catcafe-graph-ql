@@ -22,6 +22,12 @@ public class RoleTable extends BaseTable<Integer> {
   @Column(value = "id")
   private Integer id;
 
+  @Column(value = "role_key")
+  private String roleKey;
+
+  @Column(value = "memo")
+  private String memo;
+
   @Override
   public Integer getId() {
     return this.id;
