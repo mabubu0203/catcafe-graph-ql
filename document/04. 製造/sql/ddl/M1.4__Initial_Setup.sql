@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS authentication_user
 CREATE TABLE IF NOT EXISTS role
 (
   id                INT UNSIGNED AUTO_INCREMENT  NOT NULL COMMENT 'RoleID',
-  key               VARCHAR(256) UNIQUE          NOT NULL COMMENT 'RoleKey',
+  role_key          VARCHAR(256) UNIQUE          NOT NULL COMMENT 'RoleKey',
   memo              VARCHAR(256) COMMENT 'Roleメモ',
   created_date_time DATETIME                     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登録日時',
   created_by        INT UNSIGNED                 NOT NULL DEFAULT 0 COMMENT '登録者',
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS role
 CREATE TABLE IF NOT EXISTS permission
 (
   id                INT UNSIGNED AUTO_INCREMENT  NOT NULL COMMENT 'PermissionID',
-  key               VARCHAR(256) UNIQUE          NOT NULL COMMENT 'PermissionKey',
+  permission_key    VARCHAR(256) UNIQUE          NOT NULL COMMENT 'PermissionKey',
   memo              VARCHAR(256) COMMENT 'Permissionメモ',
   created_date_time DATETIME                     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登録日時',
   created_by        INT UNSIGNED                 NOT NULL DEFAULT 0 COMMENT '登録者',
@@ -59,21 +59,21 @@ CREATE TABLE IF NOT EXISTS user_has_role
   deleted_date_time        DATETIME                              DEFAULT NULL COMMENT '削除日時',
   deleted_flag             ENUM ('is_false', 'is_true') NOT NULL DEFAULT 'is_false' COMMENT '論理削除フラグ:is_false-未削除,is_true-削除済',
   PRIMARY KEY (id),
-  UNIQUE ( authentication_user_code, role_key )
+  UNIQUE (authentication_user_code, role_key)
   ) DEFAULT CHARSET = UTF8MB4 COMMENT 'User_Role 交差';
 
 CREATE TABLE IF NOT EXISTS role_has_permission
 (
-  id                       INT UNSIGNED AUTO_INCREMENT  NOT NULL COMMENT 'ID',
-  role_key                 VARCHAR(256)                 NOT NULL COMMENT 'RoleKey',
-  permission_key           VARCHAR(256)                 NOT NULL COMMENT 'PermissionKey',
-  created_date_time        DATETIME                     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登録日時',
-  created_by               INT UNSIGNED                 NOT NULL DEFAULT 0 COMMENT '登録者',
-  version                  INT UNSIGNED                 NOT NULL DEFAULT 0 COMMENT 'Version',
-  updated_date_time        DATETIME                              DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新日時',
-  updated_by               INT UNSIGNED                          DEFAULT NULL COMMENT '更新者',
-  deleted_date_time        DATETIME                              DEFAULT NULL COMMENT '削除日時',
-  deleted_flag             ENUM ('is_false', 'is_true') NOT NULL DEFAULT 'is_false' COMMENT '論理削除フラグ:is_false-未削除,is_true-削除済',
+  id                INT UNSIGNED AUTO_INCREMENT  NOT NULL COMMENT 'ID',
+  role_key          VARCHAR(256)                 NOT NULL COMMENT 'RoleKey',
+  permission_key    VARCHAR(256)                 NOT NULL COMMENT 'PermissionKey',
+  created_date_time DATETIME                     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登録日時',
+  created_by        INT UNSIGNED                 NOT NULL DEFAULT 0 COMMENT '登録者',
+  version           INT UNSIGNED                 NOT NULL DEFAULT 0 COMMENT 'Version',
+  updated_date_time DATETIME                              DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新日時',
+  updated_by        INT UNSIGNED                          DEFAULT NULL COMMENT '更新者',
+  deleted_date_time DATETIME                              DEFAULT NULL COMMENT '削除日時',
+  deleted_flag      ENUM ('is_false', 'is_true') NOT NULL DEFAULT 'is_false' COMMENT '論理削除フラグ:is_false-未削除,is_true-削除済',
   PRIMARY KEY (id),
-  UNIQUE ( role_key, permission_key )
+  UNIQUE (role_key, permission_key)
   ) DEFAULT CHARSET = UTF8MB4 COMMENT 'Role_Permission 交差';
