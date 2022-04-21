@@ -3,7 +3,7 @@ package mabubu0203.com.github.cafe.domain.value.authorization;
 import java.util.Optional;
 
 /**
- * メモ
+ * ユーザー
  */
 public record Username(String value) {
 
