@@ -27,34 +27,34 @@ public class AuthenticationUserRepositoryImpl implements AuthenticationUserRepos
         .map(Username::value)
         .flatMap(str ->
             this.authenticationUserTableSource.findByUsername(str)
-                .map(a -> new AuthenticationUserEntity()
-                    .username(new Username(a.username()))
-                    .password(a.password()))
+                .map(dto -> new AuthenticationUserEntity(dto.username(), dto.password()))
                 .flatMap(this::selectUserAndRolesSearchByUsername)
-        )
-        .switchIfEmpty(
-            Mono.empty()
         );
   }
 
   private Mono<AuthenticationUserEntity> selectUserAndRolesSearchByUsername(
       AuthenticationUserEntity entity
   ) {
-    return this.authenticationUserTableSource.selectUserAndRolesSearchByUsername(
-            entity.username().value())
-        .collect(() -> entity, this::addRole);
+    return
+        this.authenticationUserTableSource.selectUserAndRolesSearchByUsername(
+                entity.username().value()
+            )
+            .collect(() -> entity, this::addRole);
   }
 
   private boolean addRole(
       AuthenticationUserEntity entity
       , RoleAndPermissions roleAndPermissions
   ) {
-    var role = new Role(
-        roleAndPermissions.getRoleKey(),
-        Arrays.stream(roleAndPermissions.getPermissionKeys().split(",")).map(Permission::new)
-            .toList()
-    );
-    return entity.addRole(role);
+    return
+        entity.addRole(
+            new Role(
+                roleAndPermissions.getRoleKey(),
+                Arrays.stream(roleAndPermissions.getPermissionKeys().split(","))
+                    .map(Permission::new)
+                    .toList()
+            )
+        );
   }
 
 }

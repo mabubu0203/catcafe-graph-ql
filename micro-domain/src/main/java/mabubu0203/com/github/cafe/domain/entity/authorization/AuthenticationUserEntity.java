@@ -1,5 +1,6 @@
 package mabubu0203.com.github.cafe.domain.entity.authorization;
 
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +20,12 @@ public class AuthenticationUserEntity {
   Username username;
   String password;
   List<Role> roles;
+
+  public AuthenticationUserEntity(String username, String password) {
+    this.username = new Username(username);
+    this.password = password;
+    this.roles = new ArrayList<>();
+  }
 
   public boolean addRole(Role role) {
     return this.roles.add(role);

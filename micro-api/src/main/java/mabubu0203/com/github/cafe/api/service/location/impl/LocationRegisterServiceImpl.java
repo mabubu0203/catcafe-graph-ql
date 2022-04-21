@@ -20,7 +20,7 @@ public class LocationRegisterServiceImpl implements LocationRegisterService {
   private final LocationRepository locationRepository;
 
   @Override
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasPermission(#input,'LocationRegisterServiceInput','Resister')")
   @Transactional
   public Mono<LocationServiceOutput> action(LocationRegisterServiceInput input) {
     var receptionTime = this.getReceptionTime();

@@ -16,11 +16,11 @@ public interface AuthenticationUserTableSource extends
 
   @Query(
       "SELECT"
-          + "        role.role_key AS roleKey"
-          + "        , GROUP_CONCAT(permission.permission_key) AS permissionKeys"
+          + "        role.role_key AS role_key"
+          + "        , GROUP_CONCAT(permission.permission_key) AS permission_keys"
           + "      FROM"
           + "        authentication_user"
-          + "      INNER JOIN user_has_role ON authentication_user.code = user_role.authentication_user_code"
+          + "      INNER JOIN user_has_role ON authentication_user.code = user_has_role.authentication_user_code"
           + "      INNER JOIN role ON user_has_role.role_key = role.role_key"
           + "      INNER JOIN role_has_permission ON role.role_key = role_has_permission.role_key"
           + "      INNER JOIN permission ON role_has_permission.permission_key = permission.permission_key"
