@@ -9,6 +9,7 @@ import mabubu0203.com.github.cafe.api.service.notice.model.output.NoticeServiceO
 import mabubu0203.com.github.cafe.domain.entity.notice.NoticeEntity;
 import mabubu0203.com.github.cafe.domain.repository.location.LocationRepository;
 import mabubu0203.com.github.cafe.domain.repository.notice.NoticeRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
@@ -21,6 +22,7 @@ public class NoticeRegisterServiceImpl implements NoticeRegisterService {
   private final NoticeRepository noticeRepository;
 
   @Override
+  @PreAuthorize("hasRole('ADMIN')")
   @Transactional
   public Mono<NoticeServiceOutput> action(NoticeRegisterServiceInput input) {
     var receptionTime = this.getReceptionTime();
