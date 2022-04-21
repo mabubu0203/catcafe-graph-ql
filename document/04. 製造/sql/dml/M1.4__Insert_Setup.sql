@@ -22,4 +22,11 @@ VALUES ('Admin', 'Modify');
 INSERT INTO `role_has_permission`(`role_key`, `permission_key`)
 VALUES ('Admin', 'Delete');
 
-
+INSERT INTO `role_has_permission`(`role_key`, `permission_key`)
+VALUES ('Web', 'Search');
+INSERT INTO `role_has_permission`(`role_key`, `permission_key`)
+VALUES ('Web', 'Register');
+INSERT INTO `role_has_permission`(`role_key`, `permission_key`)
+VALUES ('Web', 'Modify');
+INSERT INTO `role_has_permission`(`role_key`, `permission_key`)
+VALUES ('Web', 'Delete');

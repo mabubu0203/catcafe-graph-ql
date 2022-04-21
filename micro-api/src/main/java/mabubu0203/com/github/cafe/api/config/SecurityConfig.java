@@ -2,10 +2,12 @@ package mabubu0203.com.github.cafe.api.config;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
+import java.util.Collection;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.domain.entity.authorization.AuthenticationUserEntity;
 import mabubu0203.com.github.cafe.domain.repository.authorization.AuthenticationUserRepository;
+import mabubu0203.com.github.cafe.domain.value.authorization.Permission;
 import mabubu0203.com.github.cafe.domain.value.authorization.Role;
 import mabubu0203.com.github.cafe.domain.value.authorization.Username;
 import org.springframework.context.annotation.Bean;
@@ -62,7 +64,8 @@ public class SecurityConfig {
         user.username().value(),
         user.password(),
         user.roles().stream()
-            .map(Role::value)
+            .flatMap(role -> role.permissions().stream())
+            .map(Permission::key)
             .map(SimpleGrantedAuthority::new)
             .collect(Collectors.toSet())
     );
