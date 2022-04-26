@@ -22,7 +22,7 @@ public class CastRegisterServiceImpl implements CastRegisterService {
   private final LocationRepository locationRepository;
 
   @Override
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasPermission(#input,'CastRegisterServiceInput','Register')")
   @Transactional
   public Mono<CastServiceOutput> action(CastRegisterServiceInput input) {
     var receptionTime = this.getReceptionTime();

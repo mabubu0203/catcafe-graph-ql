@@ -22,7 +22,7 @@ public class NoticeModifyServiceImpl implements NoticeModifyService {
   private final LocationRepository locationRepository;
 
   @Override
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasPermission(#input,'NoticeModifyServiceInput','Modify')")
   @Transactional
   public Mono<NoticeServiceOutput> action(NoticeModifyServiceInput input) {
     var receptionTime = this.getReceptionTime();

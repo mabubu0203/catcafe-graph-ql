@@ -19,7 +19,7 @@ public class CastCatModifyServiceImpl implements CastCatModifyService {
   private final CastRepository castRepository;
 
   @Override
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasPermission(#input,'CastCatModifyServiceInput','Modify')")
   @Transactional
   public Mono<CastCatServiceOutput> action(CastCatModifyServiceInput input) {
     var receptionTime = this.getReceptionTime();
