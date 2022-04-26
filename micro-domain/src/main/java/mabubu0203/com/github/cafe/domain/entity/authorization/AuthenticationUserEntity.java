@@ -2,10 +2,7 @@ package mabubu0203.com.github.cafe.domain.entity.authorization;
 
 import java.util.ArrayList;
 import java.util.List;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Value;
-import lombok.With;
 import lombok.experimental.Accessors;
 import mabubu0203.com.github.cafe.domain.value.authorization.Role;
 import mabubu0203.com.github.cafe.domain.value.authorization.Username;

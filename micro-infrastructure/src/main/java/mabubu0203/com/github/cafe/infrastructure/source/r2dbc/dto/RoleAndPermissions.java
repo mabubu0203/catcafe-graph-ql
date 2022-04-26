@@ -4,6 +4,7 @@ import lombok.Value;
 
 @Value
 public class RoleAndPermissions {
+
   String roleKey;
   String permissionKeys;
 }

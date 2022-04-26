@@ -68,7 +68,7 @@ public interface LocationRepository {
    * @param receptionTime
    * @return
    */
-  Mono<Void> replacement(LocationCode locationCode , Instant receptionTime);
+  Mono<Void> replacement(LocationCode locationCode, Instant receptionTime);
 
   /**
    * キャッシュを洗い替える
