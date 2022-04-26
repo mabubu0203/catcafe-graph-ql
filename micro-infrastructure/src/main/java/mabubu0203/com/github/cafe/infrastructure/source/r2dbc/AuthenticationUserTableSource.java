@@ -17,7 +17,7 @@ public interface AuthenticationUserTableSource extends
   @Query(
       "SELECT"
           + "        role.role_key AS role_key"
-          + "        , GROUP_CONCAT(permission.permission_key) AS permission_keys"
+          + "        , GROUP_CONCAT(permission.permission_key SEPARATOR ',') AS permission_keys"
           + "      FROM"
           + "        authentication_user"
           + "      INNER JOIN user_has_role ON authentication_user.code = user_has_role.authentication_user_code"
@@ -29,6 +29,6 @@ public interface AuthenticationUserTableSource extends
           + "      GROUP BY"
           + "        role.role_key"
   )
-  Flux<RoleAndPermissions> selectUserAndRolesSearchByUsername(String username);
+  Flux<RoleAndPermissions> selectRoleAndPermissionsSearchByUsername(String username);
 
 }

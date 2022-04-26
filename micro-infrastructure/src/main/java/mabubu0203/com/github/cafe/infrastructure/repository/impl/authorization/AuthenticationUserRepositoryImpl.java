@@ -33,15 +33,15 @@ public class AuthenticationUserRepositoryImpl implements AuthenticationUserRepos
       AuthenticationUserEntity entity
   ) {
     return
-        this.authenticationUserTableSource.selectUserAndRolesSearchByUsername(
+        this.authenticationUserTableSource.selectRoleAndPermissionsSearchByUsername(
                 entity.username().value()
             )
             .collect(() -> entity, this::addRole);
   }
 
   private boolean addRole(
-      AuthenticationUserEntity entity
-      , RoleAndPermissions roleAndPermissions
+      AuthenticationUserEntity entity,
+      RoleAndPermissions roleAndPermissions
   ) {
     return
         entity.addRole(
