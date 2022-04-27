@@ -7,6 +7,7 @@ import mabubu0203.com.github.cafe.api.service.notice.impl.converter.output.Notic
 import mabubu0203.com.github.cafe.api.service.notice.model.input.NoticeDeleteServiceInput;
 import mabubu0203.com.github.cafe.api.service.notice.model.output.NoticeDeleteServiceOutput;
 import mabubu0203.com.github.cafe.domain.repository.notice.NoticeRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
@@ -18,6 +19,7 @@ public class NoticeDeleteServiceImpl implements NoticeDeleteService {
   private final NoticeRepository noticeRepository;
 
   @Override
+  @PreAuthorize("hasAuthority('Delete')")
   @Transactional
   public Mono<NoticeDeleteServiceOutput> action(NoticeDeleteServiceInput input) {
     var receptionTime = this.getReceptionTime();

@@ -9,6 +9,7 @@ import mabubu0203.com.github.cafe.api.service.cast.model.output.CastServiceOutpu
 import mabubu0203.com.github.cafe.domain.entity.cast.CastEntity;
 import mabubu0203.com.github.cafe.domain.repository.cast.CastRepository;
 import mabubu0203.com.github.cafe.domain.repository.location.LocationRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
@@ -21,6 +22,7 @@ public class CastModifyServiceImpl implements CastModifyService {
   private final LocationRepository locationRepository;
 
   @Override
+  @PreAuthorize("hasAuthority('Modify')")
   @Transactional
   public Mono<CastServiceOutput> action(CastModifyServiceInput input) {
     var receptionTime = this.getReceptionTime();

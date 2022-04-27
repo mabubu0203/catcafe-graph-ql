@@ -1,12 +1,12 @@
 {
   "name": "cafe-SpectaQL",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "repository": {},
   "license": "",
   "dependencies": {
-    "spectaql": "^0.15.0",
-    "webpack": "5.70.0"
+    "spectaql": "1.1.1",
+    "webpack": "5.72.0"
   },
   "scripts": {
     "spectaql-run": "spectaql config.yml -t ../../../../docs"

@@ -8,6 +8,7 @@ import mabubu0203.com.github.cafe.api.service.location.model.input.LocationDelet
 import mabubu0203.com.github.cafe.api.service.location.model.output.LocationDeleteServiceOutput;
 import mabubu0203.com.github.cafe.domain.repository.location.LocationRepository;
 import mabubu0203.com.github.cafe.domain.value.code.LocationCode;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
@@ -19,6 +20,7 @@ public class LocationDeleteServiceImpl implements LocationDeleteService {
   private final LocationRepository locationRepository;
 
   @Override
+  @PreAuthorize("hasAuthority('Delete')")
   @Transactional
   public Mono<LocationDeleteServiceOutput> action(LocationDeleteServiceInput input) {
     var receptionTime = this.getReceptionTime();

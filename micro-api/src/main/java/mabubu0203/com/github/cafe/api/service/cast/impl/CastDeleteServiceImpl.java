@@ -7,6 +7,7 @@ import mabubu0203.com.github.cafe.api.service.cast.impl.converter.output.CastDel
 import mabubu0203.com.github.cafe.api.service.cast.model.input.CastDeleteServiceInput;
 import mabubu0203.com.github.cafe.api.service.cast.model.output.CastDeleteServiceOutput;
 import mabubu0203.com.github.cafe.domain.repository.cast.CastRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
@@ -18,6 +19,7 @@ public class CastDeleteServiceImpl implements CastDeleteService {
   private final CastRepository castRepository;
 
   @Override
+  @PreAuthorize("hasAuthority('Delete')")
   @Transactional
   public Mono<CastDeleteServiceOutput> action(CastDeleteServiceInput input) {
     var receptionTime = this.getReceptionTime();
