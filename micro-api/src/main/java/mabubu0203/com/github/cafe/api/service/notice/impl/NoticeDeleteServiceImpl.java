@@ -19,7 +19,7 @@ public class NoticeDeleteServiceImpl implements NoticeDeleteService {
   private final NoticeRepository noticeRepository;
 
   @Override
-  @PreAuthorize("hasPermission(#input,'NoticeDeleteServiceInput','Delete')")
+  @PreAuthorize("hasAuthority('Delete')")
   @Transactional
   public Mono<NoticeDeleteServiceOutput> action(NoticeDeleteServiceInput input) {
     var receptionTime = this.getReceptionTime();

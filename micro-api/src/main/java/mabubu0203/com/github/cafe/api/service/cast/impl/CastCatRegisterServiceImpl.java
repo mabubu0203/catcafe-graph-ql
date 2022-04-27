@@ -19,7 +19,7 @@ public class CastCatRegisterServiceImpl implements CastCatRegisterService {
   private final CastRepository castRepository;
 
   @Override
-  @PreAuthorize("hasPermission(#input,'CastCatRegisterServiceInput','Register')")
+  @PreAuthorize("hasAuthority('Register')")
   @Transactional
   public Mono<CastCatServiceOutput> action(CastCatRegisterServiceInput input) {
     var receptionTime = this.getReceptionTime();

@@ -22,7 +22,7 @@ public class CastModifyServiceImpl implements CastModifyService {
   private final LocationRepository locationRepository;
 
   @Override
-  @PreAuthorize("hasPermission(#input,'CastModifyServiceInput','Modify')")
+  @PreAuthorize("hasAuthority('Modify')")
   @Transactional
   public Mono<CastServiceOutput> action(CastModifyServiceInput input) {
     var receptionTime = this.getReceptionTime();
