@@ -28,7 +28,7 @@ spring:
     allow-bean-definition-overriding: true
     web-application-type: reactive
   webflux:
-    hiddenmethod:
+    hidden-method:
       filter:
         enabled: true
 management:

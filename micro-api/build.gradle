@@ -17,14 +17,14 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
 
     // GraphQL
-    implementation 'com.graphql-java:graphql-java-extended-scalars:2022-02-25T03-14-46-8c3b172'
+    implementation 'com.graphql-java:graphql-java-extended-scalars:18.0'
 
     // mysql
     runtimeOnly 'dev.miku:r2dbc-mysql'
     runtimeOnly 'mysql:mysql-connector-java'
 
     // Netty
-    developmentOnly 'io.netty:netty-resolver-dns-native-macos:4.1.75.Final:osx-aarch_64'
+    developmentOnly 'io.netty:netty-resolver-dns-native-macos:4.1.76.Final:osx-aarch_64'
 
     developmentOnly 'io.projectreactor:reactor-tools'
 }
