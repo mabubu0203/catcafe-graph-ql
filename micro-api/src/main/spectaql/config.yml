@@ -6,5 +6,11 @@ introspection:
     - ../resources/graphql/cast.graphqls
     - ../resources/graphql/location.graphqls
     - ../resources/graphql/notice.graphqls
+info:
+  title: Cafe GraphQL API Reference
+  description: SpectaQLで定義ファイルから自動生成しています
 servers:
   - url: http://localhost:9001/graphql
+    headers:
+      - name: Authorization
+        example: Basic Auth
