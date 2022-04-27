@@ -20,7 +20,7 @@ public class LocationDeleteServiceImpl implements LocationDeleteService {
   private final LocationRepository locationRepository;
 
   @Override
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasAuthority('Delete')")
   @Transactional
   public Mono<LocationDeleteServiceOutput> action(LocationDeleteServiceInput input) {
     var receptionTime = this.getReceptionTime();

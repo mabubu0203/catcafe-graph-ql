@@ -20,7 +20,7 @@ public class LocationModifyServiceImpl implements LocationModifyService {
   private final LocationRepository locationRepository;
 
   @Override
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasAuthority('Modify')")
   @Transactional
   public Mono<LocationServiceOutput> action(LocationModifyServiceInput input) {
     var receptionTime = this.getReceptionTime();

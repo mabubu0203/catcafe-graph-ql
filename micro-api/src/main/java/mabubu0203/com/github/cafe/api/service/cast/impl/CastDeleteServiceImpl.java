@@ -19,7 +19,7 @@ public class CastDeleteServiceImpl implements CastDeleteService {
   private final CastRepository castRepository;
 
   @Override
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasAuthority('Delete')")
   @Transactional
   public Mono<CastDeleteServiceOutput> action(CastDeleteServiceInput input) {
     var receptionTime = this.getReceptionTime();

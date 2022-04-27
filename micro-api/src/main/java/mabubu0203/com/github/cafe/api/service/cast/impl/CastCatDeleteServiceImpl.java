@@ -19,7 +19,7 @@ public class CastCatDeleteServiceImpl implements CastCatDeleteService {
   private final CastRepository castRepository;
 
   @Override
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasAuthority('Delete')")
   @Transactional
   public Mono<CastCatDeleteServiceOutput> action(CastCatDeleteServiceInput input) {
     var receptionTime = this.getReceptionTime();

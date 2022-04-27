@@ -10,7 +10,8 @@ import lombok.Getter;
  * <p>
  * Copyright (c) 2016 javasampleokiba
  * <p>
- * This source code is released under the MIT License. <br> http://opensource.org/licenses/mit-license.php
+ * This source code is released under the MIT License. <br>
+ * http://opensource.org/licenses/mit-license.php
  */
 @AllArgsConstructor
 @Getter

@@ -22,7 +22,7 @@ public class NoticeRegisterServiceImpl implements NoticeRegisterService {
   private final NoticeRepository noticeRepository;
 
   @Override
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasAuthority('Register')")
   @Transactional
   public Mono<NoticeServiceOutput> action(NoticeRegisterServiceInput input) {
     var receptionTime = this.getReceptionTime();
