@@ -53,6 +53,9 @@
                 </h5>
                 <ul class="nav-group-section-items">
                   <li>
+                    <a href="#mutation-authenticationUserCreate">authenticationUserCreate</a>
+                  </li>
+                  <li>
                     <a href="#mutation-castCatCreate">castCatCreate</a>
                   </li>
                   <li>
@@ -95,6 +98,12 @@
           <div class="nav-group">
             <h4 class="nav-group-title">Types</h4>
             <ul class="nav-group-items">
+              <li>
+                <a href="#definition-AuthenticationUser">AuthenticationUser</a>
+              </li>
+              <li>
+                <a href="#definition-AuthenticationUserCommand">AuthenticationUserCommand</a>
+              </li>
               <li>
                 <a href="#definition-Boolean">Boolean</a>
               </li>
@@ -269,19 +278,19 @@
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"castCatSearch"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-      <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"image"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"image"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"sex"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"unknown"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"birthdayDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"favorite"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"dislike"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"prohibition"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"dislike"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"prohibition"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"brothers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"sisters"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"4"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"sisters"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
+      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
     <span class="hljs-punctuation">}</span>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
@@ -379,7 +388,7 @@
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"codes"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"locationCodes"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">}</span>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"codes"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"4"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"locationCodes"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -501,8 +510,8 @@
       <span class="hljs-attr">"openDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"closeDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"hours"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">LocationHours</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
+      <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
     <span class="hljs-punctuation">}</span>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
@@ -597,7 +606,10 @@
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"codes"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"locationCodes"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">}</span>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"codes"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"4"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"locationCodes"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"4"</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -608,13 +620,13 @@
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"noticeSearch"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-      <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"location"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">Location</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"summary"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"summary"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"detail"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"publicationStartDateTime"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"publicationEndDateTime"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
+      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
     <span class="hljs-punctuation">}</span>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
@@ -625,7 +637,96 @@
             </div>
           </section>
           <h1 id="group-Operations-Mutations" class="group-heading" data-traverse-target="group-Operations-Mutations">Mutations</h1>
+          <section id="mutation-authenticationUserCreate" class="operation operation-mutation" data-traverse-target="mutation-authenticationUserCreate">
+            <h2 class="operation-heading "> <code>authenticationUserCreate</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="operation-description doc-copy-section">
+                  <h5>Description</h5>
+                  <p>[認証ユーザー]-[登録]</p>
+                </div>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="operation-response doc-copy-section">
+                  <h5>Response</h5>
+                  <p> Returns an
+                    <a href="#definition-AuthenticationUser"><code>AuthenticationUser</code></a>
+                  </p>
+                </div>
+                <div class="operation-arguments doc-copy-section">
+                  <h5>Arguments</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>input</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-AuthenticationUserCommand"><code>AuthenticationUserCommand!</code></a>
+                          </span>
+                        </td>
+                        <td> [認証ユーザー]-[登録/更新] </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <h4 class="example-heading">Example</h4>
+                <div class="example-section example-section-is-code operation-query-example">
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> authenticationUserCreate<span class="hljs-tag">(<span class="hljs-code">$input</span>:<span class="hljs-type"> AuthenticationUserCommand!</span>)</span> <span class="hljs-tag">{
+  <span class="hljs-symbol">authenticationUserCreate<span class="hljs-tag">(input: <span class="hljs-code">$input</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">code</span>
+    <span class="hljs-symbol">username</span>
+    <span class="hljs-symbol">memo</span>
+    <span class="hljs-symbol">version</span>
+  }</span></span>
+}</span></span>
+</code></pre> </body>
+                  </html>
+                </div>
+                <div class="example-section example-section-is-code operation-variables-example">
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"input"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">AuthenticationUserCommand</span><span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+                <div class="example-section example-section-is-code operation-response-example">
+                  <h5>Response</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"authenticationUserCreate"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"username"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
           <section id="mutation-castCatCreate" class="operation operation-mutation" data-traverse-target="mutation-castCatCreate">
+            <div class="operation-group-name">
+              <a href="#group-Operations-Mutations">Mutations</a>
+            </div>
             <h2 class="operation-heading "> <code>castCatCreate</code> </h2>
             <div class="doc-row">
               <div class="doc-copy">
@@ -707,19 +808,19 @@
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"castCatCreate"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-      <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"image"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"sex"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"unknown"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"birthdayDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"favorite"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"dislike"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"prohibition"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"brothers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"4"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"favorite"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"dislike"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"prohibition"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"brothers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"sisters"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
+      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
     <span class="hljs-punctuation">}</span>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
@@ -812,7 +913,7 @@
                   <h5>Response</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-attr">"castCatDelete"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">}</span>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-attr">"castCatDelete"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -919,11 +1020,7 @@
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"input"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">CastCatCommand</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
-<span class="hljs-punctuation">}</span>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"input"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">CastCatCommand</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span><span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -941,11 +1038,11 @@
       <span class="hljs-attr">"sex"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"unknown"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"birthdayDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"favorite"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"dislike"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"dislike"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"prohibition"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"brothers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"4"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"sisters"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
     <span class="hljs-punctuation">}</span>
   <span class="hljs-punctuation">}</span>
@@ -1040,13 +1137,13 @@
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"castCreate"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-      <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"location"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">Location</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"castCat"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">CastCat</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"employmentStatus"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"main"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"firstAttendanceDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"lastAttendanceDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
     <span class="hljs-punctuation">}</span>
   <span class="hljs-punctuation">}</span>
@@ -1132,7 +1229,7 @@
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span><span class="hljs-punctuation">}</span>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span><span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -1246,11 +1343,7 @@
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"input"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">CastCommand</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
-<span class="hljs-punctuation">}</span>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"input"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">CastCommand</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span><span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -1261,13 +1354,13 @@
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"castUpdate"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-      <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"location"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">Location</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"castCat"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">CastCat</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"employmentStatus"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"main"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"firstAttendanceDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"lastAttendanceDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
     <span class="hljs-punctuation">}</span>
   <span class="hljs-punctuation">}</span>
@@ -1366,14 +1459,14 @@
   <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"locationCreate"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
       <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"contact"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">LocationContact</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"address"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">LocationAddress</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"openDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"closeDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"hours"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">LocationHours</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
+      <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
     <span class="hljs-punctuation">}</span>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
@@ -1458,7 +1551,7 @@
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span><span class="hljs-punctuation">}</span>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span><span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -1466,7 +1559,7 @@
                   <h5>Response</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-attr">"locationDelete"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">}</span>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-attr">"locationDelete"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -1575,11 +1668,7 @@
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"input"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">LocationCommand</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
-<span class="hljs-punctuation">}</span>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"input"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">LocationCommand</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span><span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -1590,15 +1679,15 @@
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
     <span class="hljs-attr">"locationUpdate"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-      <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"contact"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">LocationContact</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"address"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">LocationAddress</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"openDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"closeDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"hours"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">LocationHours</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
+      <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
     <span class="hljs-punctuation">}</span>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
@@ -1692,10 +1781,10 @@
       <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"location"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">Location</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"summary"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"detail"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"detail"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"publicationStartDateTime"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"publicationEndDateTime"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
+      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
     <span class="hljs-punctuation">}</span>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
@@ -1783,7 +1872,7 @@
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span><span class="hljs-punctuation">}</span>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span><span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
                 </div>
@@ -1914,11 +2003,11 @@
     <span class="hljs-attr">"noticeUpdate"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
       <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"location"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">Location</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"summary"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"detail"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"summary"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"detail"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"publicationStartDateTime"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
       <span class="hljs-attr">"publicationEndDateTime"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
-      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
+      <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
     <span class="hljs-punctuation">}</span>
   <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span>
@@ -1929,7 +2018,171 @@
             </div>
           </section>
           <h1 id="group-Types" class="group-heading" data-traverse-target="group-Types">Types</h1>
+          <section id="definition-AuthenticationUser" class="definition definition-object" data-traverse-target="definition-AuthenticationUser">
+            <h2 class="definition-heading">AuthenticationUser</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-description doc-copy-section">
+                  <h5>Description</h5>
+                  <p>[認証ユーザー]-[詳細]</p>
+                </div>
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Field Name</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td data-property-name="">
+                          <span class="property-name"><code>code</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-ID"><code>ID!</code></a>
+                          </span>
+                        </td>
+                        <td> UserCode </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name="">
+                          <span class="property-name"><code>username</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>String!</code></a>
+                          </span>
+                        </td>
+                        <td> Username </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name="">
+                          <span class="property-name"><code>memo</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>String</code></a>
+                          </span>
+                        </td>
+                        <td> ユーザーメモ </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name="">
+                          <span class="property-name"><code>version</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-Int"><code>Int!</code></a>
+                          </span>
+                        </td>
+                        <td> バージョンフィールド </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"username"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
+<span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-AuthenticationUserCommand" class="definition definition-input-object" data-traverse-target="definition-AuthenticationUserCommand">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">AuthenticationUserCommand</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-description doc-copy-section">
+                  <h5>Description</h5>
+                  <p>[認証ユーザー]-[登録/更新]</p>
+                </div>
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Input Field</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>username</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>String!</code></a>
+                          </span>
+                        </td>
+                        <td>
+                          <p>Username</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>password</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>String!</code></a>
+                          </span>
+                        </td>
+                        <td>
+                          <p>Password</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>roleKeys</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>[String]</code></a>
+                          </span>
+                        </td>
+                        <td>
+                          <p>RoleKey</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>memo</code></span> -
+                          <span class="property-type">
+                            <a href="#definition-String"><code>String</code></a>
+                          </span>
+                        </td>
+                        <td>
+                          <p>ユーザーメモ</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"username"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"password"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"roleKeys"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"abc123"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre> </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
           <section id="definition-Boolean" class="definition definition-scalar" data-traverse-target="definition-Boolean">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
             <h2 class="definition-heading">Boolean</h2>
             <div class="doc-row">
               <div class="doc-copy">
@@ -2053,14 +2306,14 @@
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"location"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">Location</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"castCat"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">CastCat</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"employmentStatus"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"main"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"firstAttendanceDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"lastAttendanceDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
+  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
 <span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
@@ -2216,19 +2469,19 @@
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"image"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"image"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"sex"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"unknown"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"birthdayDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"favorite"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"dislike"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"prohibition"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"dislike"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"prohibition"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"brothers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"4"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"sisters"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"4"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"sisters"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
+  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
 <span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
@@ -2393,12 +2646,12 @@
   <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"sex"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"unknown"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"birthdayDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"favorite"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"favorite"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"dislike"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"prohibition"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"brothers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"4"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"sisters"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"4"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
+  <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
@@ -2828,15 +3081,15 @@
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"contact"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">LocationContact</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"address"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">LocationAddress</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"openDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"closeDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"hours"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">LocationHours</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span>
+  <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
 <span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
@@ -2957,11 +3210,11 @@
                   <head></head>
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"postalCode"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"prefectureCode"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"prefectureLabel"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"prefectureCode"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"prefectureLabel"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"address1"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"address2"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"address3"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"address3"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"streetAddress"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"buildingName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"supplement"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
@@ -3091,14 +3344,14 @@
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">"postalCode"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"postalCode"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"prefectureCode"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"address1"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"address2"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"address2"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"address3"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"streetAddress"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"buildingName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"supplement"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
+  <span class="hljs-attr">"buildingName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"supplement"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
@@ -3220,7 +3473,7 @@
   <span class="hljs-attr">"openDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"closeDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"hours"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">LocationHoursCommand</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
+  <span class="hljs-attr">"memo"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
@@ -3340,7 +3593,7 @@
                   <head></head>
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"phoneNumber"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"mailAddress"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span>
+  <span class="hljs-attr">"mailAddress"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
@@ -3408,7 +3661,7 @@
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"openingTime"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"closingTime"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"supplement"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
+  <span class="hljs-attr">"supplement"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre> </body>
                   </html>
@@ -3685,8 +3938,8 @@
                   <head></head>
                   <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"locationCode"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"summary"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"detail"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"summary"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"detail"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"publicationStartDateTime"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"publicationEndDateTime"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span>
 <span class="hljs-punctuation">}</span>
@@ -3713,7 +3966,7 @@
                   <h5>Example</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">"xyz789"</span>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">"abc123"</span>
 </code></pre> </body>
                   </html>
                 </div>

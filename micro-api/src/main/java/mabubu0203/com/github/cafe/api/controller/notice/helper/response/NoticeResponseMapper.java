@@ -14,7 +14,7 @@ public class NoticeResponseMapper
     var location = new Location.Builder()
         .code(output.locationCode())
         .build();
-    return new Notice.Builder()
+    return Notice.newBuilder()
         .code(output.noticeCode())
         .location(location)
         .summary(output.summary())

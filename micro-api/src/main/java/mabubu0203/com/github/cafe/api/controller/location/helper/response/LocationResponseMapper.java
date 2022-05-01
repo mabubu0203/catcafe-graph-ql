@@ -12,7 +12,7 @@ public class LocationResponseMapper
 
   @Override
   public Location apply(LocationServiceOutput output) {
-    return new Location.Builder()
+    return Location.newBuilder()
         .code(output.locationCode())
         .name(output.name())
         .contact(this.contact(output.contact()))

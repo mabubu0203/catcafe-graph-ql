@@ -22,7 +22,7 @@ public class CastResponseMapper
         .build();
     var employmentStatus =
         EmploymentStatus.valueOf(output.employmentStatus());
-    return new Cast.Builder()
+    return Cast.newBuilder()
         .code(output.castCode())
         .location(location)
         .castCat(castCat)
