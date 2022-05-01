@@ -11,7 +11,7 @@ public class CastCatResponseMapper
   @Override
   public CastCat apply(CastCatServiceOutput output) {
     var sex = CatSex.valueOf(output.sex());
-    return new CastCat.Builder()
+    return CastCat.newBuilder()
         .code(output.castCatCode())
         .name(output.name())
         .image(output.image())

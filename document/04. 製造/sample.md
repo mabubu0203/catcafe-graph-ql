@@ -1,5 +1,30 @@
 # Mutation
 
+## authenticationUserCreate
+
+<details>
+<summary>詳細を開く</summary>
+
+```graphql
+mutation {
+    authenticationUserCreate(
+        input: {
+            username: "ccc",
+            password: "aaa",
+            roleKeys: ["Admin"],
+            memo: ""
+        }
+    ) {
+        code
+        username
+        memo
+        version
+    }
+}
+```
+
+</details>
+
 ## locationCreate
 
 <details>

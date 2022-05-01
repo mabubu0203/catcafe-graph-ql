@@ -1,4 +1,9 @@
 type Mutation {
+  "[認証ユーザー]-[登録]"
+  authenticationUserCreate(
+    "[認証ユーザー]-[登録/更新]"
+    input: AuthenticationUserCommand!
+  ): AuthenticationUser
   "[所在地/店舗]-[登録]"
   locationCreate(
     "[所在地/店舗]-[登録/更新]"

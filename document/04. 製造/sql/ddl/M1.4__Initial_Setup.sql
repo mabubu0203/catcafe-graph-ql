@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS authentication_user
   id                INT UNSIGNED AUTO_INCREMENT  NOT NULL COMMENT 'ユーザーID',
   code              CHAR(36) UNIQUE              NOT NULL COMMENT 'ユーザーコード',
   username          VARCHAR(256) UNIQUE          NOT NULL COMMENT 'Username',
-  password          VARCHAR(256)                 NOT NULL COMMENT 'Password',
+  password          VARCHAR(256)                 NOT NULL COMMENT 'Password(Hash化されている)',
   memo              VARCHAR(256) COMMENT 'ユーザーメモ',
   created_date_time DATETIME                     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登録日時',
   created_by        INT UNSIGNED                 NOT NULL DEFAULT 0 COMMENT '登録者',
