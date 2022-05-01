@@ -2,7 +2,6 @@ package mabubu0203.com.github.cafe.api.controller.authorization;
 
 import com.netflix.dgs.codegen.types.AuthenticationUser;
 import com.netflix.dgs.codegen.types.AuthenticationUserCommand;
-import com.netflix.dgs.codegen.types.CastCat;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mabubu0203.com.github.cafe.api.controller.authorization.helper.request.AuthenticationUserCreateRequestMapper;

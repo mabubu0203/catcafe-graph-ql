@@ -13,7 +13,9 @@ public class AuthenticationUserCreateRequestMapper
   @Override
   public AuthenticationUserRegisterServiceInput apply(
       AuthenticationUserCommand authenticationUserCommand) {
-    return null;
+    return AuthenticationUserRegisterServiceInput.builder()
+        // passwordはここでハッシュ化する
+        .build();
   }
 
 }

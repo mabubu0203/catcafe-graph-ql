@@ -30,7 +30,7 @@ public class AuthorizationRepositoryImpl implements AuthorizationRepository {
         .map(Username::value)
         .flatMap(str ->
             this.authenticationUserTableSource.findByUsername(str)
-                .map(dto -> new AuthenticationUserEntity(dto.username(), dto.password()))
+                .map(AuthenticationUserTable::toEntity)
                 .flatMap(this::selectUserAndRolesSearchByUsername)
         );
   }
@@ -45,7 +45,7 @@ public class AuthorizationRepositoryImpl implements AuthorizationRepository {
   ) {
     return
         this.authenticationUserTableSource.selectRoleAndPermissionsSearchByUsername(
-                entity.username().value()
+                entity.getUsernameValue()
             )
             .collect(() -> entity, this::addRole);
   }
