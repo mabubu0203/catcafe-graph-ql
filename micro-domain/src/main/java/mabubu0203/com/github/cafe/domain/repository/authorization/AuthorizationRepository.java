@@ -43,4 +43,5 @@ public interface AuthorizationRepository {
    * @return
    */
   Mono<UserCode> register(AuthenticationUserEntity user, LocalDateTime receptionTime);
+
 }

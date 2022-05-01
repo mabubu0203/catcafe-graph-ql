@@ -24,11 +24,13 @@ public class AuthenticationUserRegisterServiceImpl implements AuthenticationUser
   @PreAuthorize("hasAuthority('Register')")
   @Transactional
   public Mono<AuthenticationUserRegisterServiceOutput> action(
-      AuthenticationUserRegisterServiceInput input) {
+      AuthenticationUserRegisterServiceInput input
+  ) {
     var receptionTime = this.getReceptionTime();
+    var roleKeys = input.roleKeys();
     return Mono.just(input)
         .map(new AuthenticationUserRegisterServiceInputConverter())
-        .flatMap(entity -> this.beforeRegistration(entity, input.roleKeys()))
+        .flatMap(entity -> this.beforeRegistration(entity, roleKeys))
         .flatMap(entity -> this.authorizationRepository.register(entity, receptionTime))
         .flatMap(this.authorizationRepository::findByCode)
         .map(new AuthenticationUserServiceOutputConverter());
@@ -36,13 +38,15 @@ public class AuthenticationUserRegisterServiceImpl implements AuthenticationUser
 
   @Override
   public Mono<AuthenticationUserRegisterServiceOutput> onAfterSave(
-      AuthenticationUserRegisterServiceOutput output) {
+      AuthenticationUserRegisterServiceOutput output
+  ) {
     return null;
   }
 
   private Mono<AuthenticationUserEntity> beforeRegistration(
       AuthenticationUserEntity entity,
-      List<String> roleKeys) {
+      List<String> roleKeys
+  ) {
     return this.authorizationRepository.searchByRoleKeys(roleKeys)
         .map(entity::addRole)
         .then(Mono.just(entity));

@@ -11,8 +11,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface AuthenticationUserTableSource extends
-    TableSource<AuthenticationUserTable, Integer> {
+public interface AuthenticationUserTableSource
+    extends TableSource<AuthenticationUserTable, Integer> {
 
   Mono<AuthenticationUserTable> findByUsername(String username);
 
@@ -32,7 +32,8 @@ public interface AuthenticationUserTableSource extends
           + "        role.role_key"
   )
   Flux<RoleAndPermissions> selectRoleAndPermissionsSearchByUsername(
-      @Param("username") String username);
+      @Param("username") String username
+  );
 
   @Query(
       "SELECT"
@@ -48,6 +49,7 @@ public interface AuthenticationUserTableSource extends
           + "        role.role_key"
   )
   Flux<RoleAndPermissions> selectRoleAndPermissionsSearchByRoleKeys(
-      @Param("roleKeys") Collection<String> roleKeys);
+      @Param("roleKeys") Collection<String> roleKeys
+  );
 
 }

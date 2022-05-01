@@ -14,8 +14,7 @@ public class AuthenticationUserCreateRequestMapper
   private final PasswordEncoder passwordEncoder;
 
   @Override
-  public AuthenticationUserRegisterServiceInput apply(
-      AuthenticationUserCommand request) {
+  public AuthenticationUserRegisterServiceInput apply(AuthenticationUserCommand request) {
     var hashedPassword = this.passwordEncoder.encode(request.getPassword());
     return AuthenticationUserRegisterServiceInput.builder()
         .username(request.getUsername())

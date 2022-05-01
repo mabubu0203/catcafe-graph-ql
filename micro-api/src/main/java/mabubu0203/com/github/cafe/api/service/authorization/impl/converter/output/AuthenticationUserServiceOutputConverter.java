@@ -10,7 +10,8 @@ public class AuthenticationUserServiceOutputConverter
 
   @Override
   public AuthenticationUserRegisterServiceOutput apply(
-      AuthenticationUserEntity authenticationUserEntity) {
+      AuthenticationUserEntity authenticationUserEntity
+  ) {
     return AuthenticationUserRegisterServiceOutput.builder()
         .userCode(authenticationUserEntity.getUserCodeValue())
         .username(authenticationUserEntity.getUsernameValue())

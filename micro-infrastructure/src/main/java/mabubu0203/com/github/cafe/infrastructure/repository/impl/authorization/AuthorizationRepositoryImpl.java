@@ -1,7 +1,6 @@
 package mabubu0203.com.github.cafe.infrastructure.repository.impl.authorization;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +8,6 @@ import mabubu0203.com.github.cafe.common.exception.ResourceNotFoundException;
 import mabubu0203.com.github.cafe.common.source.r2dbc.base.BaseTable;
 import mabubu0203.com.github.cafe.domain.entity.authorization.AuthenticationUserEntity;
 import mabubu0203.com.github.cafe.domain.repository.authorization.AuthorizationRepository;
-import mabubu0203.com.github.cafe.domain.value.authorization.Permission;
 import mabubu0203.com.github.cafe.domain.value.authorization.Role;
 import mabubu0203.com.github.cafe.domain.value.authorization.Username;
 import mabubu0203.com.github.cafe.domain.value.code.UserCode;
@@ -29,19 +27,13 @@ public class AuthorizationRepositoryImpl implements AuthorizationRepository {
   private final AuthenticationUserTableSource authenticationUserTableSource;
   private final UserHasRoleTableSource userHasRoleTableSource;
 
-
   @Override
   public Flux<Role> searchByRoleKeys(List<String> roleKeys) {
     return
         this.authenticationUserTableSource.selectRoleAndPermissionsSearchByRoleKeys(
                 roleKeys
             )
-            .map(e -> new Role(
-                e.getRoleKey(),
-                Arrays.stream(e.getPermissionKeys().split(","))
-                    .map(Permission::new)
-                    .toList()
-            ));
+            .map(RoleAndPermissions::toRole);
   }
 
   @Override
@@ -63,8 +55,9 @@ public class AuthorizationRepositoryImpl implements AuthorizationRepository {
 
   @Override
   public Mono<UserCode> register(AuthenticationUserEntity entity, LocalDateTime receptionTime) {
+    var roles = entity.roles();
     return this.userRegister(entity, receptionTime)
-        .flatMap(code -> this.roleBulkRegister(entity, receptionTime));
+        .flatMap(code -> this.roleBulkRegister(code, roles, receptionTime));
   }
 
   private Mono<AuthenticationUserTable> findTable(UserCode userCode) {
@@ -88,15 +81,8 @@ public class AuthorizationRepositoryImpl implements AuthorizationRepository {
       AuthenticationUserEntity entity,
       RoleAndPermissions roleAndPermissions
   ) {
-    return
-        entity.addRole(
-            new Role(
-                roleAndPermissions.getRoleKey(),
-                Arrays.stream(roleAndPermissions.getPermissionKeys().split(","))
-                    .map(Permission::new)
-                    .toList()
-            )
-        );
+    var role = roleAndPermissions.toRole();
+    return entity.addRole(role);
   }
 
   private Mono<UserCode> userRegister(
@@ -112,14 +98,16 @@ public class AuthorizationRepositoryImpl implements AuthorizationRepository {
   }
 
   private Mono<UserCode> roleBulkRegister(
-      AuthenticationUserEntity entity,
+      UserCode userCode,
+      List<Role> roles,
       LocalDateTime receptionTime
   ) {
-    var authenticationUserCode = entity.getUserCodeValue();
-    var list = entity.roles().stream()
-        .map(role -> new UserHasRoleTable()
+    var authenticationUserCode = userCode.value();
+    var list = roles.stream()
+        .map(Role::key)
+        .map(roleKey -> new UserHasRoleTable()
             .authenticationUserCode(authenticationUserCode)
-            .roleKey(role.key())
+            .roleKey(roleKey)
             .createdDateTime(receptionTime)
             .version(0)
             .isNew(true)
@@ -128,8 +116,7 @@ public class AuthorizationRepositoryImpl implements AuthorizationRepository {
     return
         Flux.fromIterable(list)
             .flatMap(this.userHasRoleTableSource::save)
-            .then(Mono.just(authenticationUserCode))
-            .map(UserCode::new);
+            .then(Mono.just(userCode));
   }
 
   private AuthenticationUserTable attach(AuthenticationUserEntity entity) {

@@ -19,7 +19,7 @@ public class AuthenticationUserRegisterServiceInputConverter
     var username = new Username(input.username());
     var memo = new Memo(input.memo());
     var version = Version.empty();
-    var entity = AuthenticationUserEntity.builder()
+    return AuthenticationUserEntity.builder()
         .userCode(userCode)
         .username(username)
         .password(input.password())
@@ -27,7 +27,6 @@ public class AuthenticationUserRegisterServiceInputConverter
         .memo(memo)
         .version(version)
         .build();
-    return entity;
   }
 
 }

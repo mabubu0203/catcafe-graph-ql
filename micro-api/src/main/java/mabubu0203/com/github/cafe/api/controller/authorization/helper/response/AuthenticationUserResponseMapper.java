@@ -8,8 +8,7 @@ public class AuthenticationUserResponseMapper
     implements ResponseMapper<AuthenticationUserRegisterServiceOutput, AuthenticationUser> {
 
   @Override
-  public AuthenticationUser apply(
-      AuthenticationUserRegisterServiceOutput output) {
+  public AuthenticationUser apply(AuthenticationUserRegisterServiceOutput output) {
     return AuthenticationUser.newBuilder()
         .code(output.userCode())
         .username(output.username())
