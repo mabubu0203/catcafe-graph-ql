@@ -1,0 +1,27 @@
+# Mutation用
+
+"[認証ユーザー]-[登録/更新]"
+input AuthenticationUserCommand {
+  "Username"
+  username: String!
+  "Password"
+  password: String!
+  "RoleKey"
+  roleKeys: [String]
+  "ユーザーメモ"
+  memo: String
+}
+
+# Query用
+
+"[認証ユーザー]-[詳細]"
+type AuthenticationUser implements HasCommon {
+  "UserCode"
+  code: ID!
+  "Username"
+  username: String!
+  "ユーザーメモ"
+  memo: String
+  "バージョンフィールド"
+  version: Int!
+}

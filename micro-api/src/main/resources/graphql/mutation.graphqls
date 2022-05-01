@@ -93,5 +93,5 @@ type Mutation {
   authenticationUserCreate(
     "[認証ユーザー]-[登録/更新]"
     input: AuthenticationUserCommand!
-  ): ID
+  ): AuthenticationUser
 }
