@@ -17,6 +17,7 @@ import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.AuthenticationUser
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.UserHasRoleTableSource;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.AuthenticationUserTable;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.RoleAndPermissions;
+import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.UserHasRoleTable;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -33,7 +34,7 @@ public class AuthorizationRepositoryImpl implements AuthorizationRepository {
   public Flux<Role> searchByRoleKeys(List<String> roleKeys) {
     return
         this.authenticationUserTableSource.selectRoleAndPermissionsSearchByRoleKeys(
-                (String[]) roleKeys.toArray()
+                roleKeys
             )
             .map(e -> new Role(
                 e.getRoleKey(),
@@ -62,7 +63,8 @@ public class AuthorizationRepositoryImpl implements AuthorizationRepository {
 
   @Override
   public Mono<UserCode> register(AuthenticationUserEntity entity, LocalDateTime receptionTime) {
-    return this.userRegister(entity, receptionTime);
+    return this.userRegister(entity, receptionTime)
+        .flatMap(code -> this.roleBulkRegister(entity, receptionTime));
   }
 
   private Mono<AuthenticationUserTable> findTable(UserCode userCode) {
@@ -97,8 +99,10 @@ public class AuthorizationRepositoryImpl implements AuthorizationRepository {
         );
   }
 
-  private Mono<UserCode> userRegister(AuthenticationUserEntity entity,
-      LocalDateTime receptionTime) {
+  private Mono<UserCode> userRegister(
+      AuthenticationUserEntity entity,
+      LocalDateTime receptionTime
+  ) {
     return Mono.just(entity)
         .map(this::attach)
         .map(dto -> dto.createdBy(0))
@@ -107,17 +111,35 @@ public class AuthorizationRepositoryImpl implements AuthorizationRepository {
         .map(UserCode::new);
   }
 
-  // TODO:UserHasRoleTableSourceで一括登録する
-  private Mono<UserCode> roleBulkRegister() {
-    return Mono.empty();
+  private Mono<UserCode> roleBulkRegister(
+      AuthenticationUserEntity entity,
+      LocalDateTime receptionTime
+  ) {
+    var authenticationUserCode = entity.getUserCodeValue();
+    var list = entity.roles().stream()
+        .map(role -> new UserHasRoleTable()
+            .authenticationUserCode(authenticationUserCode)
+            .roleKey(role.key())
+            .createdDateTime(receptionTime)
+            .version(0)
+            .isNew(true)
+        )
+        .toList();
+    return
+        Flux.fromIterable(list)
+            .flatMap(this.userHasRoleTableSource::save)
+            .then(Mono.just(authenticationUserCode))
+            .map(UserCode::new);
   }
 
   private AuthenticationUserTable attach(AuthenticationUserEntity entity) {
     return this.attach(null, entity);
   }
 
-  private AuthenticationUserTable attach(AuthenticationUserTable dto,
-      AuthenticationUserEntity entity) {
+  private AuthenticationUserTable attach(
+      AuthenticationUserTable dto,
+      AuthenticationUserEntity entity
+  ) {
     return Optional.ofNullable(dto)
         .orElse(new AuthenticationUserTable())
         .attach(entity);

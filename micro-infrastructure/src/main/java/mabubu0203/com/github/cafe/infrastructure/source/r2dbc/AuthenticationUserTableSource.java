@@ -1,9 +1,11 @@
 package mabubu0203.com.github.cafe.infrastructure.source.r2dbc;
 
+import java.util.Collection;
 import mabubu0203.com.github.cafe.common.source.r2dbc.TableSource;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.AuthenticationUserTable;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.RoleAndPermissions;
 import org.springframework.data.r2dbc.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -29,7 +31,8 @@ public interface AuthenticationUserTableSource extends
           + "      GROUP BY"
           + "        role.role_key"
   )
-  Flux<RoleAndPermissions> selectRoleAndPermissionsSearchByUsername(String username);
+  Flux<RoleAndPermissions> selectRoleAndPermissionsSearchByUsername(
+      @Param("username") String username);
 
   @Query(
       "SELECT"
@@ -44,5 +47,7 @@ public interface AuthenticationUserTableSource extends
           + "      GROUP BY"
           + "        role.role_key"
   )
-  Flux<RoleAndPermissions> selectRoleAndPermissionsSearchByRoleKeys(String[] roleKeys);
+  Flux<RoleAndPermissions> selectRoleAndPermissionsSearchByRoleKeys(
+      @Param("roleKeys") Collection<String> roleKeys);
+
 }
