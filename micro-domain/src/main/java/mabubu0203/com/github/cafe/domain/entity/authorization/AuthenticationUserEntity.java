@@ -1,10 +1,8 @@
 package mabubu0203.com.github.cafe.domain.entity.authorization;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Value;
 import lombok.With;
 import lombok.experimental.Accessors;

@@ -9,8 +9,13 @@ public class AuthenticationUserResponseMapper
 
   @Override
   public AuthenticationUser apply(
-      AuthenticationUserRegisterServiceOutput authenticationUserRegisterServiceOutput) {
-    return null;
+      AuthenticationUserRegisterServiceOutput output) {
+    return AuthenticationUser.newBuilder()
+        .code(output.userCode())
+        .username(output.username())
+        .memo(output.memo())
+        .version(output.version())
+        .build();
   }
 
 }

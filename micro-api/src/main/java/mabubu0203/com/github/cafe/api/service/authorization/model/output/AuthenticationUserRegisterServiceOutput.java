@@ -10,4 +10,9 @@ import mabubu0203.com.github.cafe.common.service.model.ServiceOutput;
 @Value
 public class AuthenticationUserRegisterServiceOutput implements ServiceOutput {
 
+  String userCode;
+  String username;
+  String memo;
+  Integer version;
+
 }

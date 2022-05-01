@@ -2,8 +2,11 @@ package mabubu0203.com.github.cafe.infrastructure.repository.impl.authorization;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import mabubu0203.com.github.cafe.common.exception.ResourceNotFoundException;
+import mabubu0203.com.github.cafe.common.source.r2dbc.base.BaseTable;
 import mabubu0203.com.github.cafe.domain.entity.authorization.AuthenticationUserEntity;
 import mabubu0203.com.github.cafe.domain.repository.authorization.AuthorizationRepository;
 import mabubu0203.com.github.cafe.domain.value.authorization.Permission;
@@ -15,6 +18,7 @@ import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.UserHasRoleTableSo
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.AuthenticationUserTable;
 import mabubu0203.com.github.cafe.infrastructure.source.r2dbc.dto.RoleAndPermissions;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
@@ -23,6 +27,27 @@ public class AuthorizationRepositoryImpl implements AuthorizationRepository {
 
   private final AuthenticationUserTableSource authenticationUserTableSource;
   private final UserHasRoleTableSource userHasRoleTableSource;
+
+
+  @Override
+  public Flux<Role> searchByRoleKeys(List<String> roleKeys) {
+    return
+        this.authenticationUserTableSource.selectRoleAndPermissionsSearchByRoleKeys(
+                (String[]) roleKeys.toArray()
+            )
+            .map(e -> new Role(
+                e.getRoleKey(),
+                Arrays.stream(e.getPermissionKeys().split(","))
+                    .map(Permission::new)
+                    .toList()
+            ));
+  }
+
+  @Override
+  public Mono<AuthenticationUserEntity> findByCode(UserCode userCode) {
+    return this.findTable(userCode)
+        .map(AuthenticationUserTable::toEntity);
+  }
 
   @Override
   public Mono<AuthenticationUserEntity> findByUsername(Username username) {
@@ -38,6 +63,13 @@ public class AuthorizationRepositoryImpl implements AuthorizationRepository {
   @Override
   public Mono<UserCode> register(AuthenticationUserEntity entity, LocalDateTime receptionTime) {
     return this.userRegister(entity, receptionTime);
+  }
+
+  private Mono<AuthenticationUserTable> findTable(UserCode userCode) {
+    return this.authenticationUserTableSource.findByCode(userCode.value())
+        .filter(BaseTable::isExists)
+        // 404で返却するためのエラーを検討
+        .switchIfEmpty(Mono.error(new ResourceNotFoundException("ユーザーが存在しません")));
   }
 
   private Mono<AuthenticationUserEntity> selectUserAndRolesSearchByUsername(

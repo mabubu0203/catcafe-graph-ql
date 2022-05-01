@@ -9,6 +9,7 @@ import mabubu0203.com.github.cafe.api.controller.authorization.helper.response.A
 import mabubu0203.com.github.cafe.api.service.authorization.AuthenticationUserRegisterService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import reactor.core.publisher.Mono;
 
@@ -17,13 +18,14 @@ import reactor.core.publisher.Mono;
 public class AuthorizationCommandController {
 
   private final AuthenticationUserRegisterService authenticationUserRegisterService;
+  private final PasswordEncoder passwordEncoder;
 
   @MutationMapping(name = "authenticationUserCreate")
   public Mono<AuthenticationUser> authenticationUserCreate(
       @Argument("input") @Valid AuthenticationUserCommand input
   ) {
     return Mono.just(input)
-        .map(new AuthenticationUserCreateRequestMapper())
+        .map(new AuthenticationUserCreateRequestMapper(this.passwordEncoder))
         .flatMap(this.authenticationUserRegisterService::action)
         .map(new AuthenticationUserResponseMapper());
   }
