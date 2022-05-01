@@ -89,4 +89,9 @@ type Mutation {
     "バージョンフィールド"
     version: Int!
   ): ID
+  "[認証ユーザー]-[登録]"
+  authenticationUserCreate(
+    "[認証ユーザー]-[登録/更新]"
+    input: AuthenticationUserCommand!
+  ): ID
 }

@@ -1,8 +1,9 @@
 introspection:
   schemaFile:
     - ../resources/graphql/schema.graphqls
-    - ../resources/graphql/query.graphqls
     - ../resources/graphql/mutation.graphqls
+    - ../resources/graphql/query.graphqls
+    - ../resources/graphql/authenticationUser.graphqls
     - ../resources/graphql/cast.graphqls
     - ../resources/graphql/location.graphqls
     - ../resources/graphql/notice.graphqls

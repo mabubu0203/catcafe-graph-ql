@@ -1,0 +1,13 @@
+# Mutation用
+
+"[認証ユーザー]-[登録/更新]"
+input AuthenticationUserCommand {
+  "Username"
+  username: String!
+  "Password"
+  password: String!
+  "RoleKey"
+  roleKeys: [String]
+  "ユーザーメモ"
+  memo: String
+}
