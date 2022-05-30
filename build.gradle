@@ -26,7 +26,7 @@ buildscript {
 plugins {
 	id 'org.springframework.boot' version "${SpringBootVersion}"
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'com.github.node-gradle.node' version '3.2.1' apply false
+    id 'com.github.node-gradle.node' version '3.3.0' apply false
     id 'com.netflix.dgs.codegen' version '5.1.17' apply false
 	id 'com.palantir.git-version' version '0.15.0'
     id 'com.gorylenko.gradle-git-properties' version '2.4.0'
