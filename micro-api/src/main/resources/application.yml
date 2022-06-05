@@ -37,7 +37,7 @@ management:
       exposure:
         include: "*"
   health:
-    readinessstate:
+    readiness-state:
       enabled: true
 ---
 spring:
