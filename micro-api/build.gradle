@@ -2,6 +2,7 @@ description = getProject().name
 
 apply plugin: "com.github.node-gradle.node"
 apply plugin: "com.netflix.dgs.codegen"
+apply plugin: "org.kordamp.gradle.jdeps"
 
 dependencies {
     // SpringBoot projects
@@ -17,7 +18,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
 
     // GraphQL
-    implementation 'com.graphql-java:graphql-java-extended-scalars:18.0'
+    implementation 'com.graphql-java:graphql-java-extended-scalars:18.1'
 
     // mysql
     runtimeOnly 'dev.miku:r2dbc-mysql'
